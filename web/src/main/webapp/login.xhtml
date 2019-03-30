@@ -1,0 +1,38 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+<title>PencasUyCore - Login</title>
+<ui:include src="app/components/header.xhtml"></ui:include>
+</head>
+<body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<div class="demo-card-wide mdl-card mdl-shadow--2dp"
+			style="margin: 0 auto; padding-top: 20px;">
+			<ui:fragment rendered="#{not empty param.err and param.err eq '1'}">
+				<ui:include src="app/components/error.xhtml"></ui:include>
+			</ui:fragment>
+			<h:form>
+               
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText binding="#{user}" styleClass="mdl-textfield__input" name="user" id="user" required="true" requiredMessage="Usuario no puede ser vacio"/>
+					<label class="mdl-textfield__label" for="user">Usuario</label>
+					<h:message for="user" style="color:red" />
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputSecret binding="#{pwd}" styleClass="mdl-textfield__input" id="pwd" name="pwd" required="true" requiredMessage="Contraseña no puede ser vacia"/>
+					<label class="mdl-textfield__label" for="pwd">Contraseña</label>
+					<h:message for="pwd" style="color:red" />
+				</div>
+				<div class="mdl-card__actions mdl-card--border">
+					<h:commandButton value="Iniciar sesion"
+						action="#{sessionBean.login(user.value, pwd.value)}"
+						styleClass="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" />
+				</div>
+			</h:form>
+		</div>
+	</div>
+</body>
+</html>

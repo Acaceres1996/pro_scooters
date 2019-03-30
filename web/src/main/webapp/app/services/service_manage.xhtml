@@ -1,0 +1,61 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+<title>PencasUyCore - Servicios</title>
+<ui:include src="/app/components/header.xhtml"></ui:include>
+</head>
+<body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<ui:include src="/app/components/menu.xhtml"></ui:include>
+		<div style="margin:10px;">
+				<h:button value="Crear" outcome="service_create.xhtml"
+					styleClass="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" />
+			</div>
+		<h:form>			
+			<table
+				class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp"
+				style="margin-left: auto; margin-right: auto; margin-top: 5px; margin-bottom: 5px;">
+				<thead>
+					<tr>
+						<th class="mdl-data-table__cell--non-numeric">Id</th>
+						<th class="mdl-data-table__cell--non-numeric">Nombre</th>
+						<th class="mdl-data-table__cell--non-numeric">Host</th>
+						<th class="mdl-data-table__cell--non-numeric">Puerto</th>						
+						<th class="mdl-data-table__cell--non-numeric">Ruta</th>
+						<th class="mdl-data-table__cell--non-numeric">Query</th>
+						<th class="mdl-data-table__cell--non-numeric">Tipo</th>
+						<th class="mdl-data-table__cell--non-numeric">Servicio</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<ui:repeat var="o" value="#{service.getServices()}"
+						varStatus="status">
+						<tr>
+							<td class="mdl-data-table__cell--non-numeric">#{o.id}</td>
+							<td class="mdl-data-table__cell--non-numeric">#{o.name}</td>
+							<td class="mdl-data-table__cell--non-numeric">#{o.host}</td>
+							<td class="mdl-data-table__cell--non-numeric">#{o.port}</td>
+							<td class="mdl-data-table__cell--non-numeric">#{o.path}</td>
+							<td class="mdl-data-table__cell--non-numeric">#{o.query}</td>
+							<td class="mdl-data-table__cell--non-numeric">#{o.type}</td>
+							<td class="mdl-data-table__cell--non-numeric">#{o.typeService}</td>
+							<td><h:commandButton value="Modificar"
+									action="#{service.goToModify(o)}"
+									styleClass="mdl-button mdl-js-button mdl-button--primary" /></td>
+							<td><h:commandButton value="Eliminar"
+									action="#{service.disableService(o)}"
+									styleClass="mdl-button mdl-js-button mdl-button--primary"/></td>
+						</tr>
+					</ui:repeat>
+				</tbody>
+			</table>
+		</h:form>
+	</div>
+	<!-- TODO: Implementar data table con DtOrganization y MDL -->
+</body>
+</html>
