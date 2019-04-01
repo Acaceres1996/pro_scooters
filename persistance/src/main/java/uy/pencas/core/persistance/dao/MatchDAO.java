@@ -14,9 +14,7 @@ import uy.pencas.core.datatypes.datatypes.DTMatch;
 import uy.pencas.core.persistance.interfaces.CompetitionDAOLocal;
 import uy.pencas.core.persistance.interfaces.MatchDAOLocal;
 import uy.pencas.core.persistance.interfaces.TeamDAOLocal;
-import uy.pencas.core.persistance.model.Competition;
 import uy.pencas.core.persistance.model.Match;
-import uy.pencas.core.persistance.model.Team;
 
 
 @Stateful

@@ -1,8 +1,6 @@
-# PENCAS.UY - CORE
+# Proyecto de Scooters
 
-## Description
-
-PencasUY Core Application runs the core environment for the plattform in OpenShift-MiniShift
+## Estructura
 
 # Content
 
@@ -16,21 +14,3 @@ PencasUY Core Application runs the core environment for the plattform in OpenShi
 * pom.xml ... Main project configuration
 * secret.yaml ... OpenShift secret file to consume gitlab.fing.edu.uy
 * project.yaml ... The main project file
-
-## Instalation
-
-1. Create a project in OpenShift.
-The name MUST be pencasuy-core
-```
-oc new-project {PROJECT_NAME}
-```
-2. Create the secret to consume the git project
-```
-oc create -f secret.yaml
-```
-3. Create the project processing the template file
-```
-oc process -f project.yaml | oc create -f -
-```
-This last step, builds the source code with the s2i strategy, adding the env parameters and push the result image to the registry.
-Then runs a new deploy for that image.

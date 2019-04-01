@@ -9,11 +9,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
 import uy.pencas.core.datatypes.datatypes.DTOrganization;
-import uy.pencas.core.datatypes.datatypes.DTTeam;
 import uy.pencas.core.persistance.interfaces.OrganizationDAOLocal;
-import uy.pencas.core.persistance.interfaces.TeamDAOLocal;
 import uy.pencas.core.persistance.model.Organization;
-import uy.pencas.core.persistance.model.Team;
 
 @Stateful
 public class OrganizationDAO  implements OrganizationDAOLocal  {

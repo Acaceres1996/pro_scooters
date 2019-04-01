@@ -1,13 +1,10 @@
 package uy.pencas.core.persistance.model;
 
 import java.io.Serializable;
-import java.util.Date;
-
 import javax.persistence.*;
 
 import uy.pencas.core.datatypes.datatypes.DTCompetition;
 import uy.pencas.core.datatypes.datatypes.DTMatch;
-import uy.pencas.core.datatypes.datatypes.DTTeam;
 import uy.pencas.core.datatypes.enumerated.TypeSport;
 
 import java.util.ArrayList;

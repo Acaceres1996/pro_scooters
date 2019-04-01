@@ -5,7 +5,6 @@ import javax.persistence.*;
 
 import uy.pencas.core.datatypes.datatypes.DTGlobalCompetitor;
 import uy.pencas.core.datatypes.datatypes.DTOrganization;
-import uy.pencas.core.datatypes.datatypes.DTTeam;
 import uy.pencas.core.datatypes.enumerated.TypeStatus;
 
 import java.util.ArrayList;
