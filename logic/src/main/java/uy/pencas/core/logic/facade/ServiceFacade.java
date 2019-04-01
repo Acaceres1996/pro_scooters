@@ -7,12 +7,11 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import scooters.core.logic.interfaces.ServiceFacadeLocal;
+import scooters.core.logic.interfaces.ServiceFacadeRemote;
 import uy.pencas.core.datatypes.datatypes.DTService;
 import uy.pencas.core.datatypes.enumerated.Type;
 import uy.pencas.core.datatypes.enumerated.TypeService;
-import uy.pencas.core.logic.interfaces.ServiceFacadeLocal;
-import uy.pencas.core.logic.interfaces.ServiceFacadeRemote;
-
 import uy.pencas.core.persistance.interfaces.ServiceDAOLocal;
 
 /**

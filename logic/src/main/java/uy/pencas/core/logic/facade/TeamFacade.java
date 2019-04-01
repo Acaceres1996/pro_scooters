@@ -6,10 +6,9 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import scooters.core.logic.interfaces.TeamFacadeLocal;
+import scooters.core.logic.interfaces.TeamFacadeRemote;
 import uy.pencas.core.datatypes.datatypes.DTTeam;
-import uy.pencas.core.logic.interfaces.TeamFacadeLocal;
-import uy.pencas.core.logic.interfaces.TeamFacadeRemote;
-
 import uy.pencas.core.persistance.interfaces.TeamDAOLocal;
 
 /**

@@ -12,9 +12,8 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
-
-import uy.pencas.core.logic.interfaces.LuckyNumbersLocal;
-import uy.pencas.core.logic.interfaces.LuckyNumbersRemote;
+import scooters.core.logic.interfaces.LuckyNumbersLocal;
+import scooters.core.logic.interfaces.LuckyNumbersRemote;
 
 /**
  * Session Bean implementation class LuckyNumbers

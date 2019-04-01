@@ -6,10 +6,9 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import scooters.core.logic.interfaces.GlobalRankingFacadeLocal;
+import scooters.core.logic.interfaces.GlobalRankingFacadeRemote;
 import uy.pencas.core.datatypes.datatypes.DTGlobalRanking;
-import uy.pencas.core.logic.interfaces.GlobalRankingFacadeLocal;
-import uy.pencas.core.logic.interfaces.GlobalRankingFacadeRemote;
-
 import uy.pencas.core.persistance.interfaces.GlobalRankingDAOLocal;
 
 /**

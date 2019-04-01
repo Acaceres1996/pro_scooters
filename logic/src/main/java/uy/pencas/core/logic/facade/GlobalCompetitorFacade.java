@@ -6,9 +6,9 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import scooters.core.logic.interfaces.GlobalCompetitorFacadeLocal;
+import scooters.core.logic.interfaces.GlobalCompetitorFacadeRemote;
 import uy.pencas.core.datatypes.datatypes.DTGlobalCompetitor;
-import uy.pencas.core.logic.interfaces.GlobalCompetitorFacadeLocal;
-import uy.pencas.core.logic.interfaces.GlobalCompetitorFacadeRemote;
 import uy.pencas.core.persistance.interfaces.GlobalCompetitorDAOLocal;
 
 

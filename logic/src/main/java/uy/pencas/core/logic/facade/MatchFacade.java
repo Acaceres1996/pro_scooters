@@ -6,10 +6,9 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import scooters.core.logic.interfaces.MatchFacadeLocal;
+import scooters.core.logic.interfaces.MatchFacadeRemote;
 import uy.pencas.core.datatypes.datatypes.DTMatch;
-import uy.pencas.core.logic.interfaces.MatchFacadeLocal;
-import uy.pencas.core.logic.interfaces.MatchFacadeRemote;
-
 import uy.pencas.core.persistance.interfaces.MatchDAOLocal;
 
 /**

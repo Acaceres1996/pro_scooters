@@ -6,10 +6,9 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import scooters.core.logic.interfaces.PaymentRequestFacadeLocal;
+import scooters.core.logic.interfaces.PaymentRequestFacadeRemote;
 import uy.pencas.core.datatypes.datatypes.DTPaymentRequest;
-import uy.pencas.core.logic.interfaces.PaymentRequestFacadeLocal;
-import uy.pencas.core.logic.interfaces.PaymentRequestFacadeRemote;
-
 import uy.pencas.core.persistance.interfaces.PaymentRequestDAOLocal;
 
 /**

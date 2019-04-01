@@ -10,9 +10,9 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
+import scooters.core.logic.interfaces.OrganizationFacadeLocal;
+import scooters.core.logic.interfaces.ParameterFacadeLocal;
 import uy.pencas.core.datatypes.datatypes.DTOrganization;
-import uy.pencas.core.logic.interfaces.OrganizationFacadeLocal;
-import uy.pencas.core.logic.interfaces.ParameterFacadeLocal;
 
 @Stateless(mappedName = "wsOrganization")
 @LocalBean

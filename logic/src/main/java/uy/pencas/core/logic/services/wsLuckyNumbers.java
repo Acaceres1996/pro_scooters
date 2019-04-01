@@ -10,8 +10,8 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-import uy.pencas.core.logic.interfaces.LuckyNumbersLocal;
-import uy.pencas.core.logic.interfaces.ParameterFacadeLocal;
+import scooters.core.logic.interfaces.LuckyNumbersLocal;
+import scooters.core.logic.interfaces.ParameterFacadeLocal;
 
 @Stateless(mappedName = "wsLuckyNumbers")
 @LocalBean

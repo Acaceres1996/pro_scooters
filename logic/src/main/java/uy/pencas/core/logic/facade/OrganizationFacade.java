@@ -7,12 +7,12 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import scooters.core.logic.interfaces.OrganizationFacadeLocal;
+import scooters.core.logic.interfaces.OrganizationFacadeRemote;
 import uy.pencas.core.datatypes.datatypes.DTOrganization;
 import uy.pencas.core.datatypes.datatypes.DTTeam;
 import uy.pencas.core.datatypes.enumerated.TypeRewardStatus;
 import uy.pencas.core.datatypes.enumerated.TypeStatus;
-import uy.pencas.core.logic.interfaces.OrganizationFacadeLocal;
-import uy.pencas.core.logic.interfaces.OrganizationFacadeRemote;
 import uy.pencas.core.persistance.interfaces.OrganizationDAOLocal;
 
 

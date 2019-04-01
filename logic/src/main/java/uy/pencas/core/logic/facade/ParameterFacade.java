@@ -6,10 +6,9 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import scooters.core.logic.interfaces.ParameterFacadeLocal;
+import scooters.core.logic.interfaces.ParameterFacadeRemote;
 import uy.pencas.core.datatypes.datatypes.DTParameter;
-import uy.pencas.core.logic.interfaces.ParameterFacadeLocal;
-import uy.pencas.core.logic.interfaces.ParameterFacadeRemote;
-
 import uy.pencas.core.persistance.interfaces.ParameterDAOLocal;
 
 /**

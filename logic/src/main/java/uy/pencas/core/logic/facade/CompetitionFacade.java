@@ -6,9 +6,9 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import scooters.core.logic.interfaces.CompetitionFacadeLocal;
+import scooters.core.logic.interfaces.CompetitionFacadeRemote;
 import uy.pencas.core.datatypes.datatypes.DTCompetition;
-import uy.pencas.core.logic.interfaces.CompetitionFacadeLocal;
-import uy.pencas.core.logic.interfaces.CompetitionFacadeRemote;
 import uy.pencas.core.persistance.interfaces.CompetitionDAOLocal;
 
 /**

@@ -7,10 +7,10 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import scooters.core.logic.interfaces.PrizeFacadeLocal;
+import scooters.core.logic.interfaces.PrizeFacadeRemote;
 import uy.pencas.core.datatypes.datatypes.DTPrize;
 import uy.pencas.core.datatypes.enumerated.TypePrize;
-import uy.pencas.core.logic.interfaces.PrizeFacadeLocal;
-import uy.pencas.core.logic.interfaces.PrizeFacadeRemote;
 import uy.pencas.core.persistance.interfaces.PrizeDAOLocal;
 
 /**
