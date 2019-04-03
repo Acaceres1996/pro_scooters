@@ -4,7 +4,6 @@
 	<comment></comment>
 	<projects>
 		<project>logic</project>
-		<project>webCore</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

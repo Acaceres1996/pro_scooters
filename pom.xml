@@ -3,7 +3,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>uy.pencas.core</groupId>
+  <groupId>scooters.core</groupId>
   <artifactId>eap</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -15,7 +15,6 @@
     <module>logic-client</module>
     <module>logic</module>
     <module>ear</module>
-    <module>web</module>
   </modules>
 
   <properties>
@@ -35,40 +34,31 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>uy.pencas.core</groupId>
+        <groupId>scooters.core</groupId>
         <artifactId>datatypes</artifactId>
         <version>${project.version}</version>
-        <type>jar</type>
       </dependency>
       <dependency>
-        <groupId>uy.pencas.core</groupId>
+        <groupId>scooters.core</groupId>
         <artifactId>persistance-client</artifactId>
         <version>${project.version}</version>
-        <type>jar</type>
       </dependency>
       <dependency>
-        <groupId>uy.pencas.core</groupId>
+        <groupId>scooters.core</groupId>
         <artifactId>persistance</artifactId>
         <version>${project.version}</version>
         <type>ejb</type>
       </dependency>
       <dependency>
-        <groupId>uy.pencas.core</groupId>
+        <groupId>scooters.core</groupId>
         <artifactId>logic-client</artifactId>
         <version>${project.version}</version>
-        <type>jar</type>
       </dependency>
       <dependency>
-        <groupId>uy.pencas.core</groupId>
+        <groupId>scooters.core</groupId>
         <artifactId>logic</artifactId>
         <version>${project.version}</version>
         <type>ejb</type>
-      </dependency>
-      <dependency>
-        <groupId>uy.pencas.core</groupId>
-        <artifactId>web</artifactId>
-        <version>${project.version}</version>
-        <type>war</type>
       </dependency>
       <dependency>
         <groupId>org.wildfly.bom</groupId>

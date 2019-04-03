@@ -3,17 +3,6 @@
 	<persistence-unit name="persistance" transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:jboss/datasources/PostgreSQLDS</jta-data-source>
-		<class>uy.pencas.core.persistance.model.Team</class>
-		<class>uy.pencas.core.persistance.model.Service</class>
-		<class>uy.pencas.core.persistance.model.Prize</class>
-		<class>uy.pencas.core.persistance.model.PaymentReward</class>
-		<class>uy.pencas.core.persistance.model.PaymentRequest</class>
-		<class>uy.pencas.core.persistance.model.Parameter</class>
-		<class>uy.pencas.core.persistance.model.Organization</class>
-		<class>uy.pencas.core.persistance.model.Match</class>
-		<class>uy.pencas.core.persistance.model.GlobalRanking</class>
-		<class>uy.pencas.core.persistance.model.GlobalCompetitorPK</class>
-		<class>uy.pencas.core.persistance.model.GlobalCompetitor</class>
-		<class>uy.pencas.core.persistance.model.Competition</class>
+		<class>scooters.core.persistance.model.Scooter</class>
 	</persistence-unit>
 </persistence>

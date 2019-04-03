@@ -5,7 +5,7 @@
 
     <parent>
       <artifactId>eap</artifactId>
-      <groupId>uy.pencas.core</groupId>
+      <groupId>scooters.core</groupId>
       <version>0.0.1-SNAPSHOT</version>
     </parent>
 
@@ -14,32 +14,25 @@
 
     <dependencies>
       <dependency>
-        <groupId>uy.pencas.core</groupId>
+        <groupId>scooters.core</groupId>
         <artifactId>persistance-client</artifactId>
-        <type>jar</type>
       </dependency>
       <dependency>
-        <groupId>uy.pencas.core</groupId>
+        <groupId>scooters.core</groupId>
         <artifactId>persistance</artifactId>
         <type>ejb</type>
       </dependency>
       <dependency>
-        <groupId>uy.pencas.core</groupId>
+        <groupId>scooters.core</groupId>
         <artifactId>logic-client</artifactId>
-        <type>jar</type>
       </dependency>
       <dependency>
-        <groupId>uy.pencas.core</groupId>
+        <groupId>scooters.core</groupId>
         <artifactId>logic</artifactId>
         <type>ejb</type>
       </dependency>
       <dependency>
-        <groupId>uy.pencas.core</groupId>
-        <artifactId>web</artifactId>
-        <type>war</type>
-      </dependency>
-      <dependency>
-      	<groupId>uy.pencas.core</groupId>
+      	<groupId>scooters.core</groupId>
       	<artifactId>datatypes</artifactId>
       </dependency>
     </dependencies>
@@ -75,26 +68,4 @@
         </plugin>
       </plugins>
     </build>
-
-    <profiles>
-      <profile>
-        <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
-        <!-- Use this profile for any OpenShift specific customization your app will need. -->
-        <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
-        <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
-        <id>openshift</id>
-        <build>
-          <plugins>
-            <plugin>
-              <artifactId>maven-ear-plugin</artifactId>
-              <version>${version.ear.plugin}</version>
-              <configuration>
-                <outputDirectory>deployments</outputDirectory>
-              </configuration>
-            </plugin>
-          </plugins>
-        </build>
-      </profile>
-    </profiles>
-
 </project>

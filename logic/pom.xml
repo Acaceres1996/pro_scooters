@@ -5,7 +5,7 @@
 
   <parent>
     <artifactId>eap</artifactId>
-    <groupId>uy.pencas.core</groupId>
+    <groupId>scooters.core</groupId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
@@ -20,11 +20,11 @@
   <dependencies>
     <dependency>
       <artifactId>logic-client</artifactId>
-      <groupId>uy.pencas.core</groupId>
+      <groupId>scooters.core</groupId>
     </dependency>
     <dependency>
       <artifactId>persistance-client</artifactId>
-      <groupId>uy.pencas.core</groupId>
+      <groupId>scooters.core</groupId>
     </dependency>
 
     <dependency>
