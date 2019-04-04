@@ -15,6 +15,7 @@
     <module>logic-client</module>
     <module>logic</module>
     <module>ear</module>
+    <module>logic-rest</module>
   </modules>
 
   <properties>
@@ -59,6 +60,12 @@
         <artifactId>logic</artifactId>
         <version>${project.version}</version>
         <type>ejb</type>
+      </dependency>
+      <dependency>
+      	<groupId>scooters.core</groupId>
+      	<artifactId>logic-rest</artifactId>
+      	<version>${project.version}</version>
+      	<type>war</type>
       </dependency>
       <dependency>
         <groupId>org.wildfly.bom</groupId>
@@ -149,6 +156,7 @@
         <artifactId>postgresql</artifactId>
         <version>9.1-901.jdbc4</version>
       </dependency>
+      
     </dependencies>
   </dependencyManagement>
 

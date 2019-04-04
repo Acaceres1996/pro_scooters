@@ -35,6 +35,11 @@
       	<groupId>scooters.core</groupId>
       	<artifactId>datatypes</artifactId>
       </dependency>
+      <dependency>
+      	<groupId>scooters.core</groupId>
+      	<artifactId>logic-rest</artifactId>
+      	<type>war</type>
+      </dependency>
     </dependencies>
 
     <build>
