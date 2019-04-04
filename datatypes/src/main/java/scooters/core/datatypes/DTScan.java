@@ -7,16 +7,16 @@ public class DTScan implements Serializable {
 	private static final long serialVersionUID = 1L;	
 	private Integer Id;
 	private Integer CustomerId;
-	private Integer ScooterId;
+	private Integer ScooterReportId;
 	
 	public DTScan() {
 		super();
 	}
 	
-	public DTScan(Integer Id, Integer CustomerId, Integer ScooterId) {
+	public DTScan(Integer Id, Integer CustomerId, Integer ScooterReportId) {
 		this.setId(Id);
 		this.setCustomerId(CustomerId);
-		this.setScooterId(ScooterId);
+		this.setScooterReportId(ScooterReportId);
 	}
 	
 	public Integer getId() {
@@ -31,10 +31,10 @@ public class DTScan implements Serializable {
 	public void setCustomerId(Integer customerId) {
 		CustomerId = customerId;
 	}
-	public Integer getScooterId() {
-		return ScooterId;
+	public Integer getScooterReportId() {
+		return ScooterReportId;
 	}
-	public void setScooterId(Integer scooterId) {
-		ScooterId = scooterId;
+	public void setScooterReportId(Integer ScooterReportId) {
+		this.ScooterReportId = ScooterReportId;
 	}
 }

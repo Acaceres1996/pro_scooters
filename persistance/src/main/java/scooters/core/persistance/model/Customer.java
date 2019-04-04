@@ -22,7 +22,12 @@ private static final long serialVersionUID = 1L;
 	}
 	
 	public Customer(DTCustomer c) {
-		
+		this.setId(c.getId());
+		this.setEmail(c.getEmail());
+	}
+	
+	public DTCustomer toDataType() {
+		return new DTCustomer( this.getId(), this.getEmail());
 	}
 	
 	public Integer getId() {
@@ -41,7 +46,5 @@ private static final long serialVersionUID = 1L;
 		this.Email = email;
 	}
 	
-	public DTCustomer toDataType() {
-		return new DTCustomer( this.getId(), this.getEmail());
-	}
+	
 }

@@ -15,10 +15,20 @@ public class Scan implements Serializable {
 	@Column(name="Id", insertable=true, updatable=false)
 	private Integer Id;		
 	private Integer CustomerId;	
-	private Integer ScooterId;
+	private Integer ScooterReportId;
 	
 	public Scan() {
 		
+	}
+	
+	public Scan(DTScan s) {
+		this.setId( s.getId() );
+		this.setCustomerId( s.getCustomerId() );
+		this.setScooterReportId( s.getScooterReportId() );
+	}
+	
+	public DTScan toDataType() {
+		return new DTScan( this.getId(), this.getCustomerId(), this.getScooterReportId());
 	}
 	
 	public Integer getId() {
@@ -33,14 +43,12 @@ public class Scan implements Serializable {
 	public void setCustomerId(Integer customerId) {
 		CustomerId = customerId;
 	}
-	public Integer getScooterId() {
-		return ScooterId;
+	
+	public Integer getScooterReportId() {
+		return ScooterReportId;
 	}
-	public void setScooterId(Integer scooterId) {
-		ScooterId = scooterId;
-	}
-	public DTScan toDataType() {
-		return new DTScan( this.getId(), this.getCustomerId(), this.getScooterId());
+	public void setScooterReportId(Integer scooterReportId) {
+		ScooterReportId = scooterReportId;
 	}
 	
 }
