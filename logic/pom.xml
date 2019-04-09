@@ -7,7 +7,7 @@
 
 	<parent>
 		<artifactId>eap</artifactId>
-		<groupId>scooters.core</groupId>
+		<groupId>uy.pencas.organization</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
@@ -22,11 +22,15 @@
 	<dependencies>
 		<dependency>
 			<artifactId>logic-client</artifactId>
-			<groupId>scooters.core</groupId>
+			<groupId>uy.pencas.organization</groupId>
 		</dependency>
 		<dependency>
 			<artifactId>persistance-client</artifactId>
-			<groupId>scooters.core</groupId>
+			<groupId>uy.pencas.organization</groupId>
+		</dependency>
+		<dependency>
+			<artifactId>datatypes</artifactId>
+			<groupId>uy.pencas.organization</groupId>
 		</dependency>
 
 		<dependency>
@@ -59,28 +63,19 @@
 			<artifactId>arquillian-protocol-servlet</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
+		<!-- https://mvnrepository.com/artifact/org.jboss.ejb3/jboss-ejb3-ext-api -->
 		<dependency>
-			<groupId>javax.ws.rs</groupId>
-			<artifactId>javax.ws.rs-api</artifactId>
-			<version>2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-json</artifactId>
-			<version>1.19.4</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.json</groupId>
-			<artifactId>javax.json-api</artifactId>
-			<version>1.1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt</artifactId>
-			<version>0.9.0</version>
+			<groupId>org.jboss.ejb3</groupId>
+			<artifactId>jboss-ejb3-ext-api</artifactId>
+			<version>2.2.0.Final</version>
 		</dependency>
 
+<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+<dependency>
+    <groupId>com.googlecode.json-simple</groupId>
+    <artifactId>json-simple</artifactId>
+    <version>1.1.1</version>
+</dependency>
 
 	</dependencies>
 

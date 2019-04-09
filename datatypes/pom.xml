@@ -5,12 +5,11 @@
 
 	<parent>
 		<artifactId>eap</artifactId>
-		<groupId>scooters.core</groupId>
+		<groupId>uy.pencas.organization</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>datatypes</artifactId>
-	
 
 	<build>
 		<plugins>

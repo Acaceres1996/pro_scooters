@@ -5,7 +5,7 @@
 
   <parent>
   <artifactId>eap</artifactId>
-  <groupId>scooters.core</groupId>
+  <groupId>uy.pencas.organization</groupId>
   <version>0.0.1-SNAPSHOT</version>
   </parent>
 
@@ -50,7 +50,7 @@
     </dependency>
     <dependency>
       <artifactId>persistance-client</artifactId>
-      <groupId>scooters.core</groupId>
+      <groupId>uy.pencas.organization</groupId>
     </dependency>
     <dependency>
       <groupId>javax.persistence</groupId>
@@ -62,7 +62,7 @@
       <artifactId>eclipselink</artifactId>
     </dependency>
     <dependency>
-    	<groupId>scooters.core</groupId>
+    	<groupId>uy.pencas.organization</groupId>
     	<artifactId>datatypes</artifactId>
     </dependency>
   </dependencies>

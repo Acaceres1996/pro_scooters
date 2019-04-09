@@ -3,7 +3,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>scooters.core</groupId>
+  <groupId>uy.pencas.organization</groupId>
   <artifactId>eap</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -14,8 +14,8 @@
     <module>persistance</module>
     <module>logic-client</module>
     <module>logic</module>
+    <module>frontend-web-rest</module>
     <module>ear</module>
-    <module>logic-rest</module>
   </modules>
 
   <properties>
@@ -35,37 +35,40 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>scooters.core</groupId>
+        <groupId>uy.pencas.organization</groupId>
         <artifactId>datatypes</artifactId>
         <version>${project.version}</version>
+        <type>jar</type>
       </dependency>
       <dependency>
-        <groupId>scooters.core</groupId>
+        <groupId>uy.pencas.organization</groupId>
         <artifactId>persistance-client</artifactId>
         <version>${project.version}</version>
+        <type>jar</type>
       </dependency>
       <dependency>
-        <groupId>scooters.core</groupId>
+        <groupId>uy.pencas.organization</groupId>
         <artifactId>persistance</artifactId>
         <version>${project.version}</version>
         <type>ejb</type>
       </dependency>
       <dependency>
-        <groupId>scooters.core</groupId>
+        <groupId>uy.pencas.organization</groupId>
         <artifactId>logic-client</artifactId>
         <version>${project.version}</version>
+        <type>jar</type>
       </dependency>
       <dependency>
-        <groupId>scooters.core</groupId>
+        <groupId>uy.pencas.organization</groupId>
         <artifactId>logic</artifactId>
         <version>${project.version}</version>
         <type>ejb</type>
       </dependency>
       <dependency>
-      	<groupId>scooters.core</groupId>
-      	<artifactId>logic-rest</artifactId>
-      	<version>${project.version}</version>
-      	<type>war</type>
+        <groupId>uy.pencas.organization</groupId>
+        <artifactId>frontend-web-rest</artifactId>
+        <version>${project.version}</version>
+        <type>war</type>
       </dependency>
       <dependency>
         <groupId>org.wildfly.bom</groupId>
@@ -156,7 +159,26 @@
         <artifactId>postgresql</artifactId>
         <version>9.1-901.jdbc4</version>
       </dependency>
-      
+      <dependency>
+        <groupId>org.apache.oltu.oauth2</groupId>
+        <artifactId>org.apache.oltu.oauth2.common</artifactId>
+        <version>1.0.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.oltu.oauth2</groupId>
+        <artifactId>org.apache.oltu.oauth2.authzserver</artifactId>
+        <version>1.0.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.oltu.oauth2</groupId>
+        <artifactId>org.apache.oltu.oauth2.resourceserver</artifactId>
+        <version>1.0.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.codehaus.jettison</groupId>
+        <artifactId>jettison</artifactId>
+        <version>1.4.0</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 

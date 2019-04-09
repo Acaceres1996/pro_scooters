@@ -3,6 +3,7 @@
 	<persistence-unit name="persistance" transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:jboss/datasources/PostgreSQLDS</jta-data-source>
-		<class>scooters.core.persistance.model.Scooter</class>
+		<class>uy.urudin.persistance.model.Parametro</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 	</persistence-unit>
 </persistence>
