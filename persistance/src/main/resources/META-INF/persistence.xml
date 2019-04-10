@@ -4,5 +4,6 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:jboss/datasources/PostgreSQLDS</jta-data-source>
 		<class>uy.urudin.persistance.model.Parametro</class>
+		<class>uy.urudin.persistance.model.Scooter</class>
 	</persistence-unit>
 </persistence>

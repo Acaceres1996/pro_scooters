@@ -24,7 +24,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType; 
 
 @Path("/parametro")
-public class restParameter {
+public class restParametro {
 
 	@EJB
 	private ParametroFacadeLocal ParametroEJB;
@@ -60,10 +60,10 @@ public class restParameter {
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createParameter(@QueryParam("name") String name, @QueryParam("value") String value){
+	public Response createParameter(@QueryParam("nombre") String nombre, @QueryParam("valor") String valor){
 		DTParametro dtParameter = new DTParametro();
-		dtParameter.setName(name);
-		dtParameter.setValue(value);
+		dtParameter.setNombre(nombre);
+		dtParameter.setValor(valor);
 		ParametroEJB.add(dtParameter);
 		return Response.status(201).build();
 	}
@@ -71,11 +71,11 @@ public class restParameter {
 	@PUT
 	@Path("/")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateParameter(@QueryParam("id") Integer id,@QueryParam("name") String name, @QueryParam("value") String value){
+	public Response updateParameter(@QueryParam("id") Integer id,@QueryParam("nombre") String nombre, @QueryParam("valor") String valor){
 		DTParametro dtParameter = new DTParametro();
 		dtParameter.setId(id);
-		dtParameter.setName(name);
-		dtParameter.setValue(value);
+		dtParameter.setNombre(nombre);
+		dtParameter.setValor(valor);
 		ParametroEJB.update(dtParameter);
 		return Response.status(200).build();
 	}
