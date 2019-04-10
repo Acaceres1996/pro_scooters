@@ -33,12 +33,8 @@ public class ParametroDAO implements ParametroDAOLocal {
 	@Override
 	public void add(DTParametro dtParameter) {
 		// con id null
-		System.out.println("ENTRE DAO");
-		System.out.println("dtParameter " +dtParameter.getName() +"," +dtParameter.getValue());
 		Parametro Parameter = new Parametro(dtParameter);
-		System.out.println("CASI DAO");
 		em.persist(Parameter);
-		System.out.println("SALI DAO");
 	}
 
 	@Override
@@ -71,7 +67,7 @@ public class ParametroDAO implements ParametroDAOLocal {
 
 	@Override
 	public String getValueByName(String n) {
-		Query query = em.createQuery("SELECT p.value FROM Parametro p where p.name = :codigo ");
+		Query query = em.createQuery("SELECT p.valor FROM Parametro p where p.nombre = :codigo ");
         query.setParameter("codigo", n);
         String s;
         try {
@@ -84,7 +80,7 @@ public class ParametroDAO implements ParametroDAOLocal {
 
 	@Override
 	public DTParametro getDTParameterByName(String n) {
-		Query query = em.createQuery("SELECT p FROM Parametro p where p.name = :codigo ");
+		Query query = em.createQuery("SELECT p FROM Parametro p where p.nombre = :codigo ");
         query.setParameter("codigo", n);
         Parametro s;
         try {

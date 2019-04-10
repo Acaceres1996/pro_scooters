@@ -4,6 +4,5 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:jboss/datasources/PostgreSQLDS</jta-data-source>
 		<class>uy.urudin.persistance.model.Parametro</class>
-		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 	</persistence-unit>
 </persistence>
