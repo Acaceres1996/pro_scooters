@@ -93,15 +93,15 @@ public class Registro implements java.io.Serializable {
 	}
 
 	
-//	public Registro(DTRegistro dtRegistro) {
-//		this.id = dtRegistro.getId();
-//		this.cliente = dtRegistro.getLatitud();
-//		this.longitud = dtRegistro.getLongitud();
-//		this.bateria = dtRegistro.getBateria();
-//		this.encendido = dtRegistro.isEncendido();
-//	}
-//	
-//	public DTRegistro getDTRegistro() {
-//		return new DTRegistro(this.getId(),this.getLatitud(),this.getLongitud(),this.getBateria(),this.isEncendido());
-//	}
+	public Registro(DTRegistro dtRegistro) {
+		this.id = dtRegistro.getId();
+		
+		this.cliente = new Cliente(dtRegistro.getCliente());
+		this.scooter = new Scooter(dtRegistro.getScooter());
+		this.fecha = dtRegistro.getFecha();
+	}
+	
+	public DTRegistro getDTRegistro() {
+		return new DTRegistro(this.getId(),this.getCliente().getDTCliente(),this.getScooter().getDTScooter(),this.getFecha());
+	}
 }

@@ -6,5 +6,6 @@
 		<class>uy.urudin.persistance.model.Parametro</class>
 		<class>uy.urudin.persistance.model.Scooter</class>
 		<class>uy.urudin.persistance.model.Registro</class>
+		<class>uy.urudin.persistance.model.Cliente</class>
 	</persistence-unit>
 </persistence>
