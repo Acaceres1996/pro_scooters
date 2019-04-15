@@ -30,6 +30,12 @@ public class DTCliente implements Serializable  {
 		this.id = id;
 		this.email = email;
 	}
+	/**
+	 * 
+	 */
+	public DTCliente() {
+		super();
+	}
 	
 
 	

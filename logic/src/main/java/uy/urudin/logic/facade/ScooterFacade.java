@@ -14,7 +14,7 @@ import uy.urudin.persistance.interfaces.ScooterDAOLocal;
 
 
 /**
- * Session Bean implementation class ParameterFacade
+ * Session Bean implementation class ScooterFacade
  */
 @Stateless
 @LocalBean
@@ -31,18 +31,18 @@ public class ScooterFacade implements ScooterFacadeRemote, ScooterFacadeLocal {
     }
 
 	@Override
-	public void add(DTScooter dtParameter) {
-		ScooterDAO.add(dtParameter);
+	public void add(DTScooter dtScooter) {
+		ScooterDAO.add(dtScooter);
 	}
 
 	@Override
-	public void update(DTScooter dtParameter) {
-		ScooterDAO.merge(dtParameter);
+	public void update(DTScooter dtScooter) {
+		ScooterDAO.merge(dtScooter);
 	}
 
 	@Override
-	public void delete(DTScooter dtParameter) {
-		ScooterDAO.delete(dtParameter);
+	public void delete(DTScooter dtScooter) {
+		ScooterDAO.delete(dtScooter);
 	}
 
 	@Override

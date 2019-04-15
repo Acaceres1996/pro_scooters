@@ -49,6 +49,12 @@ public class DTRegistro implements Serializable  {
 		this.scooter = scooter;
 		this.fecha = fecha;
 	}
+	/**
+	 * 
+	 */
+	public DTRegistro() {
+		super();
+	}
 
 	
 }
