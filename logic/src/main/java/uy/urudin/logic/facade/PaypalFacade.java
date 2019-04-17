@@ -7,8 +7,10 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import com.paypal.api.payments.Amount;
+import com.paypal.api.payments.Authorization;
 import com.paypal.api.payments.Payer;
 import com.paypal.api.payments.Payment;
+import com.paypal.api.payments.PaymentExecution;
 import com.paypal.api.payments.RedirectUrls;
 import com.paypal.api.payments.Transaction;
 import com.paypal.base.rest.APIContext;
@@ -23,8 +25,18 @@ public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal{
 	
 	public String clientId = "AbagFj4cbf_6SvPeQtSj3xopqlfAy9IMNZFzYWMLdXPYIF8pgqD3eaSfhr2OQctMfMZZTmEkCP4IrsvV";
 	public String clientSecret = "ENFohCj_ltQ18yoplSv887gwTa_3dC21bCKLxpsJ8iFrHCUnMGvC-f4oqRXBbkL0CIXEjeRxkHb1sThX";
+	public String executionMode = "sandbox";
 	
 	public String test() {
+		
+		//Payer y su payment method
+		Payer payer = new Payer();
+		payer.setPaymentMethod("paypal");
+		
+		//URL Set
+		RedirectUrls redirectUrls = new RedirectUrls();
+		redirectUrls.setCancelUrl("https://example.com/cancel");
+		redirectUrls.setReturnUrl("https://example.com/return");
 		
 		Amount amount = new Amount();
 		amount.setCurrency("USD");
@@ -33,25 +45,38 @@ public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal{
 		Transaction transaction = new Transaction();
 		transaction.setAmount(amount);
 		List<Transaction> transactions = new ArrayList<Transaction>();
-		transactions.add(transaction);
-
-		Payer payer = new Payer();
-		payer.setPaymentMethod("paypal");
-
+		transactions.add(transaction);	
+		
 		Payment payment = new Payment();
 		payment.setIntent("sale");
 		payment.setPayer(payer);
 		payment.setTransactions(transactions);
 
-		RedirectUrls redirectUrls = new RedirectUrls();
-		redirectUrls.setCancelUrl("https://example.com/cancel");
-		redirectUrls.setReturnUrl("https://example.com/return");
+		
 		payment.setRedirectUrls(redirectUrls);
 		
+		APIContext context = new APIContext(clientId, clientSecret, executionMode);
 		try {
-		    APIContext apiContext = new APIContext(clientId, clientSecret, "sandbox");
-		    Payment createdPayment = payment.create(apiContext);
-		    return createdPayment.toString();
+			 
+			Payment myPayment = payment.create(context);
+			
+			// Identifier of the payment resource created 		
+			payment.setId( myPayment.getId() );
+						 
+			PaymentExecution execution = new PaymentExecution();
+ 
+			// Set your PayerID. The ID of the Payer, passed in the `return_url` by PayPal.
+			execution.setPayerId("<!---- Add your PayerID here ---->");
+ 
+			// This call will fail as user has to access Payment on UI. Programmatically
+			// there is no way you can get Payer's consent.
+			Payment createdAuthPayment = payment.execute(context, execution);
+ 
+			// Transactional details including the amount and item details.
+			Authorization crunchifyAuthorization = createdAuthPayment.getTransactions().get(0).getRelatedResources().get(0).getAuthorization();
+ 
+			return ("Here is your Authorization ID" + crunchifyAuthorization.getId());
+ 
 		} catch (PayPalRESTException e) {
 			return "PaypalRESTException";
 		} catch (Exception ex) {
