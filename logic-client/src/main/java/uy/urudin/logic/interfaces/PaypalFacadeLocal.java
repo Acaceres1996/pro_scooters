@@ -5,5 +5,6 @@ import javax.ejb.Local;
 
 @Local
 public interface PaypalFacadeLocal {
-	String test();
+	String startPayment();
+	String finishPayment(String PaymentID, String PayerID);
 }

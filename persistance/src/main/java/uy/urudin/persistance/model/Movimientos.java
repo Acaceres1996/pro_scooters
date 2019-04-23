@@ -16,6 +16,10 @@ import javax.persistence.TemporalType;
 @Table(name = "movimientos", schema = "public")
 public class Movimientos implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private Integer idviaje;
 	private Integer monto;

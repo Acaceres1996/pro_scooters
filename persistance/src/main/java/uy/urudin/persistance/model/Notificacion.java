@@ -16,6 +16,10 @@ import javax.persistence.Table;
 @Table(name = "notificacion", schema = "public")
 public class Notificacion implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private Cliente cliente;
 	private String cabezal;

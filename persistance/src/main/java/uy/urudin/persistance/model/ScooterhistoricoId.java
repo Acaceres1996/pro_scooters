@@ -11,6 +11,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class ScooterhistoricoId implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int idscooter;
 	private Date fecha;
 

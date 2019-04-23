@@ -15,6 +15,10 @@ import javax.persistence.Table;
 @Table(name = "scooterhistorico", schema = "public")
 public class Scooterhistorico implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ScooterhistoricoId id;
 	private String latitud;
 	private String longitud;

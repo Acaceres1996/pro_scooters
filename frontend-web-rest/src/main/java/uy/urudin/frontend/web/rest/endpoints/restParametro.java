@@ -4,9 +4,7 @@ package uy.urudin.frontend.web.rest.endpoints;
 import javax.ws.rs.Produces;
 
 import java.util.List;
-import java.util.Random;
 import javax.ejb.EJB;
-import javax.naming.NamingException;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;

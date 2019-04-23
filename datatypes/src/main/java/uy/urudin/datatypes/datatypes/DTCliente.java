@@ -1,7 +1,6 @@
 package uy.urudin.datatypes.datatypes;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class DTCliente implements Serializable  {
 

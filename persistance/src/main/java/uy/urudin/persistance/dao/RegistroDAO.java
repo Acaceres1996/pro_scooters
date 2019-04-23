@@ -8,7 +8,6 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
-import javax.persistence.Query;
 
 import uy.urudin.datatypes.datatypes.DTRegistro;
 import uy.urudin.persistance.interfaces.RegistroDAOLocal;

@@ -1,18 +1,13 @@
 package uy.urudin.persistance.model;
 // Generated Apr 9, 2019 11:18:31 PM by Hibernate Tools 5.2.8.Final
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import uy.urudin.datatypes.datatypes.DTParametro;
 import uy.urudin.datatypes.datatypes.DTScooter;
 
 /**
@@ -22,6 +17,10 @@ import uy.urudin.datatypes.datatypes.DTScooter;
 @Table(name = "scooter", schema = "public")
 public class Scooter implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)

@@ -7,7 +7,6 @@ import javax.ejb.EJB;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 
 //import uy.pencas.organization.logic.interfaces.ClienteoldFacadeLocal;
 
@@ -19,11 +18,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import uy.urudin.datatypes.datatypes.DTCliente;
-import uy.urudin.datatypes.datatypes.DTCliente;
-import uy.urudin.datatypes.datatypes.DTScooter;
 import uy.urudin.logic.interfaces.ClienteFacadeLocal;
-import uy.urudin.logic.interfaces.ClienteFacadeLocal;
-import uy.urudin.logic.interfaces.ScooterFacadeLocal; 
 
 @Path("/cliente")
 public class restCliente {

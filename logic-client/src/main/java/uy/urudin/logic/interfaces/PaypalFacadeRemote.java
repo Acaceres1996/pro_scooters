@@ -4,5 +4,6 @@ import javax.ejb.Remote;
 
 @Remote
 public interface PaypalFacadeRemote {
-	String test();
+	String startPayment();
+	String finishPayment(String PaymentID, String PayerID);
 }
