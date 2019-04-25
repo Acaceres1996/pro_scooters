@@ -26,8 +26,8 @@ import uy.urudin.logic.interfaces.ClienteFacadeLocal;
 import uy.urudin.logic.interfaces.RegistroFacadeLocal;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal; 
 
-@Path("/registro")
-public class restRegistro {
+@Path("/scan")
+public class ScanEndpoint {
 
 	@EJB
 	private RegistroFacadeLocal RegistroEJB;
