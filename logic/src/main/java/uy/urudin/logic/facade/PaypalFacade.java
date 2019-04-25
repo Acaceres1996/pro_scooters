@@ -24,14 +24,12 @@ import uy.urudin.logic.interfaces.PaypalFacadeRemote;
 @LocalBean
 public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal {
 
-	public String cancelUrl = "https://example.com/cancel";
-	public String returnUrl = "https://example.com/return";
-	public String clientId = "AbagFj4cbf_6SvPeQtSj3xopqlfAy9IMNZFzYWMLdXPYIF8pgqD3eaSfhr2OQctMfMZZTmEkCP4IrsvV";
-	public String clientSecret = "ENFohCj_ltQ18yoplSv887gwTa_3dC21bCKLxpsJ8iFrHCUnMGvC-f4oqRXBbkL0CIXEjeRxkHb1sThX";
 	public String executionMode = "sandbox";
-
-	public String startPayment() {
-
+	ParametroFacade parameters = new ParametroFacade();
+	
+	public String startPayment() {		
+		String clientId = parameters.getValueByName("paypal_client_id");
+		String clientSecret = parameters.getValueByName("paypal_client_secret");		
 		/* Configuro el payment, lo genero y obtengo la URL de aprobacion */
 		
 		Payment payment = this.getPaymentObject();
@@ -56,6 +54,8 @@ public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal {
 	}
 	
 	public String finishPayment(String paymentId, String PayerID) {
+		String clientId = parameters.getValueByName("paypal_client_id");
+		String clientSecret = parameters.getValueByName("paypal_client_secret");
 		APIContext context = new APIContext(clientId, clientSecret, executionMode);
 		Payment payment = new Payment();
 		payment.setId( paymentId );
@@ -80,7 +80,9 @@ public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal {
 
 		// URL Set
 		RedirectUrls redirectUrls = new RedirectUrls();
-
+		
+		String cancelUrl = parameters.getValueByName("paypal_cancel_url");
+		String returnUrl = parameters.getValueByName("paypal_return_url");
 		redirectUrls.setCancelUrl(cancelUrl);
 		redirectUrls.setReturnUrl(returnUrl);
 		Amount amount = new Amount();
