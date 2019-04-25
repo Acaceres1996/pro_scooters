@@ -3,9 +3,9 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>uy.pencas.organization</groupId>
+  <groupId>uy.urudin</groupId>
   <artifactId>eap</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1</version>
   <packaging>pom</packaging>
 
   <modules>
@@ -14,8 +14,9 @@
     <module>persistance</module>
     <module>logic-client</module>
     <module>logic</module>
-    <module>frontend-web-rest</module>
+    
     <module>ear</module>
+    <module>frontend-web-rest</module>
   </modules>
 
   <properties>
@@ -35,38 +36,35 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>uy.pencas.organization</groupId>
+        <groupId>uy.urudin</groupId>
         <artifactId>datatypes</artifactId>
         <version>${project.version}</version>
-        <type>jar</type>
       </dependency>
       <dependency>
-        <groupId>uy.pencas.organization</groupId>
+        <groupId>uy.urudin</groupId>
         <artifactId>persistance-client</artifactId>
         <version>${project.version}</version>
-        <type>jar</type>
       </dependency>
       <dependency>
-        <groupId>uy.pencas.organization</groupId>
+        <groupId>uy.urudin</groupId>
         <artifactId>persistance</artifactId>
         <version>${project.version}</version>
         <type>ejb</type>
       </dependency>
       <dependency>
-        <groupId>uy.pencas.organization</groupId>
+        <groupId>uy.urudin</groupId>
         <artifactId>logic-client</artifactId>
         <version>${project.version}</version>
-        <type>jar</type>
       </dependency>
       <dependency>
-        <groupId>uy.pencas.organization</groupId>
+        <groupId>uy.urudin</groupId>
         <artifactId>logic</artifactId>
         <version>${project.version}</version>
         <type>ejb</type>
       </dependency>
       <dependency>
-        <groupId>uy.pencas.organization</groupId>
-        <artifactId>frontend-web-rest</artifactId>
+        <groupId>uy.urudin</groupId>
+        <artifactId>rest-api</artifactId>
         <version>${project.version}</version>
         <type>war</type>
       </dependency>
@@ -198,4 +196,6 @@
     </pluginManagement>
   </build>
 
+  <name>Urudin</name>
+  <url>https://www.urudin.tk/</url>
 </project>

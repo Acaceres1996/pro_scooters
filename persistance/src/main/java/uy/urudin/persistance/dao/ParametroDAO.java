@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 
-import uy.urudin.datatypes.datatypes.DTParametro;
+import uy.urudin.datatypes.DTParametro;
 import uy.urudin.persistance.interfaces.ParametroDAOLocal;
 import uy.urudin.persistance.model.Parametro;
 

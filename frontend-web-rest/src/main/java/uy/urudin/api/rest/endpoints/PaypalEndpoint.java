@@ -1,4 +1,4 @@
-package uy.urudin.frontend.web.rest.endpoints;
+package uy.urudin.api.rest.endpoints;
 
 
 import javax.ejb.EJB;
@@ -19,6 +19,12 @@ public class PaypalEndpoint {
 	@EJB
 	private PaypalFacadeLocal PaypalEJB;
 	
+	@GET
+	@Path("/ping")
+	@Produces(MediaType.TEXT_HTML)
+	public String ping() {
+		return "true";
+	}
 	
 	@POST
 	@Path("/startpayment")

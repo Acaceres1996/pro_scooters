@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
-import uy.urudin.datatypes.datatypes.DTScooter;
+import uy.urudin.datatypes.DTScooter;
 
 @Remote
 public interface ScooterFacadeRemote {

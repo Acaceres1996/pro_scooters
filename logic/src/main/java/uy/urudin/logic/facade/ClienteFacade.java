@@ -6,7 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-import uy.urudin.datatypes.datatypes.DTCliente;
+import uy.urudin.datatypes.DTCliente;
 import uy.urudin.logic.interfaces.ClienteFacadeLocal;
 import uy.urudin.logic.interfaces.ClienteFacadeRemote;
 import uy.urudin.persistance.interfaces.ClienteDAOLocal;

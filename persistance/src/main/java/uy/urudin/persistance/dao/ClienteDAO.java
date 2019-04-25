@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
-import uy.urudin.datatypes.datatypes.DTCliente;
+import uy.urudin.datatypes.DTCliente;
 import uy.urudin.persistance.interfaces.ClienteDAOLocal;
 import uy.urudin.persistance.model.Cliente;
 

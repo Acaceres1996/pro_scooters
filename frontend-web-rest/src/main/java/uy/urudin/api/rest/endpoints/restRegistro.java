@@ -1,4 +1,4 @@
-package uy.urudin.frontend.web.rest.endpoints;
+package uy.urudin.api.rest.endpoints;
 
 
 import java.sql.Timestamp;
@@ -19,9 +19,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import uy.urudin.datatypes.datatypes.DTCliente;
-import uy.urudin.datatypes.datatypes.DTRegistro;
-import uy.urudin.datatypes.datatypes.DTScooter;
+import uy.urudin.datatypes.DTCliente;
+import uy.urudin.datatypes.DTRegistro;
+import uy.urudin.datatypes.DTScooter;
 import uy.urudin.logic.interfaces.ClienteFacadeLocal;
 import uy.urudin.logic.interfaces.RegistroFacadeLocal;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal; 

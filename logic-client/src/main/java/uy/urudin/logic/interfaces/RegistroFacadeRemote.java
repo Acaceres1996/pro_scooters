@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
-import uy.urudin.datatypes.datatypes.DTRegistro;
+import uy.urudin.datatypes.DTRegistro;
 
 @Remote
 public interface RegistroFacadeRemote {

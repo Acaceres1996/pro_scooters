@@ -1,4 +1,4 @@
-package uy.urudin.frontend.web.rest.application;
+package uy.urudin.api.rest.application;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

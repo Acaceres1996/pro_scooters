@@ -1,4 +1,4 @@
-package uy.urudin.frontend.web.rest.endpoints;
+package uy.urudin.api.rest.endpoints;
 
 
 import java.util.List;
@@ -17,7 +17,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import uy.urudin.datatypes.datatypes.DTCliente;
+import uy.urudin.datatypes.DTCliente;
 import uy.urudin.logic.interfaces.ClienteFacadeLocal;
 
 @Path("/cliente")

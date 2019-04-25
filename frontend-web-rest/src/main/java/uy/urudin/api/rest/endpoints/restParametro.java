@@ -1,4 +1,4 @@
-package uy.urudin.frontend.web.rest.endpoints;
+package uy.urudin.api.rest.endpoints;
 
 
 import javax.ws.rs.Produces;
@@ -12,7 +12,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
-import uy.urudin.datatypes.datatypes.DTParametro;
+import uy.urudin.datatypes.DTParametro;
 import uy.urudin.logic.interfaces.ParametroFacadeLocal;
 
 //import uy.pencas.organization.logic.interfaces.ParameteroldFacadeLocal;

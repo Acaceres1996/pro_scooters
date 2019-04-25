@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import uy.urudin.datatypes.datatypes.DTCliente;
+import uy.urudin.datatypes.DTCliente;
 
 @Local
 public interface ClienteFacadeLocal {

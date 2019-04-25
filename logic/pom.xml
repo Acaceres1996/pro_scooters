@@ -7,8 +7,8 @@
 
 	<parent>
 		<artifactId>eap</artifactId>
-		<groupId>uy.pencas.organization</groupId>
-		<version>0.0.1-SNAPSHOT</version>
+		<groupId>uy.urudin</groupId>
+		<version>0.1</version>
 	</parent>
 
 	<artifactId>logic</artifactId>
@@ -22,15 +22,15 @@
 	<dependencies>
 		<dependency>
 			<artifactId>logic-client</artifactId>
-			<groupId>uy.pencas.organization</groupId>
+			<groupId>uy.urudin</groupId>
 		</dependency>
 		<dependency>
 			<artifactId>persistance-client</artifactId>
-			<groupId>uy.pencas.organization</groupId>
+			<groupId>uy.urudin</groupId>
 		</dependency>
 		<dependency>
 			<artifactId>datatypes</artifactId>
-			<groupId>uy.pencas.organization</groupId>
+			<groupId>uy.urudin</groupId>
 		</dependency>
 
 		<dependency>

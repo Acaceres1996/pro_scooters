@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import uy.urudin.datatypes.datatypes.DTRegistro;
+import uy.urudin.datatypes.DTRegistro;
 
 @Local
 public interface RegistroFacadeLocal {

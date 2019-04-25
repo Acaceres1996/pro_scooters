@@ -1,4 +1,4 @@
-package uy.urudin.datatypes.datatypes;
+package uy.urudin.datatypes;
 
 import java.io.Serializable;
 import java.util.Date;

@@ -5,30 +5,27 @@
 
   <parent>
     <artifactId>eap</artifactId>
-    <groupId>uy.pencas.organization</groupId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>uy.urudin</groupId>
+    <version>0.1</version>
   </parent>
 
-  <artifactId>frontend-web-rest</artifactId>
   <packaging>war</packaging>
 
   <dependencies>
     <dependency>
-      <groupId>uy.pencas.organization</groupId>
+      <groupId>uy.urudin</groupId>
       <artifactId>logic</artifactId>
       <type>ejb</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>uy.pencas.organization</groupId>
+      <groupId>uy.urudin</groupId>
       <artifactId>logic-client</artifactId>
-      <type>jar</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>uy.pencas.organization</groupId>
+      <groupId>uy.urudin</groupId>
       <artifactId>datatypes</artifactId>
-      <type>jar</type>
       <scope>provided</scope>
     </dependency>
 
@@ -75,4 +72,5 @@
     </plugins>
   </build>
 
+  <artifactId>rest-api</artifactId>
 </project>

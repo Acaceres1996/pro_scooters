@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
-import uy.urudin.datatypes.datatypes.DTCliente;
+import uy.urudin.datatypes.DTCliente;
 
 @Remote
 public interface ClienteFacadeRemote {

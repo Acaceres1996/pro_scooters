@@ -6,7 +6,7 @@
 		<project>logic</project>
 		<project>webCore</project>
 		<project>datatypes</project>
-		<project>frontend-web-rest</project>
+		<project>rest-api</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

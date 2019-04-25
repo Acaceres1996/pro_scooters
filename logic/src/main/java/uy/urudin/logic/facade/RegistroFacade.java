@@ -6,7 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-import uy.urudin.datatypes.datatypes.DTRegistro;
+import uy.urudin.datatypes.DTRegistro;
 import uy.urudin.logic.interfaces.RegistroFacadeLocal;
 import uy.urudin.logic.interfaces.RegistroFacadeRemote;
 import uy.urudin.persistance.interfaces.RegistroDAOLocal;

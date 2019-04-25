@@ -6,7 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-import uy.urudin.datatypes.datatypes.DTScooter;
+import uy.urudin.datatypes.DTScooter;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal;
 import uy.urudin.logic.interfaces.ScooterFacadeRemote;
 import uy.urudin.persistance.interfaces.ScooterDAOLocal;

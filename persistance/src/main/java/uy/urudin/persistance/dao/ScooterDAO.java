@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
-import uy.urudin.datatypes.datatypes.DTScooter;
+import uy.urudin.datatypes.DTScooter;
 import uy.urudin.persistance.interfaces.ScooterDAOLocal;
 import uy.urudin.persistance.model.Scooter;
 

@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
-import uy.urudin.datatypes.datatypes.DTRegistro;
+import uy.urudin.datatypes.DTRegistro;
 import uy.urudin.persistance.interfaces.RegistroDAOLocal;
 import uy.urudin.persistance.model.Registro;
 

@@ -5,8 +5,8 @@
 
     <parent>
       <artifactId>eap</artifactId>
-      <groupId>uy.pencas.organization</groupId>
-      <version>0.0.1-SNAPSHOT</version>
+      <groupId>uy.urudin</groupId>
+      <version>0.1</version>
     </parent>
 
     <artifactId>ear</artifactId>
@@ -14,32 +14,30 @@
 
     <dependencies>
       <dependency>
-        <groupId>uy.pencas.organization</groupId>
+        <groupId>uy.urudin</groupId>
         <artifactId>persistance-client</artifactId>
-        <type>jar</type>
       </dependency>
       <dependency>
-        <groupId>uy.pencas.organization</groupId>
+        <groupId>uy.urudin</groupId>
         <artifactId>persistance</artifactId>
         <type>ejb</type>
       </dependency>
       <dependency>
-        <groupId>uy.pencas.organization</groupId>
+        <groupId>uy.urudin</groupId>
         <artifactId>logic-client</artifactId>
-        <type>jar</type>
       </dependency>
       <dependency>
-        <groupId>uy.pencas.organization</groupId>
+        <groupId>uy.urudin</groupId>
         <artifactId>logic</artifactId>
         <type>ejb</type>
       </dependency>
       <dependency>
-        <groupId>uy.pencas.organization</groupId>
-        <artifactId>frontend-web-rest</artifactId>
+        <groupId>uy.urudin</groupId>
+        <artifactId>rest-api</artifactId>
         <type>war</type>
       </dependency>
       <dependency>
-      	<groupId>uy.pencas.organization</groupId>
+      	<groupId>uy.urudin</groupId>
       	<artifactId>datatypes</artifactId>
       </dependency>
     </dependencies>
