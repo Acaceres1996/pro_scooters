@@ -1,5 +1,6 @@
 package uy.urudin.logic.facade;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -30,12 +31,11 @@ public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal {
 
 	@EJB
 	ParametroDAOLocal parameters;
-
+	  	
 	public String startPayment() {
 		String clientId = parameters.getValueByName("paypal_client_id");
-		String clientSecret = parameters.getValueByName("paypal_client_secret");
-		/* Configuro el payment, lo genero y obtengo la URL de aprobacion */
-
+		String clientSecret = parameters.getValueByName("paypal_client_secret");		
+		/**/
 		Payment payment = this.getPaymentObject();
 		APIContext context = new APIContext(clientId, clientSecret, executionMode);
 		try {
@@ -58,32 +58,40 @@ public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal {
 	}
 
 	public Payment finishPayment(String paymentId, String PayerID) {
+		String state = "";
 		String clientId = parameters.getValueByName("paypal_client_id");
 		String clientSecret = parameters.getValueByName("paypal_client_secret");
 		APIContext context = new APIContext(clientId, clientSecret, executionMode);
 		Payment payment = new Payment();
 		try {
 			payment = Payment.get(context, paymentId);
+			state = payment.getState();
+			System.out.println( payment.getState() );
 		} catch (PayPalRESTException e1) {
-			e1.printStackTrace();
-		}
-		payment.setId(paymentId);
-		PaymentExecution paymentExecution = new PaymentExecution();
-		paymentExecution.setPayerId(PayerID);
-		
-		if (payment.getState().equals("approved")) {
-			return payment;
-		} else {
+			e1.printStackTrace();			
+		}		
+		if(state.equals("created")) {
 			try {
+				payment.setId(paymentId);
+				PaymentExecution paymentExecution = new PaymentExecution();
+				paymentExecution.setPayerId(PayerID);
+				System.out.println("before execute");
 				Payment createdPayment = payment.execute(context, paymentExecution);
+				System.out.println("after execute");
 				return createdPayment;
 			} catch (PayPalRESTException e) {
+				System.out.println("after execute 2");
+				e.printStackTrace();
 				return payment;
-			} catch (Exception ex) {
+			}catch (Exception ex) {			
+				System.out.println("after execute 3");
+				ex.printStackTrace();
 				return null;
 			}
+		}else {
+			return payment;
 		}
-
+		
 	}
 
 	private Payment getPaymentObject() {
@@ -118,4 +126,6 @@ public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal {
 
 		return payment;
 	}
+	
+	
 }

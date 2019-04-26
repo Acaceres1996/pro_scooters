@@ -16,8 +16,6 @@ import javax.ws.rs.core.Response;
 import uy.urudin.datatypes.Pair;
 import uy.urudin.logic.interfaces.PaypalFacadeLocal;
 
-import com.paypal.api.payments.Payment;
-
 @Path("/paypal")
 public class PaypalEndpoint {
 	
@@ -39,12 +37,12 @@ public class PaypalEndpoint {
 		Pair p = new Pair("url", PaypalEJB.startPayment() );			
 		return Response.status(200).entity(p).build();
 	}
-		
+
 	@POST
 	@Path("/finish")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response FinishPayment(List<Pair> plist) {			
+	public Response FinishPayment(List<Pair> plist) {		
 		String paymentId = "",BuyerID = "";		
 		Pair p = new Pair("message", "");
 		for (Pair pair : plist) {
@@ -61,5 +59,5 @@ public class PaypalEndpoint {
 			return Response.status(200).entity( PaypalEJB.finishPayment(paymentId,BuyerID) ).build();
 		}		
 	}
-	
+
 }
