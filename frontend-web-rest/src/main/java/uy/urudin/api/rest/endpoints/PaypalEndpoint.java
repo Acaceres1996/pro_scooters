@@ -13,6 +13,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.paypal.api.payments.Payment;
+
 import uy.urudin.datatypes.Pair;
 import uy.urudin.logic.interfaces.PaypalFacadeLocal;
 
@@ -27,7 +29,7 @@ public class PaypalEndpoint {
 	@Path("/ping")
 	@Produces(MediaType.TEXT_HTML)
 	public String ping() {
-		return "true";
+		return "Status - OK";
 	}
 	
 	@GET
@@ -44,7 +46,7 @@ public class PaypalEndpoint {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response FinishPayment(List<Pair> plist) {		
 		String paymentId = "",BuyerID = "";		
-		Pair p = new Pair("message", "");
+		Pair p = new Pair("paypal_state", "");
 		for (Pair pair : plist) {
 			if( pair.getKey().equals("paymentid") ) {
 				paymentId = pair.getValue();
@@ -56,8 +58,9 @@ public class PaypalEndpoint {
 			p.setValue( "vacio" );
 			return Response.status(200).entity( p ).build();
 		}else {
-			return Response.status(200).entity( PaypalEJB.finishPayment(paymentId,BuyerID) ).build();
+			Payment payment = PaypalEJB.finishPayment(paymentId,BuyerID);
+			p.setValue( payment.getState() );
+			return Response.status(200).entity( p ).build();
 		}		
 	}
-
 }

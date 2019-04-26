@@ -4,12 +4,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import com.paypal.api.payments.Amount;
+import com.paypal.api.payments.Details;
+import com.paypal.api.payments.Item;
+import com.paypal.api.payments.ItemList;
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payer;
 import com.paypal.api.payments.Payment;
@@ -29,6 +33,8 @@ public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal {
 
 	public String executionMode = "sandbox";
 
+	private static final Logger LOGGER = Logger.getLogger("PaypalFacade");
+	
 	@EJB
 	ParametroDAOLocal parameters;
 	  	
@@ -41,7 +47,9 @@ public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal {
 		try {
 			String url = "";
 			Payment createdPayment = payment.create(context);
-
+			LOGGER.info("Start - Pago creado - id = "+ createdPayment.getId() + " - estado = " + createdPayment.getState());
+			
+			
 			Iterator<Links> links = createdPayment.getLinks().iterator();
 			while (links.hasNext()) {
 				Links link = links.next();
@@ -66,7 +74,7 @@ public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal {
 		try {
 			payment = Payment.get(context, paymentId);
 			state = payment.getState();
-			System.out.println( payment.getState() );
+			LOGGER.info("Finish - Pago cargado - id = "+ payment.getId() + " - estado = " + payment.getState());
 		} catch (PayPalRESTException e1) {
 			e1.printStackTrace();			
 		}		
@@ -95,26 +103,41 @@ public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal {
 	}
 
 	private Payment getPaymentObject() {
-
 		// Payer y su payment method
 		Payer payer = new Payer();
 		payer.setPaymentMethod("paypal");
 
+		
 		// URL Set
-		RedirectUrls redirectUrls = new RedirectUrls();
-
 		String cancelUrl = parameters.getValueByName("paypal_cancel_url");
 		String returnUrl = parameters.getValueByName("paypal_return_url");
+		RedirectUrls redirectUrls = new RedirectUrls();
 		redirectUrls.setCancelUrl(cancelUrl);
 		redirectUrls.setReturnUrl(returnUrl);
+		
+		
+		//Detallse del pago
+		Details details = new Details();
+		details.setShipping("1");
+		details.setSubtotal("5");
+		details.setTax("1");
+					
 		Amount amount = new Amount();
 		amount.setCurrency("USD");
-		amount.setTotal("1.00");
-
+		amount.setTotal("7");
+		amount.setDetails(details);
+		
 		Transaction transaction = new Transaction();
 		transaction.setAmount(amount);
 		transaction.setDescription("Transaccion de prueba");
-
+		Item item = new Item();
+		item.setName("Scooter").setQuantity("1").setCurrency("USD").setPrice("5");
+		ItemList itemList = new ItemList();
+		List<Item> items = new ArrayList<Item>();
+		items.add(item);
+		itemList.setItems(items);
+		transaction.setItemList(itemList);
+		
 		List<Transaction> transactions = new ArrayList<Transaction>();
 		transactions.add(transaction);
 
@@ -123,7 +146,6 @@ public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal {
 		payment.setPayer(payer);
 		payment.setTransactions(transactions);
 		payment.setRedirectUrls(redirectUrls);
-
 		return payment;
 	}
 	
