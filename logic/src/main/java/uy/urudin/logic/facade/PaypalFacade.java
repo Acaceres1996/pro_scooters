@@ -62,10 +62,15 @@ public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal {
 		String clientSecret = parameters.getValueByName("paypal_client_secret");
 		APIContext context = new APIContext(clientId, clientSecret, executionMode);
 		Payment payment = new Payment();
+		try {
+			payment = Payment.get(context, paymentId);
+		} catch (PayPalRESTException e1) {
+			e1.printStackTrace();
+		}
 		payment.setId(paymentId);
 		PaymentExecution paymentExecution = new PaymentExecution();
 		paymentExecution.setPayerId(PayerID);
-
+		
 		if (payment.getState().equals("approved")) {
 			return payment;
 		} else {
