@@ -1,40 +1,65 @@
 package uy.urudin.api.rest.endpoints;
 
 
+import java.util.List;
+
 import javax.ejb.EJB;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
+import uy.urudin.datatypes.Pair;
 import uy.urudin.logic.interfaces.PaypalFacadeLocal;
+
+import com.paypal.api.payments.Payment;
 
 @Path("/paypal")
 public class PaypalEndpoint {
 	
 	@EJB
 	private PaypalFacadeLocal PaypalEJB;
-	
+		
 	@GET
+	@OPTIONS
 	@Path("/ping")
 	@Produces(MediaType.TEXT_HTML)
 	public String ping() {
 		return "true";
 	}
 	
-	@POST
+	@GET
 	@Path("/start")
-	@Produces(MediaType.TEXT_HTML)
-	public String StartPayment() {
-		return PaypalEJB.startPayment();
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response StartPayment() {
+		Pair p = new Pair("url", PaypalEJB.startPayment() );			
+		return Response.status(200).entity(p).build();
 	}
-	
+		
 	@POST
 	@Path("/finish")
-	@Produces(MediaType.TEXT_HTML)
-	public String FinishPayment() {
-		return PaypalEJB.finishPayment("","");
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response FinishPayment(List<Pair> plist) {			
+		String paymentId = "",BuyerID = "";		
+		Pair p = new Pair("message", "");
+		for (Pair pair : plist) {
+			if( pair.getKey().equals("paymentid") ) {
+				paymentId = pair.getValue();
+			}else if( pair.getKey().equals("buyerid") ) {
+				BuyerID = pair.getValue();
+			}
+		}
+		if( paymentId.isEmpty() || BuyerID.isEmpty()) {
+			p.setValue( "vacio" );
+			return Response.status(200).entity( p ).build();
+		}else {
+			return Response.status(200).entity( PaypalEJB.finishPayment(paymentId,BuyerID) ).build();
+		}		
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
@@ -19,13 +20,16 @@ import com.paypal.base.rest.PayPalRESTException;
 
 import uy.urudin.logic.interfaces.PaypalFacadeLocal;
 import uy.urudin.logic.interfaces.PaypalFacadeRemote;
+import uy.urudin.persistance.interfaces.ParametroDAOLocal;
 
 @Stateless
 @LocalBean
 public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal {
 
 	public String executionMode = "sandbox";
-	ParametroFacade parameters = new ParametroFacade();
+	
+	@EJB
+	ParametroDAOLocal parameters;
 	
 	public String startPayment() {		
 		String clientId = parameters.getValueByName("paypal_client_id");
@@ -53,23 +57,22 @@ public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal {
 		}
 	}
 	
-	public String finishPayment(String paymentId, String PayerID) {
+	public Payment finishPayment(String paymentId, String PayerID) {
 		String clientId = parameters.getValueByName("paypal_client_id");
 		String clientSecret = parameters.getValueByName("paypal_client_secret");
 		APIContext context = new APIContext(clientId, clientSecret, executionMode);
 		Payment payment = new Payment();
-		payment.setId( paymentId );
+		payment.setId( paymentId );		
 		PaymentExecution paymentExecution = new PaymentExecution();
 		paymentExecution.setPayerId(PayerID);
 		try {
 		  Payment createdPayment = payment.execute(context, paymentExecution);
-		  System.out.println(createdPayment);
+		  return createdPayment;
 		} catch (PayPalRESTException e) {
-			return "PaypalRESTException";
+			return payment;
 		}catch (Exception ex) {
-			return "Exception";
+			return null;
 		}
-		return "";
 	}
 
 	private Payment getPaymentObject() {

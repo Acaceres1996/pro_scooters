@@ -20,8 +20,13 @@
 			<groupId>uy.urudin</groupId>
 			<artifactId>datatypes</artifactId>
 		</dependency>
-		
 
+
+		<dependency>
+			<groupId>com.paypal.sdk</groupId>
+			<artifactId>rest-api-sdk</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
