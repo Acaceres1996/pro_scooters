@@ -27,15 +27,15 @@ import uy.urudin.persistance.interfaces.ParametroDAOLocal;
 public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal {
 
 	public String executionMode = "sandbox";
-	
+
 	@EJB
 	ParametroDAOLocal parameters;
-	
-	public String startPayment() {		
+
+	public String startPayment() {
 		String clientId = parameters.getValueByName("paypal_client_id");
-		String clientSecret = parameters.getValueByName("paypal_client_secret");		
+		String clientSecret = parameters.getValueByName("paypal_client_secret");
 		/* Configuro el payment, lo genero y obtengo la URL de aprobacion */
-		
+
 		Payment payment = this.getPaymentObject();
 		APIContext context = new APIContext(clientId, clientSecret, executionMode);
 		try {
@@ -56,23 +56,29 @@ public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal {
 			return "Exception";
 		}
 	}
-	
+
 	public Payment finishPayment(String paymentId, String PayerID) {
 		String clientId = parameters.getValueByName("paypal_client_id");
 		String clientSecret = parameters.getValueByName("paypal_client_secret");
 		APIContext context = new APIContext(clientId, clientSecret, executionMode);
 		Payment payment = new Payment();
-		payment.setId( paymentId );		
+		payment.setId(paymentId);
 		PaymentExecution paymentExecution = new PaymentExecution();
 		paymentExecution.setPayerId(PayerID);
-		try {
-		  Payment createdPayment = payment.execute(context, paymentExecution);
-		  return createdPayment;
-		} catch (PayPalRESTException e) {
+
+		if (payment.getState().equals("approved")) {
 			return payment;
-		}catch (Exception ex) {
-			return null;
+		} else {
+			try {
+				Payment createdPayment = payment.execute(context, paymentExecution);
+				return createdPayment;
+			} catch (PayPalRESTException e) {
+				return payment;
+			} catch (Exception ex) {
+				return null;
+			}
 		}
+
 	}
 
 	private Payment getPaymentObject() {
@@ -83,7 +89,7 @@ public class PaypalFacade implements PaypalFacadeRemote, PaypalFacadeLocal {
 
 		// URL Set
 		RedirectUrls redirectUrls = new RedirectUrls();
-		
+
 		String cancelUrl = parameters.getValueByName("paypal_cancel_url");
 		String returnUrl = parameters.getValueByName("paypal_return_url");
 		redirectUrls.setCancelUrl(cancelUrl);
