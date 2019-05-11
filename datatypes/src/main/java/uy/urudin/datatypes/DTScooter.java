@@ -8,6 +8,7 @@ public class DTScooter implements Serializable  {
 	private static final long serialVersionUID = 6128016096756071380L;
 	
 	private int id;
+	private String serial;
 	private String latitud;
 	private String longitud;
 	private Integer bateria;
@@ -60,6 +61,12 @@ public class DTScooter implements Serializable  {
 		this.longitud = longitud;
 		this.bateria = bateria;
 		this.encendido = encendido;
+	}
+	public String getSerial() {
+		return serial;
+	}
+	public void setSerial(String serial) {
+		this.serial = serial;
 	}
 
 	
