@@ -9,15 +9,21 @@ import javax.ws.rs.core.Response;
 
 import uy.urudin.datatypes.DTAdmin;
 
+/** Endpoint: https://api.urudin.tk/admin/
+ * 
+ * @Author Agustin Caceres 
+ */
 @Path("/admin")
 public class AdminEndpoint {
 	
+	/** POST - https://api.urudin.tk/admin/login - FALTA CONECTAR A BASE
+	 * @param DTAdmin
+	 * @return DTAdmin */
 	@POST
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response Login(DTAdmin admin) {	
 		return Response.status(200).entity( admin ).build();
-	}
-		
+	}		
 }
