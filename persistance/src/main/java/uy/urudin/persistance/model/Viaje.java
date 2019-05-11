@@ -14,10 +14,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
-@Entity(name="scooterhistorico")
-public class Scooterhistorico implements Serializable {
+@Entity(name="viaje")
+public class Viaje implements Serializable {
 
     /** Primary key. */
     protected static final String PK = "id";
@@ -52,19 +53,23 @@ public class Scooterhistorico implements Serializable {
     @Column(unique=true, nullable=false, precision=10)
     private int id;
     @Column(nullable=false)
-    private Timestamp fecha;
-    @Column(nullable=false, length=50)
-    private String latitud;
-    @Column(nullable=false, length=50)
-    private String longitud;
+    private Timestamp fechainicio;
+    private Timestamp fechafin;
+    @Column(nullable=false, length=15)
+    private String estado;
     @Column(nullable=false, precision=10)
-    private int bateria;
+    private int minutospermitidossaldo;
+    @OneToOne(mappedBy="viaje")
+    private Factura factura;
+    @ManyToOne(optional=false)
+    @JoinColumn(name="idcliente", nullable=false)
+    private Cliente cliente;
     @ManyToOne(optional=false)
     @JoinColumn(name="idscooter", nullable=false)
     private Scooter scooter;
 
     /** Default constructor. */
-    public Scooterhistorico() {
+    public Viaje() {
         super();
     }
 
@@ -87,75 +92,111 @@ public class Scooterhistorico implements Serializable {
     }
 
     /**
-     * Access method for fecha.
+     * Access method for fechainicio.
      *
-     * @return the current value of fecha
+     * @return the current value of fechainicio
      */
-    public Timestamp getFecha() {
-        return fecha;
+    public Timestamp getFechainicio() {
+        return fechainicio;
     }
 
     /**
-     * Setter method for fecha.
+     * Setter method for fechainicio.
      *
-     * @param aFecha the new value for fecha
+     * @param aFechainicio the new value for fechainicio
      */
-    public void setFecha(Timestamp aFecha) {
-        fecha = aFecha;
+    public void setFechainicio(Timestamp aFechainicio) {
+        fechainicio = aFechainicio;
     }
 
     /**
-     * Access method for latitud.
+     * Access method for fechafin.
      *
-     * @return the current value of latitud
+     * @return the current value of fechafin
      */
-    public String getLatitud() {
-        return latitud;
+    public Timestamp getFechafin() {
+        return fechafin;
     }
 
     /**
-     * Setter method for latitud.
+     * Setter method for fechafin.
      *
-     * @param aLatitud the new value for latitud
+     * @param aFechafin the new value for fechafin
      */
-    public void setLatitud(String aLatitud) {
-        latitud = aLatitud;
+    public void setFechafin(Timestamp aFechafin) {
+        fechafin = aFechafin;
     }
 
     /**
-     * Access method for longitud.
+     * Access method for estado.
      *
-     * @return the current value of longitud
+     * @return the current value of estado
      */
-    public String getLongitud() {
-        return longitud;
+    public String getEstado() {
+        return estado;
     }
 
     /**
-     * Setter method for longitud.
+     * Setter method for estado.
      *
-     * @param aLongitud the new value for longitud
+     * @param aEstado the new value for estado
      */
-    public void setLongitud(String aLongitud) {
-        longitud = aLongitud;
+    public void setEstado(String aEstado) {
+        estado = aEstado;
     }
 
     /**
-     * Access method for bateria.
+     * Access method for minutospermitidossaldo.
      *
-     * @return the current value of bateria
+     * @return the current value of minutospermitidossaldo
      */
-    public int getBateria() {
-        return bateria;
+    public int getMinutospermitidossaldo() {
+        return minutospermitidossaldo;
     }
 
     /**
-     * Setter method for bateria.
+     * Setter method for minutospermitidossaldo.
      *
-     * @param aBateria the new value for bateria
+     * @param aMinutospermitidossaldo the new value for minutospermitidossaldo
      */
-    public void setBateria(int aBateria) {
-        bateria = aBateria;
+    public void setMinutospermitidossaldo(int aMinutospermitidossaldo) {
+        minutospermitidossaldo = aMinutospermitidossaldo;
+    }
+
+    /**
+     * Access method for factura.
+     *
+     * @return the current value of factura
+     */
+    public Factura getFactura() {
+        return factura;
+    }
+
+    /**
+     * Setter method for factura.
+     *
+     * @param aFactura the new value for factura
+     */
+    public void setFactura(Factura aFactura) {
+        factura = aFactura;
+    }
+
+    /**
+     * Access method for cliente.
+     *
+     * @return the current value of cliente
+     */
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    /**
+     * Setter method for cliente.
+     *
+     * @param aCliente the new value for cliente
+     */
+    public void setCliente(Cliente aCliente) {
+        cliente = aCliente;
     }
 
     /**
@@ -177,19 +218,19 @@ public class Scooterhistorico implements Serializable {
     }
 
     /**
-     * Compares the key for this instance with another Scooterhistorico.
+     * Compares the key for this instance with another Viaje.
      *
      * @param other The object to compare to
-     * @return True if other object is instance of class Scooterhistorico and the key objects are equal
+     * @return True if other object is instance of class Viaje and the key objects are equal
      */
     private boolean equalKeys(Object other) {
         if (this==other) {
             return true;
         }
-        if (!(other instanceof Scooterhistorico)) {
+        if (!(other instanceof Viaje)) {
             return false;
         }
-        Scooterhistorico that = (Scooterhistorico) other;
+        Viaje that = (Viaje) other;
         if (this.getId() != that.getId()) {
             return false;
         }
@@ -197,15 +238,15 @@ public class Scooterhistorico implements Serializable {
     }
 
     /**
-     * Compares this instance with another Scooterhistorico.
+     * Compares this instance with another Viaje.
      *
      * @param other The object to compare to
      * @return True if the objects are the same
      */
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Scooterhistorico)) return false;
-        return this.equalKeys(other) && ((Scooterhistorico)other).equalKeys(this);
+        if (!(other instanceof Viaje)) return false;
+        return this.equalKeys(other) && ((Viaje)other).equalKeys(this);
     }
 
     /**
@@ -229,7 +270,7 @@ public class Scooterhistorico implements Serializable {
      */
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer("[Scooterhistorico |");
+        StringBuffer sb = new StringBuffer("[Viaje |");
         sb.append(" id=").append(getId());
         sb.append("]");
         return sb.toString();

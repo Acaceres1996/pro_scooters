@@ -3,23 +3,21 @@
 package uy.urudin.persistance.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
-@Entity
-@Table(name="scooter", indexes={@Index(name="scooter_numeroserial_IX", columnList="numeroserial", unique=true)})
-public class Scooter implements Serializable {
+@Entity(name="factura")
+public class Factura implements Serializable {
 
     /** Primary key. */
     protected static final String PK = "id";
@@ -53,21 +51,18 @@ public class Scooter implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(unique=true, nullable=false, precision=10)
     private int id;
-    @Column(unique=true, nullable=false, length=20)
-    private String numeroserial;
-    @Column(nullable=false, length=1)
-    private boolean encendido;
-    @Column(nullable=false, length=1)
-    private boolean enuso;
-    @Column(nullable=false, length=1)
-    private boolean eliminado;
-    @OneToMany(mappedBy="scooter")
-    private Set<Scooterhistorico> scooterhistorico;
-    @OneToMany(mappedBy="scooter")
-    private Set<Viaje> viaje;
+    @Column(nullable=false)
+    private Timestamp fecha;
+    @Column(nullable=false, precision=17, scale=17)
+    private double monto;
+    @Column(nullable=false, length=15)
+    private String estado;
+    @OneToOne(optional=false, mappedBy="factura")
+    @JoinColumn(name="idviaje", nullable=false)
+    private Viaje viaje;
 
     /** Default constructor. */
-    public Scooter() {
+    public Factura() {
         super();
     }
 
@@ -90,93 +85,57 @@ public class Scooter implements Serializable {
     }
 
     /**
-     * Access method for numeroserial.
+     * Access method for fecha.
      *
-     * @return the current value of numeroserial
+     * @return the current value of fecha
      */
-    public String getNumeroserial() {
-        return numeroserial;
+    public Timestamp getFecha() {
+        return fecha;
     }
 
     /**
-     * Setter method for numeroserial.
+     * Setter method for fecha.
      *
-     * @param aNumeroserial the new value for numeroserial
+     * @param aFecha the new value for fecha
      */
-    public void setNumeroserial(String aNumeroserial) {
-        numeroserial = aNumeroserial;
+    public void setFecha(Timestamp aFecha) {
+        fecha = aFecha;
     }
 
     /**
-     * Access method for encendido.
+     * Access method for monto.
      *
-     * @return true if and only if encendido is currently true
+     * @return the current value of monto
      */
-    public boolean getEncendido() {
-        return encendido;
+    public double getMonto() {
+        return monto;
     }
 
     /**
-     * Setter method for encendido.
+     * Setter method for monto.
      *
-     * @param aEncendido the new value for encendido
+     * @param aMonto the new value for monto
      */
-    public void setEncendido(boolean aEncendido) {
-        encendido = aEncendido;
+    public void setMonto(double aMonto) {
+        monto = aMonto;
     }
 
     /**
-     * Access method for enuso.
+     * Access method for estado.
      *
-     * @return true if and only if enuso is currently true
+     * @return the current value of estado
      */
-    public boolean getEnuso() {
-        return enuso;
+    public String getEstado() {
+        return estado;
     }
 
     /**
-     * Setter method for enuso.
+     * Setter method for estado.
      *
-     * @param aEnuso the new value for enuso
+     * @param aEstado the new value for estado
      */
-    public void setEnuso(boolean aEnuso) {
-        enuso = aEnuso;
-    }
-
-    /**
-     * Access method for eliminado.
-     *
-     * @return true if and only if eliminado is currently true
-     */
-    public boolean getEliminado() {
-        return eliminado;
-    }
-
-    /**
-     * Setter method for eliminado.
-     *
-     * @param aEliminado the new value for eliminado
-     */
-    public void setEliminado(boolean aEliminado) {
-        eliminado = aEliminado;
-    }
-
-    /**
-     * Access method for scooterhistorico.
-     *
-     * @return the current value of scooterhistorico
-     */
-    public Set<Scooterhistorico> getScooterhistorico() {
-        return scooterhistorico;
-    }
-
-    /**
-     * Setter method for scooterhistorico.
-     *
-     * @param aScooterhistorico the new value for scooterhistorico
-     */
-    public void setScooterhistorico(Set<Scooterhistorico> aScooterhistorico) {
-        scooterhistorico = aScooterhistorico;
+    public void setEstado(String aEstado) {
+        estado = aEstado;
     }
 
     /**
@@ -184,7 +143,7 @@ public class Scooter implements Serializable {
      *
      * @return the current value of viaje
      */
-    public Set<Viaje> getViaje() {
+    public Viaje getViaje() {
         return viaje;
     }
 
@@ -193,24 +152,24 @@ public class Scooter implements Serializable {
      *
      * @param aViaje the new value for viaje
      */
-    public void setViaje(Set<Viaje> aViaje) {
+    public void setViaje(Viaje aViaje) {
         viaje = aViaje;
     }
 
     /**
-     * Compares the key for this instance with another Scooter.
+     * Compares the key for this instance with another Factura.
      *
      * @param other The object to compare to
-     * @return True if other object is instance of class Scooter and the key objects are equal
+     * @return True if other object is instance of class Factura and the key objects are equal
      */
     private boolean equalKeys(Object other) {
         if (this==other) {
             return true;
         }
-        if (!(other instanceof Scooter)) {
+        if (!(other instanceof Factura)) {
             return false;
         }
-        Scooter that = (Scooter) other;
+        Factura that = (Factura) other;
         if (this.getId() != that.getId()) {
             return false;
         }
@@ -218,15 +177,15 @@ public class Scooter implements Serializable {
     }
 
     /**
-     * Compares this instance with another Scooter.
+     * Compares this instance with another Factura.
      *
      * @param other The object to compare to
      * @return True if the objects are the same
      */
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Scooter)) return false;
-        return this.equalKeys(other) && ((Scooter)other).equalKeys(this);
+        if (!(other instanceof Factura)) return false;
+        return this.equalKeys(other) && ((Factura)other).equalKeys(this);
     }
 
     /**
@@ -250,7 +209,7 @@ public class Scooter implements Serializable {
      */
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer("[Scooter |");
+        StringBuffer sb = new StringBuffer("[Factura |");
         sb.append(" id=").append(getId());
         sb.append("]");
         return sb.toString();

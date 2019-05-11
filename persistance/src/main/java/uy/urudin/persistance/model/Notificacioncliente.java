@@ -11,10 +11,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
-@Entity(name="parametro")
-public class Parametro implements Serializable {
+@Entity(name="notificacioncliente")
+public class Notificacioncliente implements Serializable {
 
     /** Primary key. */
     protected static final String PK = "id";
@@ -48,13 +50,17 @@ public class Parametro implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(unique=true, nullable=false, precision=10)
     private int id;
-    @Column(nullable=false, length=20)
-    private String nombre;
-    @Column(nullable=false, length=500)
-    private String valor;
+    @Column(nullable=false, length=1)
+    private boolean leido;
+    @ManyToOne(optional=false)
+    @JoinColumn(name="idcliente", nullable=false)
+    private Cliente cliente;
+    @ManyToOne(optional=false)
+    @JoinColumn(name="idnotificacion", nullable=false)
+    private Notificacion notificacion;
 
     /** Default constructor. */
-    public Parametro() {
+    public Notificacioncliente() {
         super();
     }
 
@@ -77,55 +83,73 @@ public class Parametro implements Serializable {
     }
 
     /**
-     * Access method for nombre.
+     * Access method for leido.
      *
-     * @return the current value of nombre
+     * @return true if and only if leido is currently true
      */
-    public String getNombre() {
-        return nombre;
+    public boolean getLeido() {
+        return leido;
     }
 
     /**
-     * Setter method for nombre.
+     * Setter method for leido.
      *
-     * @param aNombre the new value for nombre
+     * @param aLeido the new value for leido
      */
-    public void setNombre(String aNombre) {
-        nombre = aNombre;
+    public void setLeido(boolean aLeido) {
+        leido = aLeido;
     }
 
     /**
-     * Access method for valor.
+     * Access method for cliente.
      *
-     * @return the current value of valor
+     * @return the current value of cliente
      */
-    public String getValor() {
-        return valor;
+    public Cliente getCliente() {
+        return cliente;
     }
 
     /**
-     * Setter method for valor.
+     * Setter method for cliente.
      *
-     * @param aValor the new value for valor
+     * @param aCliente the new value for cliente
      */
-    public void setValor(String aValor) {
-        valor = aValor;
+    public void setCliente(Cliente aCliente) {
+        cliente = aCliente;
     }
 
     /**
-     * Compares the key for this instance with another Parametro.
+     * Access method for notificacion.
+     *
+     * @return the current value of notificacion
+     */
+    public Notificacion getNotificacion() {
+        return notificacion;
+    }
+
+    /**
+     * Setter method for notificacion.
+     *
+     * @param aNotificacion the new value for notificacion
+     */
+    public void setNotificacion(Notificacion aNotificacion) {
+        notificacion = aNotificacion;
+    }
+
+    /**
+     * Compares the key for this instance with another Notificacioncliente.
      *
      * @param other The object to compare to
-     * @return True if other object is instance of class Parametro and the key objects are equal
+     * @return True if other object is instance of class Notificacioncliente and the key objects are equal
      */
     private boolean equalKeys(Object other) {
         if (this==other) {
             return true;
         }
-        if (!(other instanceof Parametro)) {
+        if (!(other instanceof Notificacioncliente)) {
             return false;
         }
-        Parametro that = (Parametro) other;
+        Notificacioncliente that = (Notificacioncliente) other;
         if (this.getId() != that.getId()) {
             return false;
         }
@@ -133,15 +157,15 @@ public class Parametro implements Serializable {
     }
 
     /**
-     * Compares this instance with another Parametro.
+     * Compares this instance with another Notificacioncliente.
      *
      * @param other The object to compare to
      * @return True if the objects are the same
      */
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Parametro)) return false;
-        return this.equalKeys(other) && ((Parametro)other).equalKeys(this);
+        if (!(other instanceof Notificacioncliente)) return false;
+        return this.equalKeys(other) && ((Notificacioncliente)other).equalKeys(this);
     }
 
     /**
@@ -165,7 +189,7 @@ public class Parametro implements Serializable {
      */
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer("[Parametro |");
+        StringBuffer sb = new StringBuffer("[Notificacioncliente |");
         sb.append(" id=").append(getId());
         sb.append("]");
         return sb.toString();
