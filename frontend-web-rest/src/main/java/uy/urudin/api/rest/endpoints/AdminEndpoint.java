@@ -9,7 +9,7 @@ import javax.ws.rs.core.Response;
 
 import uy.urudin.datatypes.DTAdmin;
 
-/** Endpoint: https://api.urudin.tk/admin/
+/** https://api.urudin.tk/admin/
  * 
  * @Author Agustin Caceres 
  */
