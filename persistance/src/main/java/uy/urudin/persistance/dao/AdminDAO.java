@@ -49,15 +49,6 @@ public class AdminDAO implements AdminDAOLocal {
 		return Admin.getDTAdmin();
 	}
 	/*
-	@Override
-	public List<DTParameter> findAll() {
-		List<Parameter> ListParameter = em.createQuery("SELECT p FROM Parameter p", Parameter.class).getResultList();
-		List<DTParameter> ListDT = new ArrayList<DTParameter>();
-		for(Parameter t : ListParameter){
-			ListDT.add(t.getDTParameter());
-		}
-		return ListDT; 
-	}
 
 	@Override
 	public String getValueByName(String n) {
@@ -82,7 +73,11 @@ public class AdminDAO implements AdminDAOLocal {
 
 	@Override
 	public List<DTAdmin> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Admin> ListAdmin = em.createQuery("SELECT a FROM Admin a", Admin.class).getResultList();
+		List<DTAdmin> ListDT = new ArrayList<DTAdmin>();
+		for(Admin t : ListAdmin){
+			ListDT.add(t.getDTAdmin());
+		}
+		return ListDT; 
 	}
 }
