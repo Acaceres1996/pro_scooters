@@ -42,18 +42,16 @@ public class DTCliente implements Serializable  {
 	public void setSaldo(int saldo) {
 		this.saldo = saldo;
 	}
-	/**
-	 * @param id
-	 * @param email
-	 */
-	public DTCliente(int id, String email) {
+	
+	public DTCliente(int id,String nombre,String apellido,String email,int saldo) {
 		super();
 		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
 		this.email = email;
+		this.saldo = saldo;
 	}
-	/**
-	 * 
-	 */
+
 	public DTCliente() {
 		super();
 	}
