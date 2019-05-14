@@ -66,8 +66,7 @@ public class ScooterEndpoint {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createScooter(DTScooter s){
 		try {
-			ScooterEJB.add(s);
-			return Response.status(200).entity( s ).build();
+			return Response.status(200).entity( ScooterEJB.add(s) ).build();
 		}catch (Exception e) {
 			return Response.status(500).build();
 		}
