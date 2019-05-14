@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
+import uy.urudin.datatypes.DTNotificacioncliente;
+
 @Entity(name="notificacioncliente")
 public class Notificacioncliente implements Serializable {
 
@@ -109,5 +111,39 @@ public class Notificacioncliente implements Serializable {
     public void setNotificacion(Notificacion aNotificacion) {
         notificacion = aNotificacion;
     }
+
+	/**
+	 * @param id
+	 * @param leido
+	 * @param cliente
+	 * @param notificacion
+	 */
+	public Notificacioncliente(int id, boolean leido, Cliente cliente, Notificacion notificacion) {
+		super();
+		this.id = id;
+		this.leido = leido;
+		this.cliente = cliente;
+		this.notificacion = notificacion;
+	}
+    
+	public Notificacioncliente(DTNotificacioncliente DtNotificacioncliente) {
+		super();
+		this.id = DtNotificacioncliente.getId();
+		this.leido = DtNotificacioncliente.isLeido();
+		Cliente cliente = new Cliente(DtNotificacioncliente.getCliente());
+		this.cliente = cliente;
+		Notificacion notificacion = new Notificacion(DtNotificacioncliente.getNotificacion());
+		this.notificacion = notificacion;
+	}
+	
+	public DTNotificacioncliente getDTNotificacioncliente() {
+		return new DTNotificacioncliente(
+				this.getId(),
+				this.getLeido(),
+				this.getCliente().getDTCliente(),
+				this.getNotificacion().getDTNotificacion()
+				);
+	}
+    
 
 }

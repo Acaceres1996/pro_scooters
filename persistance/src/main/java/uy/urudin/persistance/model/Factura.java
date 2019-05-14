@@ -139,15 +139,35 @@ public class Factura implements Serializable {
 		this.fecha = dtFactura.getFecha();
 		this.monto = dtFactura.getMonto();
 		this.estado = dtFactura.getEstado();
+		Viaje viaje = new Viaje(dtFactura.getViaje());
+		this.viaje = viaje;
 	}
 	
 	public DTFactura getDTFactura() {
 		return new DTFactura(this.getId(),this.getFecha(),this.getMonto(),this.getEstado(),this.getViaje().getDTViaje());
 	}
-	
-	public DTFactura getDTFacturaBasic() {
-		return new DTFactura(this.getId(),this.getFecha(),this.getMonto(),this.getEstado(),null);
+
+	/**
+	 * @param id
+	 * @param fecha
+	 * @param monto
+	 * @param estado
+	 * @param viaje
+	 */
+	public Factura(int id, Timestamp fecha, double monto, String estado, Viaje viaje) {
+		super();
+		this.id = id;
+		this.fecha = fecha;
+		this.monto = monto;
+		this.estado = estado;
+		this.viaje = viaje;
 	}
+	
+//	public DTFactura getDTFacturaBasic() {
+//		return new DTFactura(this.getId(),this.getFecha(),this.getMonto(),this.getEstado(),null);
+//	}
+	
+	
 
 
 }

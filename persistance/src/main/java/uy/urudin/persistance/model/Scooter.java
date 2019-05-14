@@ -194,4 +194,22 @@ public class Scooter implements Serializable {
 		this.eliminado = DtScooter.isEliminado();
 	}
 
+	/**
+	 * @param id
+	 * @param numeroserial
+	 * @param encendido
+	 * @param enuso
+	 * @param eliminado
+	 */
+	public Scooter(int id, String numeroserial, boolean encendido, boolean enuso, boolean eliminado) {
+		super();
+		this.id = id;
+		this.numeroserial = numeroserial;
+		this.encendido = encendido;
+		this.enuso = enuso;
+		this.eliminado = eliminado;
+	}
+	
+	
+
 }

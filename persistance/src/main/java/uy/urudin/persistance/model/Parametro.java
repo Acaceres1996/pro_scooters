@@ -107,5 +107,13 @@ public class Parametro implements Serializable {
 		this.valor = DtParametro.getValor();
 	}
 
+	
+	public DTParametro getDTParametro() {
+		return new DTParametro(
+				this.getId(),
+				this.getNombre(),
+				this.getValor()
+		);
+	}
     
 }

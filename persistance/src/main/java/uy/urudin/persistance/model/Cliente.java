@@ -186,5 +186,22 @@ public class Cliente implements Serializable {
 	public DTCliente getDTCliente() {
 		return new DTCliente(this.getId(),this.getEmail(),this.getNombre(),this.getApellido(),this.getSaldo());
 	}
+
+	/**
+	 * @param id
+	 * @param nombre
+	 * @param apellido
+	 * @param email
+	 * @param saldo
+	 */
+	public Cliente(int id, String nombre, String apellido, String email, int saldo) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.saldo = saldo;
+	}
     
+	
 }

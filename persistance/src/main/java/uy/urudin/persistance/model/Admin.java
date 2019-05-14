@@ -98,4 +98,18 @@ public class Admin implements Serializable {
 		return new DTAdmin(this.getId(),this.getUsuario(), this.getPassword());
 	}
 
+	/**
+	 * @param id
+	 * @param usuario
+	 * @param password
+	 */
+	public Admin(int id, String usuario, String password) {
+		super();
+		this.id = id;
+		this.usuario = usuario;
+		this.password = password;
+	}
+	
+	
+
 }

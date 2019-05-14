@@ -213,7 +213,6 @@ public class Viaje implements Serializable {
 	}
 	
 	public DTViaje getDTViaje() {
-				
 		return new DTViaje(
 				this.getId(),
 				this.getFechainicio(), 
@@ -225,4 +224,28 @@ public class Viaje implements Serializable {
 				this.getScooter().getDTScooter()); 
 	}
 
+	/**
+	 * @param id
+	 * @param fechainicio
+	 * @param fechafin
+	 * @param estado
+	 * @param minutospermitidossaldo
+	 * @param factura
+	 * @param cliente
+	 * @param scooter
+	 */
+	public Viaje(int id, Timestamp fechainicio, Timestamp fechafin, String estado, int minutospermitidossaldo,
+			Factura factura, Cliente cliente, Scooter scooter) {
+		super();
+		this.id = id;
+		this.fechainicio = fechainicio;
+		this.fechafin = fechafin;
+		this.estado = estado;
+		this.minutospermitidossaldo = minutospermitidossaldo;
+		this.factura = factura;
+		this.cliente = cliente;
+		this.scooter = scooter;
+	}
+
+	
 }
