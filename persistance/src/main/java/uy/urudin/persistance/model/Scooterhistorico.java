@@ -14,12 +14,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import uy.urudin.datatypes.DTScooter;
 import uy.urudin.datatypes.DTScooterhistorico;
 
-@Entity(name="scooterhistorico")
+@Entity
+@Table(name="scooterhistorico", schema = "public")
 public class Scooterhistorico implements Serializable {
 
     /** Primary key. */

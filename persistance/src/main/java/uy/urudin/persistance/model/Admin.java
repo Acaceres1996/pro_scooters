@@ -11,11 +11,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import uy.urudin.datatypes.DTAdmin;
 
-@Entity(name="admin")
+@Entity
+@Table(name="admin", schema = "public")
 public class Admin implements Serializable {
 
     /** Primary key. */

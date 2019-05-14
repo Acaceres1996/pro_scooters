@@ -16,21 +16,22 @@ import javax.ws.rs.core.Response;
 import com.paypal.api.payments.Payment;
 
 import uy.urudin.datatypes.Pair;
+import uy.urudin.logic.interfaces.PaypalFacadeLocal;
 
 @Path("/paypal")
 public class PaypalEndpoint {
 	
 //	@EJB
 //	private PaypalFacadeLocal PaypalEJB;
-		
-	@GET
-	@OPTIONS
-	@Path("/ping")
-	@Produces(MediaType.TEXT_HTML)
-	public String ping() {
-		return "Status - OK";
-	}
-	
+//		
+//	@GET
+//	@OPTIONS
+//	@Path("/ping")
+//	@Produces(MediaType.TEXT_HTML)
+//	public String ping() {
+//		return "Status - OK";
+//	}
+//	
 //	@GET
 //	@Path("/start")
 //	@Produces(MediaType.APPLICATION_JSON)

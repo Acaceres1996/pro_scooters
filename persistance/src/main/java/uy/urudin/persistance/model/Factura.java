@@ -14,13 +14,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import uy.urudin.datatypes.DTCliente;
 import uy.urudin.datatypes.DTFactura;
 import uy.urudin.datatypes.DTViaje;
 
-@Entity(name="factura")
+@Entity
+@Table(name="factura", schema = "public")
 public class Factura implements Serializable {
 
     /** Primary key. */

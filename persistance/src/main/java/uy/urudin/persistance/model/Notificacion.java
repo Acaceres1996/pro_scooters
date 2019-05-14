@@ -13,11 +13,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import uy.urudin.datatypes.DTNotificacion;
 
-@Entity(name="notificacion")
+@Entity
+@Table(name="notificacion", schema = "public")
 public class Notificacion implements Serializable {
 
     /** Primary key. */

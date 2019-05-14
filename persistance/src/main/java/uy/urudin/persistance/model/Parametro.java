@@ -11,11 +11,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import uy.urudin.datatypes.DTParametro;
 
-@Entity(name="parametro")
+@Entity
+@Table(name="parametro", schema = "public")
 public class Parametro implements Serializable {
 
     /** Primary key. */
