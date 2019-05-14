@@ -42,10 +42,10 @@ public class Scooter implements Serializable {
     private boolean enuso;
     @Column(nullable=false, length=1)
     private boolean eliminado;
-    @OneToMany(mappedBy="scooter")
-    private Set<Scooterhistorico> scooterhistorico;
-    @OneToMany(mappedBy="scooter")
-    private Set<Viaje> viaje;
+//    @OneToMany(mappedBy="scooter")
+//    private Set<Scooterhistorico> scooterhistorico;
+//    @OneToMany(mappedBy="scooter")
+//    private Set<Viaje> viaje;
 
     /** Default constructor. */
     public Scooter() {
@@ -141,51 +141,57 @@ public class Scooter implements Serializable {
         eliminado = aEliminado;
     }
 
-    /**
-     * Access method for scooterhistorico.
-     *
-     * @return the current value of scooterhistorico
-     */
-    public Set<Scooterhistorico> getScooterhistorico() {
-        return scooterhistorico;
-    }
-
-    /**
-     * Setter method for scooterhistorico.
-     *
-     * @param aScooterhistorico the new value for scooterhistorico
-     */
-    public void setScooterhistorico(Set<Scooterhistorico> aScooterhistorico) {
-        scooterhistorico = aScooterhistorico;
-    }
-
-    /**
-     * Access method for viaje.
-     *
-     * @return the current value of viaje
-     */
-    public Set<Viaje> getViaje() {
-        return viaje;
-    }
-
-    /**
-     * Setter method for viaje.
-     *
-     * @param aViaje the new value for viaje
-     */
-    public void setViaje(Set<Viaje> aViaje) {
-        viaje = aViaje;
-    }
-    
-    public DTScooter getDTScooterBasic() {
+//    /**
+//     * Access method for scooterhistorico.
+//     *
+//     * @return the current value of scooterhistorico
+//     */
+//    public Set<Scooterhistorico> getScooterhistorico() {
+//        return scooterhistorico;
+//    }
+//
+//    /**
+//     * Setter method for scooterhistorico.
+//     *
+//     * @param aScooterhistorico the new value for scooterhistorico
+//     */
+//    public void setScooterhistorico(Set<Scooterhistorico> aScooterhistorico) {
+//        scooterhistorico = aScooterhistorico;
+//    }
+//
+//    /**
+//     * Access method for viaje.
+//     *
+//     * @return the current value of viaje
+//     */
+//    public Set<Viaje> getViaje() {
+//        return viaje;
+//    }
+//
+//    /**
+//     * Setter method for viaje.
+//     *
+//     * @param aViaje the new value for viaje
+//     */
+//    public void setViaje(Set<Viaje> aViaje) {
+//        viaje = aViaje;
+//    }
+//    
+    public DTScooter getDTScooter() {
 		return new DTScooter(
 				this.getId(),
 				this.getNumeroserial(),
 				this.getEncendido(),
 				this.getEnuso(),
-				this.getEliminado(),
-				null,
-				null);
+				this.getEliminado());
+	}
+    
+	public Scooter(DTScooter DtScooter) {
+		this.id = DtScooter.getId();
+		this.numeroserial = DtScooter.getNumeroserial();
+		this.encendido = DtScooter.isEncendido();
+		this.enuso = DtScooter.isEnuso();
+		this.eliminado = DtScooter.isEliminado();
 	}
 
 }

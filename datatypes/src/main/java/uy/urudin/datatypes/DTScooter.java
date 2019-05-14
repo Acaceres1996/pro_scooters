@@ -14,8 +14,8 @@ public class DTScooter implements Serializable  {
 	private boolean encendido;
 	private boolean enuso;
 	private boolean eliminado;
-	private List <DTScooterhistorico> scooterhistorico;
-	private List <DTViaje> viaje;
+//	private List <DTScooterhistorico> scooterhistorico;
+//	private List <DTViaje> viaje;
 	
 	public int getId() {
 		return id;
@@ -47,32 +47,32 @@ public class DTScooter implements Serializable  {
 	public void setEliminado(boolean eliminado) {
 		this.eliminado = eliminado;
 	}
-	public List<DTScooterhistorico> getScooterhistorico() {
-		return scooterhistorico;
-	}
-	public void setScooterhistorico(List<DTScooterhistorico> scooterhistorico) {
-		this.scooterhistorico = scooterhistorico;
-	}
-	public List<DTViaje> getViaje() {
-		return viaje;
-	}
-	public void setViaje(List<DTViaje> viaje) {
-		this.viaje = viaje;
-	}
+//	public List<DTScooterhistorico> getScooterhistorico() {
+//		return scooterhistorico;
+//	}
+//	public void setScooterhistorico(List<DTScooterhistorico> scooterhistorico) {
+//		this.scooterhistorico = scooterhistorico;
+//	}
+//	public List<DTViaje> getViaje() {
+//		return viaje;
+//	}
+//	public void setViaje(List<DTViaje> viaje) {
+//		this.viaje = viaje;
+//	}
 
 	public DTScooter() {
 		super();
 	}
 
-	public DTScooter(int id, String numeroserial, boolean encendido, boolean enuso, boolean eliminado, List<DTScooterhistorico> scooterhistorico, List<DTViaje> viaje) {
+	public DTScooter(int id, String numeroserial, boolean encendido, boolean enuso, boolean eliminado) {
 		super();
 		this.id = id;
 		this.numeroserial = numeroserial;
 		this.encendido = encendido;
 		this.enuso = enuso;
 		this.eliminado = eliminado;
-		this.scooterhistorico = scooterhistorico;
-		this.viaje = viaje;
 	}
+	
+
 	
 }

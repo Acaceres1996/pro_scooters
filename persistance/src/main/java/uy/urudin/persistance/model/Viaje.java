@@ -204,9 +204,12 @@ public class Viaje implements Serializable {
 		this.fechafin = dtViaje.getFechafin();
 		this.estado = dtViaje.getEstado();
 		this.minutospermitidossaldo = dtViaje.getMinutospermitidossaldo();
-		//this.factura = dtViaje.getFactura();
-		//this.cliente = dtViaje.getCliente();
-		//this.scooter = dtViaje.getScooter();
+		Factura factura = new Factura(dtViaje.getFactura());
+		this.factura = factura;
+		Cliente cliente = new Cliente(dtViaje.getCliente());
+		this.cliente = cliente;
+		Scooter scooter = new Scooter(dtViaje.getScooter());
+		this.scooter = scooter;
 	}
 	
 	public DTViaje getDTViaje() {
@@ -217,9 +220,9 @@ public class Viaje implements Serializable {
 				this.getFechafin(),
 				this.getEstado(),
 				this.getMinutospermitidossaldo(),
-				this.getFactura().getDTFacturaBasic(),
+				this.getFactura().getDTFactura(),
 				this.getCliente().getDTCliente(),
-				this.getScooter().getDTScooterBasic()); 
+				this.getScooter().getDTScooter()); 
 	}
 
 }

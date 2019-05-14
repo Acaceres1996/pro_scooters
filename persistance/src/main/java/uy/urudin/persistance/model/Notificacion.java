@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
+import uy.urudin.datatypes.DTNotificacion;
+
 @Entity(name="notificacion")
 public class Notificacion implements Serializable {
 
@@ -33,8 +35,8 @@ public class Notificacion implements Serializable {
     private String estado;
     @Column(nullable=false, length=1)
     private boolean masiva;
-    @OneToMany(mappedBy="notificacion")
-    private Set<Notificacioncliente> notificacioncliente;
+//    @OneToMany(mappedBy="notificacion")
+//    private Set<Notificacioncliente> notificacioncliente;
 
     /** Default constructor. */
     public Notificacion() {
@@ -130,22 +132,57 @@ public class Notificacion implements Serializable {
         masiva = aMasiva;
     }
 
-    /**
-     * Access method for notificacioncliente.
-     *
-     * @return the current value of notificacioncliente
-     */
-    public Set<Notificacioncliente> getNotificacioncliente() {
-        return notificacioncliente;
-    }
+	/**
+	 * @param id
+	 * @param cabezal
+	 * @param cuerpo
+	 * @param estado
+	 * @param masiva
+	 */
+	public Notificacion(int id, String cabezal, String cuerpo, String estado, boolean masiva) {
+		super();
+		this.id = id;
+		this.cabezal = cabezal;
+		this.cuerpo = cuerpo;
+		this.estado = estado;
+		this.masiva = masiva;
+	}
 
-    /**
-     * Setter method for notificacioncliente.
-     *
-     * @param aNotificacioncliente the new value for notificacioncliente
-     */
-    public void setNotificacioncliente(Set<Notificacioncliente> aNotificacioncliente) {
-        notificacioncliente = aNotificacioncliente;
-    }
+//    /**
+//     * Access method for notificacioncliente.
+//     *
+//     * @return the current value of notificacioncliente
+//     */
+//    public Set<Notificacioncliente> getNotificacioncliente() {
+//        return notificacioncliente;
+//    }
+//
+//    /**
+//     * Setter method for notificacioncliente.
+//     *
+//     * @param aNotificacioncliente the new value for notificacioncliente
+//     */
+//    public void setNotificacioncliente(Set<Notificacioncliente> aNotificacioncliente) {
+//        notificacioncliente = aNotificacioncliente;
+//    }
+    
+	public Notificacion(DTNotificacion DtNotificacion) {
+		super();
+		this.id = DtNotificacion.getId();
+		this.cabezal = DtNotificacion.getCabezal();
+		this.cuerpo = DtNotificacion.getCuerpo();
+		this.estado = DtNotificacion.getEstado();
+		this.masiva = DtNotificacion.isMasiva();
+	}
+	
+	public DTNotificacion getDTNotificacion() {
+		return new DTNotificacion(
+				this.getId(),
+				this.getCabezal(),
+				this.getCuerpo(),
+				this.getEstado(),
+				this.getMasiva()
+				);
+	}
 
 }

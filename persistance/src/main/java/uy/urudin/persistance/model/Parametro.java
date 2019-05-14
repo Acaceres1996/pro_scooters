@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
+import uy.urudin.datatypes.DTParametro;
+
 @Entity(name="parametro")
 public class Parametro implements Serializable {
 
@@ -86,4 +88,24 @@ public class Parametro implements Serializable {
         valor = aValor;
     }
 
+	/**
+	 * @param id
+	 * @param nombre
+	 * @param valor
+	 */
+	public Parametro(int id, String nombre, String valor) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.valor = valor;
+	}
+	
+	public Parametro(DTParametro DtParametro) {
+		super();
+		this.id = DtParametro.getId();
+		this.nombre = DtParametro.getNombre();
+		this.valor = DtParametro.getValor();
+	}
+
+    
 }

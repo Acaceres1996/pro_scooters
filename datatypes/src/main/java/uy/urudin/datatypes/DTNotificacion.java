@@ -13,7 +13,7 @@ public class DTNotificacion implements Serializable  {
     private String cuerpo;
     private String estado;
     private boolean masiva;
-    private Set<DTNotificacioncliente> notificacioncliente;
+    //private Set<DTNotificacioncliente> notificacioncliente;
 
 	public DTNotificacion() {
 		super();
@@ -59,23 +59,22 @@ public class DTNotificacion implements Serializable  {
 		this.masiva = masiva;
 	}
 
-	public Set<DTNotificacioncliente> getNotificacioncliente() {
-		return notificacioncliente;
-	}
-
-	public void setNotificacioncliente(Set<DTNotificacioncliente> notificacioncliente) {
-		this.notificacioncliente = notificacioncliente;
-	}
+//	public Set<DTNotificacioncliente> getNotificacioncliente() {
+//		return notificacioncliente;
+//	}
+//
+//	public void setNotificacioncliente(Set<DTNotificacioncliente> notificacioncliente) {
+//		this.notificacioncliente = notificacioncliente;
+//	}
 	
-	public DTNotificacion(int id, String cabezal, String cuerpo, String estado, boolean masiva,
-			Set<DTNotificacioncliente> notificacioncliente) {
+	public DTNotificacion(int id, String cabezal, String cuerpo, String estado, boolean masiva) {
 		super();
 		this.id = id;
 		this.cabezal = cabezal;
 		this.cuerpo = cuerpo;
 		this.estado = estado;
 		this.masiva = masiva;
-		this.notificacioncliente = notificacioncliente;
+		//this.notificacioncliente = notificacioncliente;
 	}
 	
 }

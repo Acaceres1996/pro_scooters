@@ -16,6 +16,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
+import uy.urudin.datatypes.DTScooter;
+import uy.urudin.datatypes.DTScooterhistorico;
+
 @Entity(name="scooterhistorico")
 public class Scooterhistorico implements Serializable {
 
@@ -149,4 +152,15 @@ public class Scooterhistorico implements Serializable {
     public void setScooter(Scooter aScooter) {
         scooter = aScooter;
     }
+    
+	public Scooterhistorico(DTScooterhistorico DtScooterhistorico) {
+		super();
+		this.id = DtScooterhistorico.getId();
+		this.fecha = DtScooterhistorico.getFecha();
+		this.latitud = DtScooterhistorico.getLatitud();
+		this.longitud = DtScooterhistorico.getLongitud();
+		this.bateria = DtScooterhistorico.getBateria();
+		Scooter scooter = new Scooter(DtScooterhistorico.getScooter());
+		this.scooter = scooter;
+	}
 }
