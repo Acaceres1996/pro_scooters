@@ -37,10 +37,10 @@ public class Cliente implements Serializable {
     private String email;
     @Column(nullable=false, precision=10)
     private int saldo;
-    @OneToMany(mappedBy="cliente")
-    private Set<Notificacioncliente> notificacioncliente;
-    @OneToMany(mappedBy="cliente")
-    private Set<Viaje> viaje;
+//    @OneToMany(mappedBy="cliente")
+//    private Set<Notificacioncliente> notificacioncliente;
+//    @OneToMany(mappedBy="cliente")
+//    private Set<Viaje> viaje;
 
     /** Default constructor. */
     public Cliente() {
@@ -137,39 +137,39 @@ public class Cliente implements Serializable {
     }
 
     /**
-     * Access method for notificacioncliente.
-     *
-     * @return the current value of notificacioncliente
-     */
-    public Set<Notificacioncliente> getNotificacioncliente() {
-        return notificacioncliente;
-    }
-
-    /**
-     * Setter method for notificacioncliente.
-     *
-     * @param aNotificacioncliente the new value for notificacioncliente
-     */
-    public void setNotificacioncliente(Set<Notificacioncliente> aNotificacioncliente) {
-        notificacioncliente = aNotificacioncliente;
-    }
-
-    /**
-     * Access method for viaje.
-     *
-     * @return the current value of viaje
-     */
-    public Set<Viaje> getViaje() {
-        return viaje;
-    }
-
-    /**
-     * Setter method for viaje.
-     *
-     * @param aViaje the new value for viaje
-     */
-    public void setViaje(Set<Viaje> aViaje) {
-        viaje = aViaje;
-    }
+//     * Access method for notificacioncliente.
+//     *
+//     * @return the current value of notificacioncliente
+//     */
+//    public Set<Notificacioncliente> getNotificacioncliente() {
+//        return notificacioncliente;
+//    }
+//
+//    /**
+//     * Setter method for notificacioncliente.
+//     *
+//     * @param aNotificacioncliente the new value for notificacioncliente
+//     */
+//    public void setNotificacioncliente(Set<Notificacioncliente> aNotificacioncliente) {
+//        notificacioncliente = aNotificacioncliente;
+//    }
+//
+//    /**
+//     * Access method for viaje.
+//     *
+//     * @return the current value of viaje
+//     */
+//    public Set<Viaje> getViaje() {
+//        return viaje;
+//    }
+//
+//    /**
+//     * Setter method for viaje.
+//     *
+//     * @param aViaje the new value for viaje
+//     */
+//    public void setViaje(Set<Viaje> aViaje) {
+//        viaje = aViaje;
+//    }
 
 }

@@ -3,9 +3,14 @@
 	<persistence-unit name="persistance" transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:jboss/datasources/PostgreSQLDS</jta-data-source>
+		<class>uy.urudin.persistance.model.Admin</class>
+		<class>uy.urudin.persistance.model.Cliente</class>
+		<class>uy.urudin.persistance.model.Factura</class>
+		<class>uy.urudin.persistance.model.Notificacion</class>
+		<class>uy.urudin.persistance.model.Notificacioncliente</class>
 		<class>uy.urudin.persistance.model.Parametro</class>
 		<class>uy.urudin.persistance.model.Scooter</class>
-		<class>uy.urudin.persistance.model.Registro</class>
-		<class>uy.urudin.persistance.model.Cliente</class>
+		<class>uy.urudin.persistance.model.Scooterhistorico</class>
+		<class>uy.urudin.persistance.model.Viaje</class>
 	</persistence-unit>
 </persistence>
