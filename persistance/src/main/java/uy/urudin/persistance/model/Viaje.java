@@ -17,6 +17,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
+import uy.urudin.datatypes.DTAdmin;
+import uy.urudin.datatypes.DTCliente;
+import uy.urudin.datatypes.DTFactura;
+import uy.urudin.datatypes.DTScooter;
+import uy.urudin.datatypes.DTViaje;
+
 @Entity(name="viaje")
 public class Viaje implements Serializable {
 
@@ -191,5 +197,29 @@ public class Viaje implements Serializable {
     public void setScooter(Scooter aScooter) {
         scooter = aScooter;
     }
+    
+    public Viaje(DTViaje dtViaje) {
+    	this.id = dtViaje.getId();
+    	this.fechainicio = dtViaje.getFechainicio();
+		this.fechafin = dtViaje.getFechafin();
+		this.estado = dtViaje.getEstado();
+		this.minutospermitidossaldo = dtViaje.getMinutospermitidossaldo();
+		//this.factura = dtViaje.getFactura();
+		//this.cliente = dtViaje.getCliente();
+		//this.scooter = dtViaje.getScooter();
+	}
+	
+	public DTViaje getDTViaje() {
+				
+		return new DTViaje(
+				this.getId(),
+				this.getFechainicio(), 
+				this.getFechafin(),
+				this.getEstado(),
+				this.getMinutospermitidossaldo(),
+				this.getFactura().getDTFacturaBasic(),
+				this.getCliente().getDTCliente(),
+				this.getScooter().getDTScooterBasic()); 
+	}
 
 }
