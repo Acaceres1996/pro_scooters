@@ -1,6 +1,8 @@
 package uy.urudin.datatypes;
 
 import java.io.Serializable;
+import java.util.List;
+
 
 
 public class DTScooter implements Serializable  {
@@ -8,11 +10,12 @@ public class DTScooter implements Serializable  {
 	private static final long serialVersionUID = 6128016096756071380L;
 	
 	private int id;
-	private String serial;
-	private String latitud;
-	private String longitud;
-	private Integer bateria;
+	private String numeroserial;
 	private boolean encendido;
+	private boolean enuso;
+	private boolean eliminado;
+//	private List <DTScooterhistorico> scooterhistorico;
+//	private List <DTViaje> viaje;
 	
 	public int getId() {
 		return id;
@@ -20,23 +23,11 @@ public class DTScooter implements Serializable  {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getLatitud() {
-		return latitud;
+	public String getNumeroserial() {
+		return numeroserial;
 	}
-	public void setLatitud(String latitud) {
-		this.latitud = latitud;
-	}
-	public String getLongitud() {
-		return longitud;
-	}
-	public void setLongitud(String longitud) {
-		this.longitud = longitud;
-	}
-	public Integer getBateria() {
-		return bateria;
-	}
-	public void setBateria(Integer bateria) {
-		this.bateria = bateria;
+	public void setNumeroserial(String numeroserial) {
+		this.numeroserial = numeroserial;
 	}
 	public boolean isEncendido() {
 		return encendido;
@@ -44,30 +35,42 @@ public class DTScooter implements Serializable  {
 	public void setEncendido(boolean encendido) {
 		this.encendido = encendido;
 	}
+	public boolean isEnuso() {
+		return enuso;
+	}
+	public void setEnuso(boolean enuso) {
+		this.enuso = enuso;
+	}
+	public boolean isEliminado() {
+		return eliminado;
+	}
+	public void setEliminado(boolean eliminado) {
+		this.eliminado = eliminado;
+	}
+//	public List<DTScooterhistorico> getScooterhistorico() {
+//		return scooterhistorico;
+//	}
+//	public void setScooterhistorico(List<DTScooterhistorico> scooterhistorico) {
+//		this.scooterhistorico = scooterhistorico;
+//	}
+//	public List<DTViaje> getViaje() {
+//		return viaje;
+//	}
+//	public void setViaje(List<DTViaje> viaje) {
+//		this.viaje = viaje;
+//	}
+
 	public DTScooter() {
 		super();
 	}
-	/**
-	 * @param id
-	 * @param latitud
-	 * @param longitud
-	 * @param bateria
-	 * @param encendido
-	 */
-	public DTScooter(int id, String latitud, String longitud, Integer bateria, boolean encendido) {
+
+	public DTScooter(int id, String numeroserial, boolean encendido, boolean enuso, boolean eliminado) {
 		super();
 		this.id = id;
-		this.latitud = latitud;
-		this.longitud = longitud;
-		this.bateria = bateria;
+		this.numeroserial = numeroserial;
 		this.encendido = encendido;
-	}
-	public String getSerial() {
-		return serial;
-	}
-	public void setSerial(String serial) {
-		this.serial = serial;
+		this.enuso = enuso;
+		this.eliminado = eliminado;
 	}
 
-	
 }

@@ -8,7 +8,6 @@ import javax.ejb.Stateless;
 
 import uy.urudin.datatypes.DTScooter;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal;
-import uy.urudin.logic.interfaces.ScooterFacadeRemote;
 import uy.urudin.persistance.interfaces.ScooterDAOLocal;
 
 
@@ -18,7 +17,8 @@ import uy.urudin.persistance.interfaces.ScooterDAOLocal;
  */
 @Stateless
 @LocalBean
-public class ScooterFacade implements ScooterFacadeRemote, ScooterFacadeLocal {
+public class ScooterFacade implements  ScooterFacadeLocal {
+
 
 	@EJB
 	ScooterDAOLocal ScooterDAO;
@@ -31,8 +31,8 @@ public class ScooterFacade implements ScooterFacadeRemote, ScooterFacadeLocal {
     }
 
 	@Override
-	public void add(DTScooter dtScooter) {
-		ScooterDAO.add(dtScooter);
+	public DTScooter add(DTScooter dtScooter) {
+		return ScooterDAO.add(dtScooter);
 	}
 
 	@Override

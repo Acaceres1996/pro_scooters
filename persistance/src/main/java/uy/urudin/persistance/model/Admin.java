@@ -14,11 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import uy.urudin.datatypes.DTParametro;
+import uy.urudin.datatypes.DTAdmin;
 
 @Entity
-@Table(name="parametro", schema = "public")
-public class Parametro implements Serializable {
+@Table(name="admin", schema = "public")
+public class Admin implements Serializable {
 
     /** Primary key. */
     protected static final String PK = "id";
@@ -28,12 +28,12 @@ public class Parametro implements Serializable {
     @Column(unique=true, nullable=false, precision=10)
     private int id;
     @Column(nullable=false, length=20)
-    private String nombre;
+    private String usuario;
     @Column(nullable=false, length=500)
-    private String valor;
+    private String password;
 
     /** Default constructor. */
-    public Parametro() {
+    public Admin() {
     }
 
     /**
@@ -55,67 +55,63 @@ public class Parametro implements Serializable {
     }
 
     /**
-     * Access method for nombre.
+     * Access method for usuario.
      *
-     * @return the current value of nombre
+     * @return the current value of usuario
      */
-    public String getNombre() {
-        return nombre;
+    public String getUsuario() {
+        return usuario;
     }
 
     /**
-     * Setter method for nombre.
+     * Setter method for usuario.
      *
-     * @param aNombre the new value for nombre
+     * @param aUsuario the new value for usuario
      */
-    public void setNombre(String aNombre) {
-        nombre = aNombre;
+    public void setUsuario(String aUsuario) {
+        usuario = aUsuario;
     }
 
     /**
-     * Access method for valor.
+     * Access method for password.
      *
-     * @return the current value of valor
+     * @return the current value of password
      */
-    public String getValor() {
-        return valor;
+    public String getPassword() {
+        return password;
     }
 
     /**
-     * Setter method for valor.
+     * Setter method for password.
      *
-     * @param aValor the new value for valor
+     * @param aPassword the new value for password
      */
-    public void setValor(String aValor) {
-        valor = aValor;
+    public void setPassword(String aPassword) {
+        password = aPassword;
     }
+    
+    public Admin(DTAdmin dtAdmin) {
+    	this.id = dtAdmin.getId();
+		this.usuario = dtAdmin.getUsuario();
+		this.password = dtAdmin.getPassword() ;
+	}
+	
+	public DTAdmin getDTAdmin() {
+		return new DTAdmin(this.getId(),this.getUsuario(), this.getPassword());
+	}
 
 	/**
 	 * @param id
-	 * @param nombre
-	 * @param valor
+	 * @param usuario
+	 * @param password
 	 */
-	public Parametro(int id, String nombre, String valor) {
+	public Admin(int id, String usuario, String password) {
 		super();
 		this.id = id;
-		this.nombre = nombre;
-		this.valor = valor;
+		this.usuario = usuario;
+		this.password = password;
 	}
 	
-	public Parametro(DTParametro DtParametro) {
-		super();
-		this.id = DtParametro.getId();
-		this.nombre = DtParametro.getNombre();
-		this.valor = DtParametro.getValor();
-	}
+	
 
-	
-	public DTParametro getDTParametro() {
-		return new DTParametro(
-				this.getId(),
-				this.getNombre(),
-				this.getValor()
-		);
-	}
-    
 }

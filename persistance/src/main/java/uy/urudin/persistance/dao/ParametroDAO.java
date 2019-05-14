@@ -18,29 +18,25 @@ import uy.urudin.persistance.model.Parametro;
 @Stateful
 public class ParametroDAO implements ParametroDAOLocal {
 
-	//@PersistenceContext(unitName = "persistance", type = PersistenceContextType.TRANSACTION)
 	@PersistenceContext(unitName = "persistance", type = PersistenceContextType.TRANSACTION)
 	private EntityManager em;
-	//Properties properties = new Properties(); 
-
-
 	
     public ParametroDAO() {
-    	//properties.put("hibernate.default_schema", "public"); 
-    	//em.setJpaProperties(properties); 
     }
 
-	@Override
-	public void add(DTParametro dtParameter) {
+    @Override
+	public DTParametro add(DTParametro dtParameter) {
 		// con id null
 		Parametro Parameter = new Parametro(dtParameter);
 		em.persist(Parameter);
+		return Parameter.getDTParametro();
 	}
 
 	@Override
-	public void merge(DTParametro dtParameter) {
+	public DTParametro merge(DTParametro dtParameter) {
 		Parametro Parameter = new Parametro(dtParameter);
 		em.merge(Parameter);
+		return Parameter.getDTParametro();
 	}
 
 	@Override
@@ -90,5 +86,4 @@ public class ParametroDAO implements ParametroDAOLocal {
 		}
 		return s.getDTParametro();
 	}
-
 }

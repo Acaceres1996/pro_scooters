@@ -8,17 +8,18 @@ import javax.ejb.Stateless;
 
 import uy.urudin.datatypes.DTParametro;
 import uy.urudin.logic.interfaces.ParametroFacadeLocal;
-import uy.urudin.logic.interfaces.ParametroFacadeRemote;
 import uy.urudin.persistance.interfaces.ParametroDAOLocal;
 
 
 
+
 /**
- * Session Bean implementation class ParameterFacade
+ * Session Bean implementation class ScooterFacade
  */
 @Stateless
 @LocalBean
-public class ParametroFacade implements ParametroFacadeRemote, ParametroFacadeLocal {
+public class ParametroFacade implements  ParametroFacadeLocal {
+
 
 	@EJB
 	ParametroDAOLocal ParametroDAO;
@@ -30,14 +31,14 @@ public class ParametroFacade implements ParametroFacadeRemote, ParametroFacadeLo
         
     }
 
-	@Override
-	public void add(DTParametro dtParameter) {
-		ParametroDAO.add(dtParameter);
+    @Override
+	public DTParametro add(DTParametro dtParameter) {
+		return ParametroDAO.add(dtParameter);
 	}
 
 	@Override
-	public void update(DTParametro dtParameter) {
-		ParametroDAO.merge(dtParameter);
+	public DTParametro update(DTParametro dtParameter) {
+		return ParametroDAO.merge(dtParameter);
 	}
 
 	@Override
@@ -65,6 +66,6 @@ public class ParametroFacade implements ParametroFacadeRemote, ParametroFacadeLo
 	public DTParametro getDTParameterByName(String Name) {
 		return ParametroDAO.getDTParameterByName(Name);
 	}
-	
+
 
 }

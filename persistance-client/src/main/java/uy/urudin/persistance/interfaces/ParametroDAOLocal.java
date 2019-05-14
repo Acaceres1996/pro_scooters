@@ -11,8 +11,8 @@ import uy.urudin.datatypes.DTParametro;
 
 @Local
 public interface ParametroDAOLocal {
-	void add(DTParametro dtParameter);
-	void merge(DTParametro dtParameter);
+	DTParametro add(DTParametro dtParameter);
+	DTParametro merge(DTParametro dtParameter);
 	void delete(DTParametro dtParameter);
 	DTParametro find(Integer id);
 	List<DTParametro> findAll();

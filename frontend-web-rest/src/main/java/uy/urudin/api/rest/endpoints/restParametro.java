@@ -5,6 +5,7 @@ import javax.ws.rs.Produces;
 
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -57,36 +58,39 @@ public class restParametro {
 	
 	
 	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createParameter(@QueryParam("nombre") String nombre, @QueryParam("valor") String valor){
-		DTParametro dtParameter = new DTParametro();
-		dtParameter.setNombre(nombre);
-		dtParameter.setValor(valor);
-		ParametroEJB.add(dtParameter);
-		return Response.status(201).build();
+	public Response createParameter(DTParametro dtParameter){
+		try {
+			return Response.status(200).entity(ParametroEJB.add(dtParameter)).build();
+		}catch (Exception e) {
+			return Response.status(500).build();
+		}
 	}
 	
 	@PUT
 	@Path("/")
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateParameter(@QueryParam("id") Integer id,@QueryParam("nombre") String nombre, @QueryParam("valor") String valor){
-		DTParametro dtParameter = new DTParametro();
-		dtParameter.setId(id);
-		dtParameter.setNombre(nombre);
-		dtParameter.setValor(valor);
-		ParametroEJB.update(dtParameter);
-		return Response.status(200).build();
+	public Response updateParameter(DTParametro dtParameter){
+		try {
+			return Response.status(200).entity(ParametroEJB.update(dtParameter)).build();
+		}catch (Exception e) {
+			return Response.status(500).build();
+		}
 	}
 	
 	@DELETE
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteParameter(@PathParam("id") Integer id){
-		DTParametro dtParameter = ParametroEJB.find(id);
-		ParametroEJB.delete(dtParameter);
-		return Response.status(204).build();
+		try {
+			DTParametro dtParameter = ParametroEJB.find(id);
+			ParametroEJB.delete(dtParameter);
+			return Response.status(204).build();
+		}catch (Exception e) {
+			return Response.status(500).build();
+		}
 	}
-
-	
 	
 }

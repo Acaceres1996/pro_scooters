@@ -5,11 +5,12 @@ import java.util.List;
 import javax.ejb.Local;
 
 import uy.urudin.datatypes.DTParametro;
+import uy.urudin.datatypes.DTScooter;
 
 @Local
 public interface ParametroFacadeLocal {
-	void add(DTParametro dtParameter);
-	void update(DTParametro dtParameter);
+	DTParametro add(DTParametro dtParameter);
+	DTParametro update(DTParametro dtParameter);
 	void delete(DTParametro dtParameter);
 	DTParametro find(Integer id);
 	List<DTParametro> findAll();
