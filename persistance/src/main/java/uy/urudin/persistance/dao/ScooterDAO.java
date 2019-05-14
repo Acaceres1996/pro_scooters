@@ -37,13 +37,15 @@ public class ScooterDAO implements ScooterDAOLocal {
 	}
 
 	@Override
-	public void merge(DTScooter dtScooter) {
+	public DTScooter merge(DTScooter dtScooter) {
 		Scooter Scooter = new Scooter(dtScooter);
 		em.merge(Scooter);
+		return Scooter.getDTScooter();
 	}
 
 	@Override
-	public void delete(DTScooter dtScooter) {
+	public void delete(Integer Id) {
+		DTScooter dtScooter = find(Id);
 		Scooter Scooter = new Scooter(dtScooter);
 		em.remove(em.merge(Scooter));
 	}

@@ -36,13 +36,13 @@ public class ScooterFacade implements  ScooterFacadeLocal {
 	}
 
 	@Override
-	public void update(DTScooter dtScooter) {
-		ScooterDAO.merge(dtScooter);
+	public DTScooter update(DTScooter dtScooter) {
+		return ScooterDAO.merge(dtScooter);
 	}
 
 	@Override
-	public void delete(DTScooter dtScooter) {
-		ScooterDAO.delete(dtScooter);
+	public void delete(Integer Id) {
+		ScooterDAO.delete(Id);
 	}
 
 	@Override

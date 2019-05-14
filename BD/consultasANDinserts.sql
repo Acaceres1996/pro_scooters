@@ -44,8 +44,5 @@ SELECT * FROM  scooterhistorico;
 SELECT * FROM  viaje;
 --insert into viaje(fechainicio,idscooter,idcliente,fechafin,estado,minutospermitidossaldo) values('2019-05-13 22:20:24',1,1,'2019-05-13 22:30:24','Finalizado',20),('2019-05-13 22:10:24',2,2,'2019-05-13 22:20:24','Finalizado',19),('2019-05-13 22:00:24',3,3,'2019-05-13 22:10:24','Finalizado',18),('2019-05-13 22:50:24',1,4,'2019-05-13 22:55:24','Finalizado',10)
 
-'2019-05-13 22:27:24'
-'Finalizado'
-
 SELECT * FROM factura;
 --insert into factura(idviaje,fecha,monto,estado) values(1,'2019-05-13 22:30:24',100,'Pagado'),(2,'2019-05-13 22:10:24',99,'Pagado'),(3,'2019-05-13 22:00:24',98,'Pagado'),(4,'2019-05-13 22:55:24',50,'Pagado')

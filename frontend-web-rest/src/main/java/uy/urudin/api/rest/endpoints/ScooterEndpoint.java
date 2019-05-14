@@ -72,50 +72,35 @@ public class ScooterEndpoint {
 		}
 	}
 	
-//	@GET
-//	@Path("/{id}")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Response getOneScooter(@PathParam("id") Integer id){
-//		return Response.ok( ScooterEJB.find(id)  ).build();
-//	}
-//	
-//	
-//	@PUT
-//	@Path("/")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Response updateScooter(			
-//			@QueryParam("id") int id, 
-//			@QueryParam("latitud") String latitud,
-//			@QueryParam("longitud") String longitud,
-//			@QueryParam("bateria") Integer bateria,
-//			@QueryParam("encendido") boolean encendido
-//			){
-//		DTScooter dtScooter = new DTScooter();
-//		dtScooter.setId(id);
-//		//TODO CORREGIR ESTO QUEDE DEPRECADO
-////		dtScooter.setLatitud(latitud);
-////		dtScooter.setLongitud(longitud);
-////		dtScooter.setBateria(bateria);
-//		dtScooter.setEncendido(encendido);
-//		try {
-//			ScooterEJB.update(dtScooter);
-//			return Response.status(200).build();
-//		}catch (Exception e) {
-//			return Response.status(500).build();
-//		}
-//	}
-//	
-//	//setea encendido en false, no elimina fisicamente.
-//	@DELETE
-//	@Path("/{id}")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Response deleteScooter(@PathParam("id") int id){
-//		DTScooter dtScooter = ScooterEJB.find(id);
-//		try {
-//			ScooterEJB.delete(dtScooter);
-//			return Response.status(204).build();
-//		}catch (Exception e) {
-//			return Response.status(500).build();
-//		}
-//	}
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getOneScooter(@PathParam("id") Integer id){
+		return Response.ok( ScooterEJB.find(id)  ).build();
+	}
+
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateScooter(DTScooter s){
+		try {
+			return Response.status(200).entity( ScooterEJB.update(s) ).build();
+		}catch (Exception e) {
+			return Response.status(500).build();
+		}
+	}
+	
+	
+	//setea encendido en false, no elimina fisicamente.
+	@DELETE
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteScooter(@PathParam("id") int id){
+		try {
+			ScooterEJB.delete(id);
+			return Response.status(204).build();
+		}catch (Exception e) {
+			return Response.status(500).build();
+		}
+	}
 }
