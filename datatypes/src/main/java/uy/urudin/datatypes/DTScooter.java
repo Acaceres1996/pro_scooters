@@ -72,7 +72,5 @@ public class DTScooter implements Serializable  {
 		this.enuso = enuso;
 		this.eliminado = eliminado;
 	}
-	
 
-	
 }

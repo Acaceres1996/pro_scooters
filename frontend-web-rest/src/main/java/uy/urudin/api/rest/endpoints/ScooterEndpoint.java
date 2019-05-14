@@ -31,8 +31,12 @@ import com.google.gson.Gson;
 import uy.urudin.datatypes.DTScooter;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal; 
 
+/** https://api.urudin.tk/scooter/
+ * 
+ * @Author Agustin Caceres 
+ */
 @Path("/scooter")
-public class restScooters {
+public class ScooterEndpoint {
 
 	@EJB
 	private ScooterFacadeLocal ScooterEJB;
@@ -44,6 +48,8 @@ public class restScooters {
 		return "true";
 	}
 	
+	/** GET - https://api.urudin.tk/scooter/
+	 * @return List(DTScooter) */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response GetAllScooter(){
@@ -52,26 +58,16 @@ public class restScooters {
 	}
 	
 	
+	/** POST - https://api.urudin.tk/scooter/
+	 * @param DTScooter
+	 * @return List<DTScooter> */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createScooter(InputStream requestBody) throws IOException{
-
-//      BufferedReader reader = new BufferedReader(new InputStreamReader(requestBody));
-//      StringBuilder out = new StringBuilder();
-//      String line;
-//      while ((line = reader.readLine()) != null) {
-//          out.append(line);
-//      }
-//      System.out.println(out.toString());
-		
-		ObjectMapper mapper = new ObjectMapper();
-		DTScooter dtScooter = mapper.readValue(requestBody,DTScooter.class);
-		  
+	public Response createScooter(DTScooter s){
 		try {
-			//return Response.status(201).build();
-			DTScooter nuevo = ScooterEJB.add(dtScooter);
-			return Response.ok(nuevo).build();
+			ScooterEJB.add(s);
+			return Response.status(200).entity( s ).build();
 		}catch (Exception e) {
 			return Response.status(500).build();
 		}
@@ -84,29 +80,6 @@ public class restScooters {
 //		return Response.ok( ScooterEJB.find(id)  ).build();
 //	}
 //	
-//	@POST
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Response createScooter(
-////			@QueryParam("id") int id, 
-//			@QueryParam("latitud") String latitud,
-//			@QueryParam("longitud") String longitud,
-//			@QueryParam("bateria") Integer bateria,
-//			@QueryParam("encendido") boolean encendido
-//			){
-//		DTScooter dtScooter = new DTScooter();
-////		dtScooter.setId(id); //el id no se envia al crear.
-//		//TODO CORREGIR ESTO QUEDE DEPRECADO
-////		dtScooter.setLatitud(latitud);
-////		dtScooter.setLongitud(longitud);
-////		dtScooter.setBateria(bateria);
-//		dtScooter.setEncendido(encendido);
-//		try {
-//			ScooterEJB.add(dtScooter);
-//			return Response.status(201).build();
-//		}catch (Exception e) {
-//			return Response.status(500).build();
-//		}
-//	}
 //	
 //	@PUT
 //	@Path("/")
