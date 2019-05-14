@@ -25,7 +25,7 @@ public class ScooterDAO implements ScooterDAOLocal {
     }
 
 	@Override
-	public void add(DTScooter dtScooter) {
+	public DTScooter add(DTScooter dtScooter) {
 		// con id null
 		Scooter scooter = new Scooter(dtScooter);
 		//datos por default
@@ -33,6 +33,7 @@ public class ScooterDAO implements ScooterDAOLocal {
 		scooter.setEnuso(false);
 		scooter.setEliminado(false);
 		em.persist(scooter);
+		return scooter.getDTScooter();
 	}
 
 	@Override

@@ -11,7 +11,7 @@ import uy.urudin.datatypes.DTScooter;
 
 @Local
 public interface ScooterDAOLocal {
-	void add(DTScooter dtscooter);
+	DTScooter add(DTScooter dtscooter);
 	void merge(DTScooter dtscooter);
 	void delete(DTScooter dtscooter);
 	DTScooter find(Integer id);

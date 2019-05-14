@@ -8,7 +8,7 @@ import uy.urudin.datatypes.DTScooter;
 
 @Local
 public interface ScooterFacadeLocal {
-	void add(DTScooter dtscooter);
+	DTScooter add(DTScooter dtscooter);
 	void update(DTScooter dtscooter);
 	void delete(DTScooter dtscooter);
 	DTScooter find(Integer id);

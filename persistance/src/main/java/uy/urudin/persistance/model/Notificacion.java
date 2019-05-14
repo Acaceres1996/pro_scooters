@@ -185,21 +185,6 @@ public class Notificacion implements Serializable {
 				);
 	}
 
-	/**
-	 * @param id
-	 * @param cabezal
-	 * @param cuerpo
-	 * @param estado
-	 * @param masiva
-	 */
-	public Notificacion(int id, String cabezal, String cuerpo, String estado, boolean masiva) {
-		super();
-		this.id = id;
-		this.cabezal = cabezal;
-		this.cuerpo = cuerpo;
-		this.estado = estado;
-		this.masiva = masiva;
-	}
 
 	
 }

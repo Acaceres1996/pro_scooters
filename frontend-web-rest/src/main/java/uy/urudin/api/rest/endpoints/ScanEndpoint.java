@@ -22,20 +22,18 @@ import javax.ws.rs.core.Response;
 import uy.urudin.datatypes.DTCliente;
 import uy.urudin.datatypes.DTRegistro;
 import uy.urudin.datatypes.DTScooter;
-import uy.urudin.logic.interfaces.ClienteFacadeLocal;
-import uy.urudin.logic.interfaces.RegistroFacadeLocal;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal; 
 
 @Path("/scan")
 public class ScanEndpoint {
 
-	@EJB
-	private RegistroFacadeLocal RegistroEJB;
-	@EJB
-	private ScooterFacadeLocal ScooterEJB;
-	@EJB
-	private ClienteFacadeLocal ClienteEJB;
-	
+//	@EJB
+//	private RegistroFacadeLocal RegistroEJB;
+//	@EJB
+//	private ScooterFacadeLocal ScooterEJB;
+//	@EJB
+//	private ClienteFacadeLocal ClienteEJB;
+//	
 	@GET
 	@Path("/ping")
 	@Produces(MediaType.TEXT_HTML)
@@ -43,82 +41,82 @@ public class ScanEndpoint {
 		return "true";
 	}
 	
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response GetAllRegistro(){
-		List<DTRegistro> ListRegistros = RegistroEJB.findAll();		
-		return Response.status(200).entity( ListRegistros ).build();
-	}
-	
-	@GET
-	@Path("/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getOneRegistro(@PathParam("id") Integer id){
-		return Response.ok( RegistroEJB.find(id)  ).build();
-	}
-	
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response createRegistro(
+//	@GET
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response GetAllRegistro(){
+//		List<DTRegistro> ListRegistros = RegistroEJB.findAll();		
+//		return Response.status(200).entity( ListRegistros ).build();
+//	}
+//	
+//	@GET
+//	@Path("/{id}")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response getOneRegistro(@PathParam("id") Integer id){
+//		return Response.ok( RegistroEJB.find(id)  ).build();
+//	}
+//	
+//	@POST
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response createRegistro(
+////			@QueryParam("id") int id, 
+//			@QueryParam("idcliente") int idcliente,
+//			@QueryParam("idscooter") int idscooter
+//			){
+//		
+//		DTCliente cliente = ClienteEJB.find(idcliente);
+//		DTScooter scooter = ScooterEJB.find(idscooter);
+//		
+//		
+//		DTRegistro dtRegistro = new DTRegistro();
+////		dtRegistro.setId(id); //el id no se envia al crear.
+//		dtRegistro.setCliente(cliente);
+//		dtRegistro.setScooter(scooter);
+//		
+//		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+//		dtRegistro.setFecha(timestamp);
+//		
+//		try {
+//			RegistroEJB.add(dtRegistro);
+//			return Response.status(201).build();
+//		}catch (Exception e) {
+//			return Response.status(500).build();
+//		}
+//	}
+//	
+//	@PUT
+//	@Path("/")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response updateRegistro(			
 //			@QueryParam("id") int id, 
-			@QueryParam("idcliente") int idcliente,
-			@QueryParam("idscooter") int idscooter
-			){
-		
-		DTCliente cliente = ClienteEJB.find(idcliente);
-		DTScooter scooter = ScooterEJB.find(idscooter);
-		
-		
-		DTRegistro dtRegistro = new DTRegistro();
-//		dtRegistro.setId(id); //el id no se envia al crear.
-		dtRegistro.setCliente(cliente);
-		dtRegistro.setScooter(scooter);
-		
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		dtRegistro.setFecha(timestamp);
-		
-		try {
-			RegistroEJB.add(dtRegistro);
-			return Response.status(201).build();
-		}catch (Exception e) {
-			return Response.status(500).build();
-		}
-	}
-	
-	@PUT
-	@Path("/")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateRegistro(			
-			@QueryParam("id") int id, 
-			@QueryParam("idcliente") int idcliente,
-			@QueryParam("idscooter") int idscooter
-			){
-		DTCliente cliente = ClienteEJB.find(idcliente);
-		DTScooter scooter = ScooterEJB.find(idscooter);
-		
-		DTRegistro dtRegistro = RegistroEJB.find(id);
-		dtRegistro.setCliente(cliente);
-		dtRegistro.setScooter(scooter);
-		
-		try {
-			RegistroEJB.update(dtRegistro);
-			return Response.status(200).build();
-		}catch (Exception e) {
-			return Response.status(500).build();
-		}
-	}
-	
-	//setea encendido en false, no elimina fisicamente.
-	@DELETE
-	@Path("/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteRegistro(@PathParam("id") int id){
-		DTRegistro dtRegistro = RegistroEJB.find(id);
-		try {
-			RegistroEJB.delete(dtRegistro);
-			return Response.status(204).build();
-		}catch (Exception e) {
-			return Response.status(500).build();
-		}
-	}
+//			@QueryParam("idcliente") int idcliente,
+//			@QueryParam("idscooter") int idscooter
+//			){
+//		DTCliente cliente = ClienteEJB.find(idcliente);
+//		DTScooter scooter = ScooterEJB.find(idscooter);
+//		
+//		DTRegistro dtRegistro = RegistroEJB.find(id);
+//		dtRegistro.setCliente(cliente);
+//		dtRegistro.setScooter(scooter);
+//		
+//		try {
+//			RegistroEJB.update(dtRegistro);
+//			return Response.status(200).build();
+//		}catch (Exception e) {
+//			return Response.status(500).build();
+//		}
+//	}
+//	
+//	//setea encendido en false, no elimina fisicamente.
+//	@DELETE
+//	@Path("/{id}")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response deleteRegistro(@PathParam("id") int id){
+//		DTRegistro dtRegistro = RegistroEJB.find(id);
+//		try {
+//			RegistroEJB.delete(dtRegistro);
+//			return Response.status(204).build();
+//		}catch (Exception e) {
+//			return Response.status(500).build();
+//		}
+//	}
 }

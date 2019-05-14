@@ -31,13 +31,11 @@
         <artifactId>logic</artifactId>
         <type>ejb</type>
       </dependency>
-      <!--  
       <dependency>
         <groupId>uy.urudin</groupId>
         <artifactId>rest-api</artifactId>
         <type>war</type>
       </dependency>
-      -->
       <dependency>
       	<groupId>uy.urudin</groupId>
       	<artifactId>datatypes</artifactId>

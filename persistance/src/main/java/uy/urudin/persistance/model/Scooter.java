@@ -24,7 +24,7 @@ import uy.urudin.datatypes.DTScooterhistorico;
 import uy.urudin.datatypes.DTViaje;
 
 @Entity
-@Table(name="scooter", indexes={@Index(name="scooter_numeroserial_IX", columnList="numeroserial", unique=true)})
+@Table(name="scooter",schema = "public", indexes={@Index(name="scooter_numeroserial_IX", columnList="numeroserial", unique=true)})
 public class Scooter implements Serializable {
 
     /** Primary key. */

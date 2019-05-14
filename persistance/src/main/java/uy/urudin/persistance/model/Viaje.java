@@ -40,8 +40,6 @@ public class Viaje implements Serializable {
     private String estado;
     @Column(nullable=false, precision=10)
     private int minutospermitidossaldo;
-    @OneToOne(mappedBy="viaje")
-    private Factura factura;
     @ManyToOne(optional=false)
     @JoinColumn(name="idcliente", nullable=false)
     private Cliente cliente;
@@ -144,23 +142,23 @@ public class Viaje implements Serializable {
         minutospermitidossaldo = aMinutospermitidossaldo;
     }
 
-    /**
-     * Access method for factura.
-     *
-     * @return the current value of factura
-     */
-    public Factura getFactura() {
-        return factura;
-    }
-
-    /**
-     * Setter method for factura.
-     *
-     * @param aFactura the new value for factura
-     */
-    public void setFactura(Factura aFactura) {
-        factura = aFactura;
-    }
+//    /**
+//     * Access method for factura.
+//     *
+//     * @return the current value of factura
+//     */
+//    public Factura getFactura() {
+//        return factura;
+//    }
+//
+//    /**
+//     * Setter method for factura.
+//     *
+//     * @param aFactura the new value for factura
+//     */
+//    public void setFactura(Factura aFactura) {
+//        factura = aFactura;
+//    }
 
     /**
      * Access method for cliente.
@@ -204,8 +202,8 @@ public class Viaje implements Serializable {
 		this.fechafin = dtViaje.getFechafin();
 		this.estado = dtViaje.getEstado();
 		this.minutospermitidossaldo = dtViaje.getMinutospermitidossaldo();
-		Factura factura = new Factura(dtViaje.getFactura());
-		this.factura = factura;
+		//Factura factura = new Factura(dtViaje.getFactura());
+		//this.factura = factura;
 		Cliente cliente = new Cliente(dtViaje.getCliente());
 		this.cliente = cliente;
 		Scooter scooter = new Scooter(dtViaje.getScooter());
@@ -219,7 +217,7 @@ public class Viaje implements Serializable {
 				this.getFechafin(),
 				this.getEstado(),
 				this.getMinutospermitidossaldo(),
-				this.getFactura().getDTFactura(),
+				//this.getFactura().getDTFactura(),
 				this.getCliente().getDTCliente(),
 				this.getScooter().getDTScooter()); 
 	}
@@ -235,14 +233,14 @@ public class Viaje implements Serializable {
 	 * @param scooter
 	 */
 	public Viaje(int id, Timestamp fechainicio, Timestamp fechafin, String estado, int minutospermitidossaldo,
-			Factura factura, Cliente cliente, Scooter scooter) {
+			Cliente cliente, Scooter scooter) {
 		super();
 		this.id = id;
 		this.fechainicio = fechainicio;
 		this.fechafin = fechafin;
 		this.estado = estado;
 		this.minutospermitidossaldo = minutospermitidossaldo;
-		this.factura = factura;
+		//this.factura = factura;
 		this.cliente = cliente;
 		this.scooter = scooter;
 	}
