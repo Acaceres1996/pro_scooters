@@ -98,6 +98,4 @@ public class Admin implements Serializable {
 		return new DTAdmin(this.getId(),this.getUsuario(), this.getPassword());
 	}
 
-
-
 }

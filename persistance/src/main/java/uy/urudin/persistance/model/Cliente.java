@@ -17,6 +17,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import uy.urudin.datatypes.DTAdmin;
+import uy.urudin.datatypes.DTCliente;
+
 @Entity
 @Table(name="cliente", indexes={@Index(name="cliente_email_IX", columnList="email", unique=true)})
 public class Cliente implements Serializable {
@@ -172,4 +175,16 @@ public class Cliente implements Serializable {
         viaje = aViaje;
     }
 
+    public Cliente(DTCliente dtCliente) {
+    	this.id = dtCliente.getId();
+		this.nombre = dtCliente.getNombre();
+		this.apellido = dtCliente.getApellido();
+		this.email = dtCliente.getEmail();
+		this.saldo = dtCliente.getSaldo();
+	}
+	
+	public DTCliente getDTCliente() {
+		return new DTCliente(this.getId(),this.getEmail(),this.getNombre(),this.getApellido(),this.getSaldo());
+	}
+    
 }

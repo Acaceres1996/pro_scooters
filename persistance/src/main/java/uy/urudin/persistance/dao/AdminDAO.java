@@ -36,39 +36,17 @@ public class AdminDAO implements AdminDAOLocal {
 		Admin Admin = new Admin(dtAdmin);
 		em.merge(Admin);
 	}
-/*
+
 	@Override
-	public void delete(DTParameter dtParameter) {
-		Parameter Parameter = new Parameter(dtParameter);
-		em.remove(em.merge(Parameter));
+	public void delete(DTAdmin dtAdmin) {
+		Admin Admin = new Admin(dtAdmin);
+		em.remove(em.merge(Admin));
 	}
-*/
+
 	@Override
 	public DTAdmin find(Integer id) {
 		Admin Admin = em.find(Admin.class, id);
 		return Admin.getDTAdmin();
-	}
-	/*
-
-	@Override
-	public String getValueByName(String n) {
-		
-		Query query = em.createQuery("SELECT p.value FROM Parameter p where p.name = :codigo ");
-        query.setParameter("codigo", n);
-        String s = (String) query.getSingleResult();
-        		
-//		String Value = em.createQuery("SELECT p.value FROM Parameter p where p.name = :name ", String.class)
-//				.setParameter("name", name)
-//				.setMaxResults(1)
-//				.getSingleResult();
-		return s;
-	}
-*/
-
-	@Override
-	public void delete(DTAdmin dtadmin) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

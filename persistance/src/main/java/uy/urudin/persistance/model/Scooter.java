@@ -4,6 +4,7 @@ package uy.urudin.persistance.model;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,6 +17,11 @@ import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
+
+import uy.urudin.datatypes.DTFactura;
+import uy.urudin.datatypes.DTScooter;
+import uy.urudin.datatypes.DTScooterhistorico;
+import uy.urudin.datatypes.DTViaje;
 
 @Entity
 @Table(name="scooter", indexes={@Index(name="scooter_numeroserial_IX", columnList="numeroserial", unique=true)})
@@ -170,5 +176,16 @@ public class Scooter implements Serializable {
     public void setViaje(Set<Viaje> aViaje) {
         viaje = aViaje;
     }
+    
+    public DTScooter getDTScooterBasic() {
+		return new DTScooter(
+				this.getId(),
+				this.getNumeroserial(),
+				this.getEncendido(),
+				this.getEnuso(),
+				this.getEliminado(),
+				null,
+				null);
+	}
 
 }

@@ -16,6 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
+import uy.urudin.datatypes.DTCliente;
+import uy.urudin.datatypes.DTFactura;
+import uy.urudin.datatypes.DTViaje;
+
 @Entity(name="factura")
 public class Factura implements Serializable {
 
@@ -129,5 +133,21 @@ public class Factura implements Serializable {
     public void setViaje(Viaje aViaje) {
         viaje = aViaje;
     }
+    
+    public Factura(DTFactura dtFactura) {
+    	this.id = dtFactura.getId();
+		this.fecha = dtFactura.getFecha();
+		this.monto = dtFactura.getMonto();
+		this.estado = dtFactura.getEstado();
+	}
+	
+	public DTFactura getDTFactura() {
+		return new DTFactura(this.getId(),this.getFecha(),this.getMonto(),this.getEstado(),this.getViaje().getDTViaje());
+	}
+	
+	public DTFactura getDTFacturaBasic() {
+		return new DTFactura(this.getId(),this.getFecha(),this.getMonto(),this.getEstado(),null);
+	}
+
 
 }

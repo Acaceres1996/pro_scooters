@@ -43,7 +43,7 @@ public class DTCliente implements Serializable  {
 		this.saldo = saldo;
 	}
 	
-	public DTCliente(int id,String nombre,String apellido,String email,int saldo) {
+	public DTCliente(int id,String email,String nombre,String apellido,int saldo) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
