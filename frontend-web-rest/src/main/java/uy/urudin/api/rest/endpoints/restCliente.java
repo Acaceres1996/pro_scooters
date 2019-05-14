@@ -53,7 +53,8 @@ public class restCliente {
 	@GET
 	@Path("/login/")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response loginCliente(@QueryParam("email") String email){
+	public Response loginCliente(@QueryParam("email") String email) {
+//System.out.println("DEBUGDEBUGDEBUG:" + email + ";");
 		return Response.ok( ClienteEJB.find(email)  ).build();
 	}
 	
@@ -63,7 +64,12 @@ public class restCliente {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createCliente(DTCliente dtcliente){
 			try {
-				return Response.status(200).entity(ClienteEJB.add(dtcliente)).build();
+				DTCliente newdt = ClienteEJB.add(dtcliente);
+				if(newdt != null) {
+					return Response.status(200).entity(newdt).build();
+				}else{
+					return Response.status(500).build();
+				}
 			}catch (Exception e) {
 				return Response.status(500).build();
 			}
@@ -74,7 +80,12 @@ public class restCliente {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateCliente(DTCliente dtcliente){
 			try {
-				return Response.status(200).entity(ClienteEJB.add(dtcliente)).build();
+				DTCliente newdt = ClienteEJB.update(dtcliente);
+				if(newdt != null) {
+					return Response.status(200).entity(newdt).build();
+				}else{
+					return Response.status(500).build();
+				}
 			}catch (Exception e) {
 				return Response.status(500).build();
 			}

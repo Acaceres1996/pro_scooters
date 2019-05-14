@@ -184,7 +184,7 @@ public class Cliente implements Serializable {
 	}
 	
 	public DTCliente getDTCliente() {
-		return new DTCliente(this.getId(),this.getEmail(),this.getNombre(),this.getApellido(),this.getSaldo());
+		return new DTCliente(this.getId(),this.getNombre(),this.getApellido(),this.getEmail(),this.getSaldo());
 	}
 
 	/**

@@ -19,7 +19,10 @@ public class DTCliente implements Serializable  {
 		this.id = id;
 	}
 	public String getEmail() {
-		return nombre;
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -33,9 +36,6 @@ public class DTCliente implements Serializable  {
 	public String getApellido() {
 		return apellido;
 	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	public int getSaldo() {
 		return saldo;
 	}
@@ -43,7 +43,7 @@ public class DTCliente implements Serializable  {
 		this.saldo = saldo;
 	}
 	
-	public DTCliente(int id,String email,String nombre,String apellido,int saldo) {
+	public DTCliente(int id,String nombre,String apellido,String email,int saldo) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
