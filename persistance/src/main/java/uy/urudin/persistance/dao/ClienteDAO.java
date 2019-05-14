@@ -13,7 +13,6 @@ import javax.persistence.Query;
 import uy.urudin.datatypes.DTCliente;
 import uy.urudin.persistance.interfaces.ClienteDAOLocal;
 import uy.urudin.persistance.model.Cliente;
-import uy.urudin.persistance.model.Parametro;
 
 
 @Stateful
@@ -29,8 +28,11 @@ public class ClienteDAO implements ClienteDAOLocal {
 	public DTCliente add(DTCliente dtcliente) {
 		// con id null
 		Cliente cliente = new Cliente(dtcliente);
+//System.out.println("DEBUGDEBUGDEBUG:" + cuantosemails(dtcliente.getEmail()) + ";");
 		//existe el email ingresado.
 		if(cuantosemails(dtcliente.getEmail()) <= 0 ) {
+			//saldo siempre comienza en 0 al crear.
+			cliente.setSaldo(0);
 			em.persist(cliente);
 			return cliente.getDTCliente();
 		}else {
@@ -39,13 +41,13 @@ public class ClienteDAO implements ClienteDAOLocal {
 	}
     
 	private int cuantosemails(String email) {
-		Query query = em.createQuery("SELECT count(p.email) FROM Cliente p where p.email = :email ");
+		Query query = em.createQuery("SELECT count(*) FROM Cliente p where p.email = :email ");
         query.setParameter("email", email);
         int i = 9;
         try {
-        	 i = (int) query.getSingleResult();
+        	i = ((Number) query.getSingleResult()).intValue();;
 		} catch (Exception e) {
-			i = 9;
+			i = 8;
 		}
 		return i;
 	}
@@ -84,7 +86,10 @@ public class ClienteDAO implements ClienteDAOLocal {
         	 s = (Cliente) query.getSingleResult();
 		} catch (Exception e) {
 			s = null;
+//			System.out.println("DEBUGDEBUGDEBUG:" + "cach" + ";");
 		}
+        
+//        System.out.println("DEBUGDEBUGDEBUG:" + s.getApellido() + ";");
 		return s.getDTCliente();
 	}
 	
