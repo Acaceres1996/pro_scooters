@@ -39,6 +39,7 @@ public class Scooterhistorico implements Serializable {
     private String longitud;
     @Column(nullable=false, precision=10)
     private int bateria;
+    
     @ManyToOne(optional=false)
     @JoinColumn(name="idscooter", nullable=false)
     private Scooter scooter;

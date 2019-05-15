@@ -13,4 +13,5 @@ public interface ScooterFacadeLocal {
 	void delete(Integer id);
 	DTScooter find(Integer id);
 	List<DTScooter> findAll();
+	public List<DTScooter> scootersLibres();
 }

@@ -55,5 +55,10 @@ public class ScooterFacade implements  ScooterFacadeLocal {
 		return ScooterDAO.findAll();
 	}
 
+	@Override
+	public List<DTScooter> scootersLibres() {
+		return ScooterDAO.scootersLibres();
+	}
+
 
 }

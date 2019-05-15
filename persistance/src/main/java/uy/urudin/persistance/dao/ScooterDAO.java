@@ -4,6 +4,7 @@ package uy.urudin.persistance.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,6 +24,23 @@ public class ScooterDAO implements ScooterDAOLocal {
 	
     public ScooterDAO() {
     }
+	
+    @Override
+	public List<DTScooter> scootersLibres() {
+		// se considera disponible
+		//Solo se mostraran Scooters encendidos, que no se encuentren en uso y con batería mayor al mínimo definido por el sistema. 
+		
+		//listar cuales son los scooter que cumplen con ello
+		//Bateria corresponde a otro servicio
+		
+		List<Scooter> ListScooter = em.createQuery("SELECT a FROM Scooter a where a.encendido = true and a.enuso = false and a.eliminado = false", Scooter.class).getResultList();
+		List<DTScooter> ListDT = new ArrayList<DTScooter>();
+		for(Scooter t : ListScooter){
+			ListDT.add(t.getDTScooter());
+		}
+		return ListDT; 
+	}
+
 
 	@Override
 	public DTScooter add(DTScooter dtScooter) {
