@@ -76,7 +76,6 @@ public class ClienteDAO implements ClienteDAOLocal {
 		return cliente.getDTCliente();
 	}
 	
-	
 	@Override
 	public DTCliente find(String email) {
 		Query query = em.createQuery("SELECT p FROM Cliente p where p.email = :email ");
