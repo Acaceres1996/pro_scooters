@@ -16,4 +16,5 @@ public interface ScooterDAOLocal {
 	void delete(Integer Id);
 	DTScooter find(Integer id);
 	List<DTScooter> findAll();
+	public List<DTScooter> scootersLibres();
 }
