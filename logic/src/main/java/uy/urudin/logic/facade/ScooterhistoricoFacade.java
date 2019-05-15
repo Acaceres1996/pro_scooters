@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import uy.urudin.datatypes.DTRegistro;
 import uy.urudin.datatypes.DTScooter;
 import uy.urudin.datatypes.DTScooterhistorico;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal;
@@ -48,6 +49,8 @@ public class ScooterhistoricoFacade implements  ScooterhistoricoFacadeLocal {
 			//inicializo vacio
 			List<DTScooterhistorico> ret = new ArrayList<DTScooterhistorico>();
 			
+System.out.println("DEBUGDEBUGDEBUG:" + "adentro" + ";");
+			
 			//parametro sistema a numero
 			String minbat = ParametroDAO.getValueByName("BATERIABAJA");
 			Integer minimobat = Integer.valueOf(minbat);
@@ -79,6 +82,21 @@ public class ScooterhistoricoFacade implements  ScooterhistoricoFacadeLocal {
 	@Override
 	public DTScooterhistorico find(Integer id) {
 		return ScooterhistoricoDAO.find(id);
+	}
+
+	@Override
+	public DTScooterhistorico registroScooterHistorico(DTRegistro dtregistro) {
+		DTScooter dtscooter = ScooterDAO.find(dtregistro.getScooterid());
+		DTScooterhistorico newSH = new DTScooterhistorico();
+		newSH.setBateria(dtregistro.getBateria());
+		newSH.setLatitud(dtregistro.getLatitud());
+		newSH.setLongitud(dtregistro.getLongitud());
+		newSH.setScooter(dtscooter);
+		
+		DTScooterhistorico creadoSH =  ScooterhistoricoDAO.add(newSH);
+		
+		return creadoSH;
+		
 	}
 
 

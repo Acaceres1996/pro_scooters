@@ -7,8 +7,10 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import uy.urudin.datatypes.DTScooter;
+import uy.urudin.datatypes.DTScooterhistorico;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal;
 import uy.urudin.persistance.interfaces.ScooterDAOLocal;
+import uy.urudin.persistance.interfaces.ScooterhistoricoDAOLocal;
 
 
 
@@ -22,6 +24,8 @@ public class ScooterFacade implements  ScooterFacadeLocal {
 
 	@EJB
 	ScooterDAOLocal ScooterDAO;
+	@EJB
+	ScooterhistoricoDAOLocal ScooterhistoricoDAO;
 	
     /**
      * Default constructor. 
@@ -32,7 +36,22 @@ public class ScooterFacade implements  ScooterFacadeLocal {
 
 	@Override
 	public DTScooter add(DTScooter dtScooter) {
-		return ScooterDAO.add(dtScooter);
+		try {
+			DTScooter newdtscooter = ScooterDAO.add(dtScooter);
+			
+			//historico por default
+			DTScooterhistorico newSH = new DTScooterhistorico();
+			newSH.setBateria(100);
+			newSH.setLatitud("-34.9181706");
+			newSH.setLongitud("-56.1665725");
+			newSH.setScooter(newdtscooter);
+			DTScooterhistorico creadoSH =  ScooterhistoricoDAO.add(newSH);
+			// sino existe almenos 1 falla el buscar disponibles.
+			
+			return newdtscooter;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override

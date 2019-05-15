@@ -28,6 +28,7 @@ import javax.ws.rs.core.Response;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
+import uy.urudin.datatypes.DTRegistro;
 import uy.urudin.datatypes.DTScooter;
 import uy.urudin.datatypes.DTScooterhistorico;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal;
@@ -53,10 +54,23 @@ public class ScooterhistoricoEndpoint {
 	/** GET - https://api.urudin.tk/scooter/
 	 * @return List<DTScooterhistorico */
 	@GET
+	@Path("/disponibles/")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response todoslosScootersHistoricoDisponibles(){
 		List<DTScooterhistorico> all = ScooterhistoricoEJB.todoslosScootersHistoricoDisponibles();
 		return Response.ok( all ).build();
+	}
+	
+	@POST
+	@Path("/registro/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response registroScooterHistorico(DTRegistro dtregistro){
+		try {
+			return Response.status(200).entity( ScooterhistoricoEJB.registroScooterHistorico(dtregistro) ).build();
+		} catch (Exception e) {
+			return Response.status(500).build();
+		}
 	}
 
 //	@GET

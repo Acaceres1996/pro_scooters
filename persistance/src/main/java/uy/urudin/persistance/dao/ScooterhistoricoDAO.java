@@ -1,7 +1,9 @@
 package uy.urudin.persistance.dao;
 
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -33,39 +35,6 @@ public class ScooterhistoricoDAO implements ScooterhistoricoDAOLocal {
     public ScooterhistoricoDAO() {
     	
     }
-
-
-//	@Override
-//	public List<DTScooterhistorico> todoslosScootersHistoricoDisponibles() {
-//		// se considera disponible
-//		//Solo se mostraran Scooters encendidos, que no se encuentren en uso y con batería mayor al mínimo definido por el sistema. 
-//		
-//		//inicializo vacio
-//		List<DTScooterhistorico> ret = new ArrayList<DTScooterhistorico>();
-//		
-//		//parametro sistema a numero
-//		String minbat = ParametroEJB.getValueByName("BATERIABAJA");
-//		Integer minimobat = Integer.valueOf(minbat);
-//System.out.println("DEBUGDEBUGDEBUG:" + minimobat + ";");
-//
-//		//listar cuales son los scooter que cumplen con ello
-//		List<DTScooter> libres = ScooterEJB.scootersLibres();
-//System.out.println("DEBUGDEBUGDEBUG:" +"zize" + libres.size()  + ";");
-//		
-//		//pedir ultima ubicacion de esos scooters
-//		for (DTScooter onescooter : libres) {
-//			
-//			//ultimo historico de uno libre.
-//			DTScooterhistorico oneSH = ultimoScooterHistoricoUnIdScooter(onescooter.getId());
-//			
-//			//solo incluyo quienes bateria > al minimo.
-//			if(oneSH.getBateria() > minimobat) {
-//				ret.add(oneSH);
-//			}
-//		}
-//		return ret;
-//	}
-
     
 	@Override
 	public DTScooterhistorico find(Integer id) {
@@ -92,5 +61,16 @@ public class ScooterhistoricoDAO implements ScooterhistoricoDAOLocal {
 			dTCompetitor = null;
 		}
 		return dTCompetitor;
+	}
+
+	@Override
+	public DTScooterhistorico add(DTScooterhistorico dtscooterhistorico) {
+		Scooterhistorico scooterhistorico = new Scooterhistorico(dtscooterhistorico);
+		//fecha ahora.
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		scooterhistorico.setFecha(timestamp);
+		
+		em.persist(scooterhistorico);
+		return scooterhistorico.getDTScooterhistorico();
 	}
 }

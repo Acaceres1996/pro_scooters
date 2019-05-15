@@ -13,7 +13,7 @@ import uy.urudin.datatypes.DTScooterhistorico;
 
 @Local
 public interface ScooterhistoricoDAOLocal {
-	//public List<DTScooterhistorico> todoslosScootersHistoricoDisponibles();
 	public DTScooterhistorico ultimoScooterHistoricoUnIdScooter(Integer idscooter);
 	public DTScooterhistorico find(Integer id);
+	public DTScooterhistorico add(DTScooterhistorico dtscooterhistorico);
 }
