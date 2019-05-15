@@ -47,7 +47,12 @@ public class ScooterDAO implements ScooterDAOLocal {
 	public void delete(Integer Id) {
 		DTScooter dtScooter = find(Id);
 		Scooter Scooter = new Scooter(dtScooter);
-		em.remove(em.merge(Scooter));
+		//solo puede eliminarse si esta apagado
+		if(!Scooter.getEncendido()) {
+			//bara logica
+			Scooter.setEliminado(true);
+			em.merge(Scooter);
+		}
 	}
 
 	@Override
