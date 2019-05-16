@@ -46,6 +46,9 @@ public class ScooterDAO implements ScooterDAOLocal {
 	public DTScooter add(DTScooter dtScooter) {
 		// con id null
 		Scooter scooter = new Scooter(dtScooter);
+		
+		//controlar no existan mas con el mismo numeroserial.
+		
 		//datos por default
 		scooter.setEncendido(true);
 		scooter.setEnuso(false);

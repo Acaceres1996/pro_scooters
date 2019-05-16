@@ -77,7 +77,13 @@ public class ScooterEndpoint {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createScooter(DTScooter s){
 		try {
-			return Response.status(200).entity( ScooterEJB.add(s) ).build();
+			
+			DTScooter nuevo = ScooterEJB.add(s);
+			if(nuevo != null) {
+				return Response.status(200).entity( nuevo ).build();
+			}else {
+				return Response.status(500).build();
+			}
 		}catch (Exception e) {
 			return Response.status(500).build();
 		}
@@ -95,7 +101,12 @@ public class ScooterEndpoint {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateScooter(DTScooter s){
 		try {
-			return Response.status(200).entity( ScooterEJB.update(s) ).build();
+			DTScooter upd = ScooterEJB.update(s);
+			if(upd != null) {
+				return Response.status(200).entity( upd ).build();
+			}else {
+				return Response.status(500).build();
+			}
 		}catch (Exception e) {
 			return Response.status(500).build();
 		}
