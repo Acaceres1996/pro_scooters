@@ -44,7 +44,7 @@ public class ScooterhistoricoDAO implements ScooterhistoricoDAOLocal {
 	
 	@Override
 	public DTScooterhistorico ultimoScooterHistoricoUnIdScooter(Integer idscooter) {
-		System.out.println("DEBUGDEBUGDEBUG:" +"idscooter" + idscooter + ";");
+		//System.out.println("DEBUGDEBUGDEBUG:" +"idscooter" + idscooter + ";");
 		
 		Query query = em.createNativeQuery("SELECT p.* FROM public.scooterhistorico p where p.idscooter = :idscooter ORDER BY p.fecha DESC", Scooterhistorico.class);
         query.setParameter("idscooter", idscooter);
@@ -72,5 +72,25 @@ public class ScooterhistoricoDAO implements ScooterhistoricoDAOLocal {
 		
 		em.persist(scooterhistorico);
 		return scooterhistorico.getDTScooterhistorico();
+	}
+
+	@Override
+	public DTScooterhistorico ultimoScooterHistoricoUnIdScooterBasico(Integer idscooter) {
+		//salvo basico mismo que ultimoScooterHistoricoUnIdScooter
+		Query query = em.createNativeQuery("SELECT p.* FROM public.scooterhistorico p where p.idscooter = :idscooter ORDER BY p.fecha DESC", Scooterhistorico.class);
+        query.setParameter("idscooter", idscooter);
+//        query.setParameter("user", iduser);
+        Scooterhistorico s = null;
+        DTScooterhistorico dTCompetitor = null;
+        try {
+        	 //s = (Scooterhistorico) query.getSingleResult();
+        	s = (Scooterhistorico) query.getResultList().get(0);
+        	 dTCompetitor = s.getDTScooterhistoricoBasico(); //basico porque no quiero nuevamente los DT SCOOTER.
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			s = null;
+			dTCompetitor = null;
+		}
+		return dTCompetitor;
 	}
 }

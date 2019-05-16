@@ -122,6 +122,11 @@ System.out.println("METROS:" + distanciametros);
 		return scooterscercanos;
 	}
 
+	@Override
+	public DTScooterhistorico ultimoScooterHistoricoUnIdScooterBasico(Integer idscooter) {
+		return ScooterhistoricoDAO.ultimoScooterHistoricoUnIdScooterBasico(idscooter);
+	}
+
 
 
 
