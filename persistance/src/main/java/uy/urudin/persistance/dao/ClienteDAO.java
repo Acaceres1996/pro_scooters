@@ -57,8 +57,12 @@ public class ClienteDAO implements ClienteDAOLocal {
 		Cliente cliente = new Cliente(dtcliente);
 		// puede existir 0 o 1 vez pero no mas.
 		if(cuantosemails(dtcliente.getEmail()) <= 1 ) {
-			em.merge(cliente);
-			return cliente.getDTCliente();
+			try {
+				em.merge(cliente);
+				return cliente.getDTCliente();
+			} catch (Exception e) {
+				return null;
+			}
 		}else {
 			return null;
 		}
