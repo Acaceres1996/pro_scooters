@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import uy.urudin.datatypes.DTScooter;
+import uy.urudin.datatypes.DTScooterUltimoRegistro;
 
 @Local
 public interface ScooterFacadeLocal {
@@ -14,4 +15,5 @@ public interface ScooterFacadeLocal {
 	DTScooter find(Integer id);
 	List<DTScooter> findAll();
 	public List<DTScooter> scootersLibres();
+	public List<DTScooterUltimoRegistro> scootersUltimosRegistros();
 }

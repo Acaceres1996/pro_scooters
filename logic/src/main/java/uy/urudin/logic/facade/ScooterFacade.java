@@ -1,5 +1,6 @@
 package uy.urudin.logic.facade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -7,6 +8,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import uy.urudin.datatypes.DTScooter;
+import uy.urudin.datatypes.DTScooterUltimoRegistro;
 import uy.urudin.datatypes.DTScooterhistorico;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal;
 import uy.urudin.persistance.interfaces.ScooterDAOLocal;
@@ -77,6 +79,26 @@ public class ScooterFacade implements  ScooterFacadeLocal {
 	@Override
 	public List<DTScooter> scootersLibres() {
 		return ScooterDAO.scootersLibres();
+	}
+
+	@Override
+	public List<DTScooterUltimoRegistro> scootersUltimosRegistros() {
+		List<DTScooterUltimoRegistro> ret = new ArrayList<DTScooterUltimoRegistro>(); 
+		
+		//todos los scooters
+		List<DTScooter> allscooters = ScooterDAO.findAll();
+		
+		for (DTScooter onedtScooter : allscooters) {
+			//busco su dtscooterhistorico.
+			DTScooterhistorico onehistorico = ScooterhistoricoDAO.ultimoScooterHistoricoUnIdScooterBasico(onedtScooter.getId());
+			
+			//armo el dt nuevo
+			DTScooterUltimoRegistro dtnew = new DTScooterUltimoRegistro(onedtScooter,onehistorico);
+			ret.add(dtnew);
+			
+		}
+		
+		return ret;
 	}
 
 

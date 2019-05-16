@@ -29,6 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import uy.urudin.datatypes.DTScooter;
+import uy.urudin.datatypes.DTScooterUltimoRegistro;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal; 
 
 /** https://api.urudin.tk/scooter/
@@ -54,6 +55,16 @@ public class ScooterEndpoint {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response GetAllScooter(){
 		List<DTScooter> ListScooters = ScooterEJB.findAll();
+		return Response.ok( ListScooters ).build();
+	}
+	
+	/** GET - https://api.urudin.tk/scooter/
+	 * @return List(DTScooter) */
+	@GET
+	@Path("/ultimosregistros")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response scootersUltimosRegistros(){
+		List<DTScooterUltimoRegistro> ListScooters = ScooterEJB.scootersUltimosRegistros();
 		return Response.ok( ListScooters ).build();
 	}
 	
