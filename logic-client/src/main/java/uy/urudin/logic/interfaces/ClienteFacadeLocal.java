@@ -15,4 +15,6 @@ public interface ClienteFacadeLocal {
 	public List<DTCliente> findAll();
 	public DTCliente find(Integer id);
 	public DTCliente find(String email);
+	public int verSaldo(Integer id);
+	public Boolean controlMonto(Integer monto);
 }

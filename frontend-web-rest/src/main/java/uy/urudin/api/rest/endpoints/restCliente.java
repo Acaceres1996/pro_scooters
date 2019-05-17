@@ -58,6 +58,7 @@ public class restCliente {
 		return Response.ok( ClienteEJB.find(email)  ).build();
 	}
 	
+	//agregar ver saldo, y control del minimo
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
