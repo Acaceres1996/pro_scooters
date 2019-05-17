@@ -60,19 +60,4 @@ public class ClienteFacade implements  ClienteFacadeLocal {
 		return ClienteDAO.find(email);
 	}
 
-	@Override
-	public int verSaldo(Integer id) {
-		return ClienteDAO.find(id).getSaldo();
-	}
-
-	@Override
-	public Boolean controlMonto(Integer monto) {
-		DTParametro p = ParametroDAO.find(5);	//id del parametro de minimo de carga.
-		if (Integer.parseInt(p.getValor()) <= monto) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 }
