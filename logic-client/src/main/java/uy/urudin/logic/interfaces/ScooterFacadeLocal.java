@@ -1,5 +1,7 @@
 package uy.urudin.logic.interfaces;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -16,4 +18,6 @@ public interface ScooterFacadeLocal {
 	List<DTScooter> findAll();
 	public List<DTScooter> scootersLibres();
 	public List<DTScooterUltimoRegistro> scootersUltimosRegistros();
+	
+	String scootersAlquilados() throws UnsupportedEncodingException, IOException;
 }
