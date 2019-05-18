@@ -14,7 +14,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import uy.urudin.datatypes.DTCliente;
 import uy.urudin.datatypes.DTViaje;
+import uy.urudin.logic.interfaces.ClienteFacadeLocal;
 import uy.urudin.logic.interfaces.ViajeFacadeLocal;
 
 /** https://api.urudin.tk/viaje/
@@ -25,6 +27,8 @@ public class ViajeEndpoint {
 
 	@EJB
 	private ViajeFacadeLocal ViajeEJB;
+	@EJB
+	private ClienteFacadeLocal ClienteEJB;
 	
 	@GET
 	@Path("/ping")
@@ -58,13 +62,14 @@ public class ViajeEndpoint {
 			return Response.status(500).build();
 		}
 	}
-
-	@PUT
+	
+	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateViaje(DTViaje v){
+	public Response iniciarViaje (DTCliente c, @PathParam("id") int id){
 		try {
-			return Response.status(200).entity( ViajeEJB.update(v) ).build();
+			return Response.status(200).entity( ViajeEJB.iniciarViaje(c,id) ).build();
 		}catch (Exception e) {
 			return Response.status(500).build();
 		}
@@ -73,10 +78,11 @@ public class ViajeEndpoint {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	//Se setearia la fecha de fin,y se cambiaria el estado.
+	//Fin del viaje, Se setearia la fecha de fin,y se cambiaria el estado. 
+	
 	public Response finalizarViaje(DTViaje v){
 		try {
-			return Response.status(200).entity( ViajeEJB.update(v) ).build();
+			return Response.status(200).entity(ViajeEJB.finalizarViaje(v) ).build();
 		}catch (Exception e) {
 			return Response.status(500).build();
 		}
