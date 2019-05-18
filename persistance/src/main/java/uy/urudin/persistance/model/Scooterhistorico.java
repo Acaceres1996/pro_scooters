@@ -177,6 +177,17 @@ public class Scooterhistorico implements Serializable {
 				this.getScooter().getDTScooter()
 				);
 	}
+	
+	public DTScooterhistorico getDTScooterhistoricoBasico() {
+		return new DTScooterhistorico(
+				this.getId(),
+				this.getFecha(),
+				this.getLatitud(),
+				this.getLongitud(),
+				this.getBateria(),
+				null //this.getScooter().getDTScooter()
+				);
+	}
 
 	/**
 	 * @param id

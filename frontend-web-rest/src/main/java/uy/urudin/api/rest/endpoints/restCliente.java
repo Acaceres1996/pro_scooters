@@ -58,7 +58,6 @@ public class restCliente {
 		return Response.ok( ClienteEJB.find(email)  ).build();
 	}
 	
-	//agregar ver saldo, y control del minimo
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -81,9 +80,9 @@ public class restCliente {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateCliente(DTCliente dtcliente){
 			try {
-				DTCliente newdt = ClienteEJB.update(dtcliente);
-				if(newdt != null) {
-					return Response.status(200).entity(newdt).build();
+				DTCliente upddt = ClienteEJB.update(dtcliente);
+				if(upddt != null) {
+					return Response.status(200).entity(upddt).build();
 				}else{
 					return Response.status(500).build();
 				}

@@ -49,16 +49,16 @@ public class ScooterhistoricoFacade implements  ScooterhistoricoFacadeLocal {
 			//inicializo vacio
 			List<DTScooterhistorico> ret = new ArrayList<DTScooterhistorico>();
 			
-System.out.println("DEBUGDEBUGDEBUG:" + "adentro" + ";");
+//System.out.println("DEBUGDEBUGDEBUG:" + "adentro" + ";");
 			
 			//parametro sistema a numero
 			String minbat = ParametroDAO.getValueByName("BATERIABAJA");
 			Integer minimobat = Integer.valueOf(minbat);
-	System.out.println("DEBUGDEBUGDEBUG:" + minimobat + ";");
+//	System.out.println("DEBUGDEBUGDEBUG:" + minimobat + ";");
 	
 			//listar cuales son los scooter que cumplen con ello
 			List<DTScooter> libres = ScooterDAO.scootersLibres();
-	System.out.println("DEBUGDEBUGDEBUG:" +"zize" + libres.size()  + ";");
+//	System.out.println("DEBUGDEBUGDEBUG:" +"zize" + libres.size()  + ";");
 			
 			//pedir ultima ubicacion de esos scooters
 			for (DTScooter onescooter : libres) {
@@ -97,6 +97,34 @@ System.out.println("DEBUGDEBUGDEBUG:" + "adentro" + ";");
 		
 		return creadoSH;
 		
+	}
+
+	@Override
+	public List<DTScooterhistorico> todoslosScootersHistoricoCercanos(String latitudCentrada, String longitudCentrada) {
+		// primero traigo todo los scooters disponibles de ser alquilados
+		List<DTScooterhistorico> scootersdisponibles =  todoslosScootersHistoricoDisponibles();
+		List<DTScooterhistorico> scooterscercanos = new ArrayList<DTScooterhistorico>();
+				
+		String mindist = ParametroDAO.getValueByName("RANGOCERCA"); //rango en metros, tiene que ser menor a lo que consideramos cerca.
+		double mindistancia = Double.parseDouble(mindist);
+		
+		// para cada uno de ellos calculo la distancia con respecto al punto (lat,long centrada)
+		for (DTScooterhistorico oneSH : scootersdisponibles) {
+			double distanciakm = Haversine.distance(Double.parseDouble(latitudCentrada), Double.parseDouble(longitudCentrada), Double.parseDouble(oneSH.getLatitud()), Double.parseDouble(oneSH.getLongitud()));
+			double distanciametros = distanciakm * 1000; //convierto a metros mas sercano al usuario.
+System.out.println("METROS:" + distanciametros);
+			if(distanciametros <= mindistancia) {
+				//agrego esta en rango sercano en metros.
+				scooterscercanos.add(oneSH);
+			}
+		}
+		
+		return scooterscercanos;
+	}
+
+	@Override
+	public DTScooterhistorico ultimoScooterHistoricoUnIdScooterBasico(Integer idscooter) {
+		return ScooterhistoricoDAO.ultimoScooterHistoricoUnIdScooterBasico(idscooter);
 	}
 
 

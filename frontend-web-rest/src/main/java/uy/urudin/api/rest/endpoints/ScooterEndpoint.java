@@ -29,6 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import uy.urudin.datatypes.DTScooter;
+import uy.urudin.datatypes.DTScooterUltimoRegistro;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal; 
 
 /** https://api.urudin.tk/scooter/
@@ -57,6 +58,16 @@ public class ScooterEndpoint {
 		return Response.ok( ListScooters ).build();
 	}
 	
+	/** GET - https://api.urudin.tk/scooter/
+	 * @return List(DTScooter) */
+	@GET
+	@Path("/ultimosregistros")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response scootersUltimosRegistros(){
+		List<DTScooterUltimoRegistro> ListScooters = ScooterEJB.scootersUltimosRegistros();
+		return Response.ok( ListScooters ).build();
+	}
+	
 	
 	/** POST - https://api.urudin.tk/scooter/
 	 * @param DTScooter
@@ -66,7 +77,13 @@ public class ScooterEndpoint {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createScooter(DTScooter s){
 		try {
-			return Response.status(200).entity( ScooterEJB.add(s) ).build();
+			
+			DTScooter nuevo = ScooterEJB.add(s);
+			if(nuevo != null) {
+				return Response.status(200).entity( nuevo ).build();
+			}else {
+				return Response.status(500).build();
+			}
 		}catch (Exception e) {
 			return Response.status(500).build();
 		}
@@ -84,7 +101,12 @@ public class ScooterEndpoint {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateScooter(DTScooter s){
 		try {
-			return Response.status(200).entity( ScooterEJB.update(s) ).build();
+			DTScooter upd = ScooterEJB.update(s);
+			if(upd != null) {
+				return Response.status(200).entity( upd ).build();
+			}else {
+				return Response.status(500).build();
+			}
 		}catch (Exception e) {
 			return Response.status(500).build();
 		}

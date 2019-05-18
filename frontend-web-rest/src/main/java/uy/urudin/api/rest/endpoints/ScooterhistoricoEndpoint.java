@@ -62,6 +62,15 @@ public class ScooterhistoricoEndpoint {
 	}
 	
 	@POST
+	@Path("/cercanos/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response todoslosScootersHistoricoDisponibles(DTRegistro dtregistro){
+		List<DTScooterhistorico> all = ScooterhistoricoEJB.todoslosScootersHistoricoCercanos(dtregistro.getLatitud(), dtregistro.getLongitud());
+		return Response.ok( all ).build();
+	}
+	
+	@POST
 	@Path("/registro/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
