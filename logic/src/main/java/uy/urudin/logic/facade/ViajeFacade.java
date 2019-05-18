@@ -8,11 +8,13 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import uy.urudin.datatypes.DTCliente;
+import uy.urudin.datatypes.DTFactura;
 import uy.urudin.datatypes.DTResumenViaje;
 import uy.urudin.datatypes.DTScooter;
 import uy.urudin.datatypes.DTViaje;
 import uy.urudin.logic.interfaces.ViajeFacadeLocal;
 import uy.urudin.persistance.interfaces.ClienteDAOLocal;
+import uy.urudin.persistance.interfaces.FacturaDAOLocal;
 import uy.urudin.persistance.interfaces.ScooterDAOLocal;
 import uy.urudin.persistance.interfaces.ViajeDAOLocal;
 
@@ -32,8 +34,8 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 	ClienteDAOLocal ClienteDAO;
 	@EJB
 	ScooterDAOLocal ScooterDAO;
-	//@EJB
-	//FacturaDAOLocal FacturaDAO;
+	@EJB
+	FacturaDAOLocal FacturaDAO;
 	
     /**
      * Default constructor. 
@@ -84,23 +86,32 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 
 	@Override
 	public DTResumenViaje finalizarViaje(DTViaje v) {
+		//Se termina el viaje.
 		v.setFechafin(new Timestamp(System.currentTimeMillis()));
+		v.setEstado("Terminado");
+		
 		//Se libera el scooter
 		DTScooter s = ScooterDAO.find(v.getScooter().getId());
 		s.setEnuso(false);
 		ScooterDAO.merge(s);
+		
 		//Calcula el costo del viaje
 		int costo = 0;
+		
 		//Se le descuenta al cliente
 		DTCliente c = ClienteDAO.find(v.getCliente().getId());
 		c.setSaldo(c.getSaldo() - costo);
 		ClienteDAO.merge(c);
-		//Se genera la factura
 		
-		//v.setFactura(factura);
-		//Se termina el viaje.
-		v.setEstado("Terminado");
+		//Se genera la factura
+		DTFactura f = new DTFactura();
+		f.setFecha(new Timestamp(System.currentTimeMillis()));
+		f.setMonto(costo);
+		f.setViaje(v);
+		FacturaDAO.add(f);
+		v.setFactura(f);
 		ViajeDAO.merge(v);
+		
 		return new DTResumenViaje();
 	}
 
