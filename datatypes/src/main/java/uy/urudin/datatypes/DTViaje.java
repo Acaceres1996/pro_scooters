@@ -13,7 +13,7 @@ public class DTViaje implements Serializable  {
     private Timestamp fechafin;
     private String estado;
     private int minutospermitidossaldo;
-    //private DTFactura factura;
+    private DTFactura factura;
     private DTCliente cliente;
     private DTScooter scooter;
     
@@ -47,12 +47,12 @@ public class DTViaje implements Serializable  {
 	public void setMinutospermitidossaldo(int minutospermitidossaldo) {
 		this.minutospermitidossaldo = minutospermitidossaldo;
 	}
-//	public DTFactura getFactura() {
-//		return factura;
-//	}
-//	public void setFactura(DTFactura factura) {
-//		this.factura = factura;
-//	}
+	public DTFactura getFactura() {
+		return factura;
+	}
+	public void setFactura(DTFactura factura) {
+		this.factura = factura;
+	}
 	public DTCliente getCliente() {
 		return cliente;
 	}
