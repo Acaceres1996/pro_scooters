@@ -75,6 +75,8 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 		ScooterDAO.merge(s);
 		//Se genera el viaje
 		DTViaje v = new DTViaje();
+		v.setMinutospermitidossaldo(100); 	//HAY QUE CALCULAR LOS MINUTOS PERMITIDOS REALES.
+		v.setEstado("Iniciado");
 		v.setFechainicio(new Timestamp(System.currentTimeMillis()));
 		v.setCliente(c);
 		v.setScooter(s);

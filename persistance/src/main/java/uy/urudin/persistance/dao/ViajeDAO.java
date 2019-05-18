@@ -11,6 +11,8 @@ import javax.persistence.PersistenceContextType;
 
 import uy.urudin.datatypes.DTViaje;
 import uy.urudin.persistance.interfaces.ViajeDAOLocal;
+import uy.urudin.persistance.model.Cliente;
+import uy.urudin.persistance.model.Scooter;
 import uy.urudin.persistance.model.Viaje;
 
 
@@ -31,8 +33,10 @@ public class ViajeDAO implements ViajeDAOLocal {
 		Viaje.setFechainicio(DTViaje.getFechainicio());
 		Viaje.setEstado(DTViaje.getEstado());
 		Viaje.setMinutospermitidossaldo(DTViaje.getMinutospermitidossaldo());
-		//Cliente
-		//Scooter
+		Cliente c = em.find(Cliente.class, DTViaje.getCliente().getId());
+		Scooter s = em.find(Scooter.class, DTViaje.getScooter().getId());
+		Viaje.setCliente(c);
+		Viaje.setScooter(s);
 		em.persist(Viaje);
 		return Viaje.getDTViaje();
 	}
