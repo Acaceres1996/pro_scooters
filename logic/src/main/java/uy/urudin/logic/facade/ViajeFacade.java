@@ -8,6 +8,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import uy.urudin.datatypes.DTCliente;
+import uy.urudin.datatypes.DTResumenViaje;
 import uy.urudin.datatypes.DTScooter;
 import uy.urudin.datatypes.DTViaje;
 import uy.urudin.logic.interfaces.ViajeFacadeLocal;
@@ -82,7 +83,7 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 	}
 
 	@Override
-	public DTViaje finalizarViaje(DTViaje v) {
+	public DTResumenViaje finalizarViaje(DTViaje v) {
 		v.setFechafin(new Timestamp(System.currentTimeMillis()));
 		//Se libera el scooter
 		DTScooter s = ScooterDAO.find(v.getScooter().getId());
@@ -99,7 +100,8 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 		//v.setFactura(factura);
 		//Se termina el viaje.
 		v.setEstado("Terminado");
-		return ViajeDAO.merge(v);
+		ViajeDAO.merge(v);
+		return new DTResumenViaje();
 	}
 
 }
