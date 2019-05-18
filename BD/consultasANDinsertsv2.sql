@@ -12,6 +12,8 @@ SELECT * FROM  notificacioncliente;
 
 SELECT * FROM  parametro;
 --insert into parametro(nombre ,valor) values('TARIFABASE','20'),('PRECIOXMINUTO','4'),('UPDSCOOTER','5'),('BATERIABAJA','5'),('BATMULTI','0.1'),('BATMINUTOS','6'),('MINIMOPAYPAL','300'),('MINIMOVIAJE','100'),('RANGOCERCA','1000');
+--insert into parametro(nombre ,valor) values('URLBUSES','http://www.montevideo.gub.uy/buses/rest/stm-online'),('BODYBUSES','{ \"empresa\":\"50\", \"lineas\": [\"149\"] }')
+
 /*
 	TARIFABASE	20
 	PRECIOXMINUTO	4

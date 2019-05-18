@@ -33,6 +33,7 @@ import uy.urudin.datatypes.DTScooter;
 import uy.urudin.datatypes.DTScooterUltimoRegistro;
 import uy.urudin.datatypes.DTScooterhistorico;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal;
+import uy.urudin.persistance.interfaces.ParametroDAOLocal;
 import uy.urudin.persistance.interfaces.ScooterDAOLocal;
 import uy.urudin.persistance.interfaces.ScooterhistoricoDAOLocal;
 
@@ -48,6 +49,8 @@ public class ScooterFacade implements  ScooterFacadeLocal {
 
 	@EJB
 	ScooterDAOLocal ScooterDAO;
+	@EJB
+	ParametroDAOLocal ParametroDAO;
 	@EJB
 	ScooterhistoricoDAOLocal ScooterhistoricoDAO;
 	
@@ -139,9 +142,7 @@ public class ScooterFacade implements  ScooterFacadeLocal {
 			JSONObject newfeatureonedtScooter = addFeatureGEOJSON(String.valueOf(onedtScooter.getId()),onedtScooter.getNumeroserial(),Double.valueOf(ultimoScooter.getLongitud()),Double.valueOf(ultimoScooter.getLatitud()));
 			newfeatures.add(newfeatureonedtScooter);
 		}
-		
-		System.out.println("newfeatures:"+newfeatures.toString());
-		
+				
 	    String urlService = "http://www.montevideo.gub.uy/buses/rest/stm-online";
 //System.out.println("MARTINDEBUG-URL:"+urlService);
 		URL url = new URL(urlService);
