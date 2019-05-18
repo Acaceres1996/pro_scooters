@@ -83,6 +83,7 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 
 	@Override
 	public DTViaje finalizarViaje(DTViaje v) {
+		v.setFechafin(new Timestamp(System.currentTimeMillis()));
 		//Se libera el scooter
 		DTScooter s = ScooterDAO.find(v.getScooter().getId());
 		s.setEnuso(false);
