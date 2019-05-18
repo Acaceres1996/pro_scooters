@@ -136,7 +136,7 @@ public class ScooterFacade implements  ScooterFacadeLocal {
 		//construir con features geojson para cada 1 de los En uso.
 		for (DTScooter onedtScooter : scootersEnUso) {
 			DTScooterhistorico ultimoScooter=  ScooterhistoricoDAO.ultimoScooterHistoricoUnIdScooter(onedtScooter.getId());
-			JSONObject newfeatureonedtScooter = addFeatureGEOJSON(String.valueOf(onedtScooter.getId()),Double.valueOf(ultimoScooter.getLongitud()),Double.valueOf(ultimoScooter.getLatitud()));
+			JSONObject newfeatureonedtScooter = addFeatureGEOJSON(String.valueOf(onedtScooter.getId()),onedtScooter.getNumeroserial(),Double.valueOf(ultimoScooter.getLongitud()),Double.valueOf(ultimoScooter.getLatitud()));
 			newfeatures.add(newfeatureonedtScooter);
 		}
 		
@@ -210,7 +210,7 @@ public class ScooterFacade implements  ScooterFacadeLocal {
 	
 		//creo los nuevos features geojson
 		//cabezal
-		JSONObject onenewfeature = addFeatureGEOJSON(linea+"-"+codigobus.toString(),longitud,latitud);
+		JSONObject onenewfeature = addFeatureGEOJSON(linea,codigobus.toString(),longitud,latitud);
 		newfeatures.add(onenewfeature);
 	}
 
@@ -223,12 +223,13 @@ public class ScooterFacade implements  ScooterFacadeLocal {
 	}
 
 	
-	private JSONObject addFeatureGEOJSON(String id,double longitud,double latitud) {
+	private JSONObject addFeatureGEOJSON(String id,String id2,double longitud,double latitud) {
 		//cabezal
 		JSONObject onenewfeature = new JSONObject();
 		//properties
 		JSONObject newproperties = new JSONObject();
 		newproperties.put("id", id);
+		newproperties.put("numeroserial", id2);
 		onenewfeature.put("properties", newproperties);
 		//geometry
 		JSONObject newgeometry = new JSONObject();
