@@ -38,7 +38,7 @@ public class Factura implements Serializable {
     private double monto;
     @Column(nullable=false, length=15)
     private String estado;
-//    @OneToOne(optional=false, mappedBy="factura")
+    @OneToOne(optional=false)
     @JoinColumn(name="idviaje", nullable=false)
     private Viaje viaje;
 

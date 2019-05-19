@@ -40,7 +40,7 @@ public class Viaje implements Serializable {
     private Timestamp fechafin;
     @Column(nullable=false, length=15)
     private String estado;
-    @Column(nullable=false, precision=10)
+    @Column(nullable=false, precision=10) 
     private int minutospermitidossaldo;
     @ManyToOne(optional=false)
     @JoinColumn(name="idcliente", nullable=false)

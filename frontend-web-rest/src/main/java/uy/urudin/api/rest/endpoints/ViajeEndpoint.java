@@ -53,11 +53,10 @@ public class ViajeEndpoint {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response iniciarViaje (DTCliente c, @PathParam("id") int id){
+	public Response iniciarViaje (DTViaje v){
 		try {
-			return Response.status(200).entity( ViajeEJB.iniciarViaje(c,id) ).build();
+			return Response.status(200).entity( ViajeEJB.iniciarViaje(v) ).build();
 		} catch (Exception e) {
 			return Response.status(500).build();
 		}

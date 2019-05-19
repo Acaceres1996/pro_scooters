@@ -14,6 +14,6 @@ public interface ViajeFacadeLocal {
 	DTViaje update(DTViaje dtviaje);
 	DTViaje find(Integer id);
 	List<DTViaje> findAll();
-	DTViaje iniciarViaje(DTCliente c, int idS);
+	DTViaje iniciarViaje(DTViaje v);
 	DTResumenViaje finalizarViaje(DTViaje v);
 }

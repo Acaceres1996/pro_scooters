@@ -69,15 +69,15 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 	}
 	
 	@Override
-	public DTViaje iniciarViaje(DTCliente c, int idS) {
+	public DTViaje iniciarViaje(DTViaje v) {
 		//Se controla que el cliente tenga saldo suficiente.
 		
 		//Se ocupa el scooter
-		DTScooter s = ScooterDAO.find(idS);
+		DTScooter s = ScooterDAO.find(v.getScooter().getId());
 		s.setEnuso(true);
 		ScooterDAO.merge(s);
+		DTCliente c = ClienteDAO.find(v.getCliente().getId());
 		//Se genera el viaje
-		DTViaje v = new DTViaje();
 		v.setMinutospermitidossaldo(100); 	//HAY QUE CALCULAR LOS MINUTOS PERMITIDOS REALES.
 		v.setEstado("Iniciado");
 		v.setFechainicio(new Timestamp(System.currentTimeMillis()));
@@ -108,6 +108,7 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 		//Se genera la factura
 		DTFactura f = new DTFactura();
 		f.setFecha(new Timestamp(System.currentTimeMillis()));
+		f.setEstado("Paga");
 		f.setMonto(costo);
 		f.setViaje(v);
 		FacturaDAO.add(f);
