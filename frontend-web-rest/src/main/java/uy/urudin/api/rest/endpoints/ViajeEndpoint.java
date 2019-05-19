@@ -51,18 +51,6 @@ public class ViajeEndpoint {
 	 * @param DTViaje
 	 * @return List<DTViaje> */
 	
-	//El Cliente debe tener un saldo mínimo en su monedero para iniciar viaje.
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response createViaje (DTViaje v){
-		try {
-			return Response.status(200).entity( ViajeEJB.add(v) ).build();
-		}catch (Exception e) {
-			return Response.status(500).build();
-		}
-	}
-	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/{id}")
@@ -70,7 +58,7 @@ public class ViajeEndpoint {
 	public Response iniciarViaje (DTCliente c, @PathParam("id") int id){
 		try {
 			return Response.status(200).entity( ViajeEJB.iniciarViaje(c,id) ).build();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return Response.status(500).build();
 		}
 	}
@@ -78,8 +66,6 @@ public class ViajeEndpoint {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	//Fin del viaje, Se setearia la fecha de fin,y se cambiaria el estado. 
-	
 	public Response finalizarViaje(DTViaje v){
 		try {
 			return Response.status(200).entity(ViajeEJB.finalizarViaje(v) ).build();
