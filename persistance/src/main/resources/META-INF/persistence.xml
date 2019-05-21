@@ -12,5 +12,6 @@
 		<class>uy.urudin.persistance.model.Scooter</class>
 		<class>uy.urudin.persistance.model.Scooterhistorico</class>
 		<class>uy.urudin.persistance.model.Viaje</class>
+		<class>uy.urudin.persistance.model.Monederohistorico</class>
 	</persistence-unit>
 </persistence>
