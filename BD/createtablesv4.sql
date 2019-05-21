@@ -80,6 +80,18 @@ CREATE TABLE factura (
 	CONSTRAINT idx_factura_idviaje UNIQUE ( idviaje ) 
  );
 
+CREATE TABLE monederohistorico ( 
+	id                   serial  NOT NULL ,
+	idcliente            serial  NOT NULL ,
+	fecha                timestamp DEFAULT current_timestamp NOT NULL ,
+	saldoanterior        integer  NOT NULL ,
+	motivo               char(10)  NOT NULL ,
+	monto                integer  NOT NULL ,
+	idtransaccion        varchar(200)   ,
+	CONSTRAINT pk_monederohistorico_id PRIMARY KEY ( id )
+ );
+ 
+ 
 ALTER TABLE factura ADD CONSTRAINT fk_factura_viaje FOREIGN KEY ( idviaje ) REFERENCES viaje( id );
 
 ALTER TABLE notificacioncliente ADD CONSTRAINT fk_notificacioncliente_notificacion FOREIGN KEY ( idnotificacion ) REFERENCES notificacion( id );
@@ -91,3 +103,5 @@ ALTER TABLE scooterhistorico ADD CONSTRAINT fk_scooterhistorico_scooter FOREIGN 
 ALTER TABLE viaje ADD CONSTRAINT fk_viaje_scooter FOREIGN KEY ( idscooter ) REFERENCES scooter( id );
 
 ALTER TABLE viaje ADD CONSTRAINT fk_viaje_cliente FOREIGN KEY ( idcliente ) REFERENCES cliente( id );
+
+ALTER TABLE monederohistorico ADD CONSTRAINT fk_monederohistorico_cliente FOREIGN KEY ( idcliente ) REFERENCES cliente( id );
