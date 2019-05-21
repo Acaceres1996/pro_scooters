@@ -23,7 +23,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType; 
 
 @Path("/parametro")
-public class restParametro {
+public class ParameterEndpoint {
 
 	@EJB
 	private ParametroFacadeLocal ParametroEJB;
@@ -51,7 +51,7 @@ public class restParametro {
 	
 	@GET
 	@Path("/getvaluebyname/")
-	@Produces(MediaType.TEXT_HTML)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response getValueByName(@QueryParam("name") String name){
 		return Response.ok( ParametroEJB.getValueByName(name)  ).build();
 	}
