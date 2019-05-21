@@ -34,9 +34,9 @@ public class MonederohistoricoDAO implements MonederohistoricoDAOLocal {
 		DTMonederohistorico dtMonederohistorico = find(Id);
 		Monederohistorico Monederohistorico = new Monederohistorico(dtMonederohistorico);
 		em.remove(em.merge(Monederohistorico));
-	}
+	} 
 	
-	private DTMonederohistorico find(Integer id) {
+	public DTMonederohistorico find(Integer id) {
 		Monederohistorico Monederohistorico = em.find(Monederohistorico.class, id);
 		return Monederohistorico.getDTMonederohistorico();
 	}
