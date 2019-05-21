@@ -1,3 +1,4 @@
+
 package uy.urudin.logic.facade;
 
 import java.util.List;
@@ -6,13 +7,9 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-import uy.urudin.datatypes.DTCliente;
 import uy.urudin.datatypes.DTMonederohistorico;
 import uy.urudin.logic.interfaces.MonederohistoricoFacadeLocal;
-import uy.urudin.persistance.interfaces.ClienteDAOLocal;
 import uy.urudin.persistance.interfaces.MonederohistoricoDAOLocal;
-
-
 
 
 /**
@@ -24,9 +21,8 @@ public class MonederohistoricoFacade implements  MonederohistoricoFacadeLocal {
 
 
 	@EJB
-	MonederohistoricoDAOLocal MonederoDAO;
-	@EJB
-	ClienteDAOLocal ClienteDAO;
+	MonederohistoricoDAOLocal MonederohistoricoDAO;
+	
     /**
      * Default constructor. 
      */
@@ -34,20 +30,24 @@ public class MonederohistoricoFacade implements  MonederohistoricoFacadeLocal {
         
     }
 
-    @Override
-	public DTMonederohistorico add(DTMonederohistorico dtMonedero) {
-    	//FALTA PAYPAL
-    	DTCliente c = ClienteDAO.find(dtMonedero.getCliente().getId());
-    	dtMonedero.setSaldoprevio(c.getSaldo());
-    	c.setSaldo(c.getSaldo() + dtMonedero.getSaldocarga());
-    	ClienteDAO.merge(c);
-		return MonederoDAO.add(dtMonedero);
+	@Override
+	public DTMonederohistorico add(DTMonederohistorico dtMonederohistorico) {
+		System.out.println("LOGIC ADD");
+		return MonederohistoricoDAO.add(dtMonederohistorico);
 	}
-
 
 	@Override
 	public List<DTMonederohistorico> findAll() {
-		return MonederoDAO.findAll();
+		System.out.println("LOGIC FINDALL");
+		return MonederohistoricoDAO.findAll();
 	}
+
+	@Override
+	public DTMonederohistorico find(Integer id) {
+		System.out.println("LOGIC FIND");
+		return MonederohistoricoDAO.find(id);
+	}
+
+
 
 }

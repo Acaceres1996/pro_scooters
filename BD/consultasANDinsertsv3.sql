@@ -4,6 +4,9 @@ SELECT * FROM  "admin";
 SELECT * FROM  cliente;
 --insert into cliente(nombre,apellido,email,saldo) values('martin','olivera','martin@urudin.uy',2000),('agustin','ape','agustin@urudin.uy',2000),('sofia','ape','sofia@urudin.uy',2000),('facundo','ape','facundo@urudin.uy',2000);
 
+SELECT * FROM  monederohistorico;
+--insert into monederohistorico(idcliente,saldoanterior,motivo,monto,idtransaccion) values(1,0,'Paypal',2000,'PaypaltransacctionId');
+
 SELECT * FROM  notificacion;
 --insert into notificacion( cabezal,cuerpo,estado ,masiva) values('cuerpo mensaje','este es un mensaje de la app','Enviado',true);
 
@@ -48,3 +51,4 @@ SELECT * FROM  viaje;
 
 SELECT * FROM factura;
 --insert into factura(idviaje,fecha,monto,estado) values(1,'2019-05-13 22:30:24',100,'Pagado'),(2,'2019-05-13 22:10:24',99,'Pagado'),(3,'2019-05-13 22:00:24',98,'Pagado'),(4,'2019-05-13 22:55:24',50,'Pagado')
+

@@ -1,60 +1,80 @@
+
 package uy.urudin.api.rest.endpoints;
 
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+
+//import uy.pencas.organization.logic.interfaces.ScooteroldFacadeLocal;
+
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 
-import uy.urudin.datatypes.DTMonederohistorico;
-import uy.urudin.logic.interfaces.MonederohistoricoFacadeLocal;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
-/** https://api.urudin.tk/admin/
+import uy.urudin.datatypes.DTRegistro;
+import uy.urudin.datatypes.DTScooter;
+import uy.urudin.datatypes.DTMonederohistorico;
+import uy.urudin.logic.interfaces.ScooterFacadeLocal;
+import uy.urudin.logic.interfaces.MonederohistoricoFacadeLocal; 
+
+/** https://api.urudin.tk/scooter/
  * 
- * @Author Agustin Caceres 
+ * @Author Martin Olivera 
  */
-@Path("/monedero")
+@Path("/monederohistorico")
 public class MonederohistoricoEndpoint {
-	
+
 	@EJB
-	private MonederohistoricoFacadeLocal MonederoEJB;
+	private MonederohistoricoFacadeLocal MonederohistoricoEJB;
 	
+	@GET
+	@Path("/ping")
+	@Produces(MediaType.TEXT_HTML)
+	public String ping() {
+		return "true";
+	}
 	
-	
-	/** POST - https://api.urudin.tk/admin/login - FALTA CONECTAR A BASE
-	 * @param DTAdmin
-	 * @return DTAdmin */
+
 	@POST
-	@Produces(MediaType.APPLICATION_JSON) 
 	@Consumes(MediaType.APPLICATION_JSON)
-	//FALTA PAYPAL
-	public Response cargarMonedero(DTMonederohistorico monedero) {	
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response registroMonederohistorico(DTMonederohistorico dtMonederohistorico){
 		try {
-			DTMonederohistorico newMonedero=MonederoEJB.add(monedero);
-			//solo si es true respondo.
-			if(newMonedero != null) {
-				return Response.status(200).entity( newMonedero ).build();
-			}else {
-				return Response.status(500).build();
-			}
-		}catch (Exception e) {
+			return Response.status(200).entity( MonederohistoricoEJB.add(dtMonederohistorico) ).build();
+		} catch (Exception e) {
 			return Response.status(500).build();
 		}
+	}
+
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response find(@PathParam("id") Integer id){
+		return Response.ok( MonederohistoricoEJB.find(id)  ).build();
 	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response GetAllHistorico(){
-		List<DTMonederohistorico> ListHistorico = MonederoEJB.findAll();
-		return Response.ok( ListHistorico ).build();
+	public Response findAll(){
+		return Response.ok( MonederohistoricoEJB.findAll()  ).build();
 	}
-	
-	
+
 }
