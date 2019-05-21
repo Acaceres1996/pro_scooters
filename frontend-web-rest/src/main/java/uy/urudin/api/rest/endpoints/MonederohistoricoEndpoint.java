@@ -1,3 +1,4 @@
+
 package uy.urudin.api.rest.endpoints;
 
 
@@ -76,5 +77,4 @@ public class MonederohistoricoEndpoint {
 		return Response.ok( MonederohistoricoEJB.findAll()  ).build();
 	}
 
-	
 }

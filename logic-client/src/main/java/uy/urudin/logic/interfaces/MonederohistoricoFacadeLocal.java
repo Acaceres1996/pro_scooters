@@ -1,3 +1,4 @@
+
 package uy.urudin.logic.interfaces;
 
 import java.io.IOException;
