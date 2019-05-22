@@ -55,7 +55,7 @@ public class ScooterDAO implements ScooterDAOLocal {
     
     @Override
 	public List<DTScooter> scootersApagados() {
-		List<Scooter> ListScooter = em.createQuery("SELECT a FROM Scooter a where a.encendido = false ", Scooter.class).getResultList();
+		List<Scooter> ListScooter = em.createQuery("SELECT a FROM Scooter a where a.encendido = false and a.eliminado = false", Scooter.class).getResultList();
 		List<DTScooter> ListDT = new ArrayList<DTScooter>();
 		for(Scooter t : ListScooter){
 			ListDT.add(t.getDTScooter());
