@@ -53,7 +53,7 @@ public class ParameterEndpoint {
 	@Path("/getvaluebyname/")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getValueByName(@QueryParam("name") String name){
-		return Response.ok( ParametroEJB.getValueByName(name)  ).build();
+		return Response.ok( ParametroEJB.getDTParameterByName(name)  ).build();
 	}
 	
 	
