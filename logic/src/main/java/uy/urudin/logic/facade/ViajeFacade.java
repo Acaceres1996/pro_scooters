@@ -1,6 +1,10 @@
 package uy.urudin.logic.facade;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -75,16 +79,16 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 	public DTViaje iniciarViaje(DTViaje v) {
 		//Se controla que el cliente tenga saldo suficiente.
 		DTCliente c = ClienteDAO.find(v.getCliente().getId());
-		int minimoViaje = Integer.valueOf(ParametroDAO.getValueByName("MINIMOVIAJE"));
+		int minimoViaje = Integer.valueOf(ParametroDAO.getDTParameterByName("MINIMOVIAJE").getValor());
 		if (c.getSaldo() >= minimoViaje) {
 			
 			//Se ocupa el scooter
 			DTScooter s = ScooterDAO.find(v.getScooter().getId());
-			s.setEnuso(true);
+			s.setEnuso(true); 
 			ScooterDAO.merge(s);
 			
 			//Se calcula los minutos permitidos
-			int precioMinuto = Integer.valueOf(ParametroDAO.getValueByName("PRECIOXMINUTO"));
+			int precioMinuto = Integer.valueOf(ParametroDAO.getDTParameterByName("PRECIOXMINUTO").getValor());
 			int minutosPermitidos = c.getSaldo() / precioMinuto;
 			
 			//Se genera el viaje
@@ -101,43 +105,69 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 
 	@Override
 	public DTResumenViaje finalizarViaje(DTViaje v) {
-		//Se termina el viaje.
-		v.setFechafin(new Timestamp(System.currentTimeMillis()));
-		v.setEstado("Terminado");
-		
-		//Se libera el scooter
-		DTScooter s = ScooterDAO.find(v.getScooter().getId());
-		s.setEnuso(false);
-		ScooterDAO.merge(s);
-		
-		//Obtengo informacion para el resumen del viaje.
 		DTResumenViaje resumen = new DTResumenViaje();
-		int costoTotal = 0;
-		int minutosTotal = 0;
-		int costoBase = Integer.valueOf(ParametroDAO.getValueByName("TARIFABASE"));
-		int costoMinuto = Integer.valueOf(ParametroDAO.getValueByName("PRECIOXMINUTO"));
-		costoTotal = minutosTotal * costoMinuto;
-		resumen.setCostoBase(costoBase);
-		resumen.setCostoMinuto(costoMinuto);
-		resumen.setCostoTotal(costoTotal);
-		resumen.setCostoMinuto(minutosTotal);
-		
-		//Se le descuenta al cliente
-		DTCliente c = ClienteDAO.find(v.getCliente().getId());
-		c.setSaldo(c.getSaldo() - costoTotal);
-		ClienteDAO.merge(c);
-		
-		//Se genera la factura
-		DTFactura f = new DTFactura();
-		f.setFecha(new Timestamp(System.currentTimeMillis()));
-		f.setEstado("Pagado");
-		f.setMonto(costoTotal);
-		f.setViaje(v);
-		FacturaDAO.add(f);
-		v.setFactura(f);
-		ViajeDAO.merge(v);
-		
+		try {
+			//Se termina el viaje.
+			v.setFechafin(new Timestamp(System.currentTimeMillis()));
+			v.setEstado("Terminado");
+			
+			//Se libera el scooter
+			DTScooter s = ScooterDAO.find(v.getScooter().getId());
+			s.setEnuso(false);
+			ScooterDAO.merge(s);
+			
+			//Obtengo informacion para el resumen del viaje.
+			
+			int costoTotal = 0;
+			
+			//Calculo minutos del viaje.
+			long milis1, milis2, diff;
+			Date dinicio = null, dfinal = null;
+			SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String ffin  = sdf.format(v.getFechainicio());
+			String fini  = sdf.format(v.getFechafin());
+			dinicio = sdf.parse(ffin);
+			dfinal = sdf.parse(fini);
+			Calendar cinicio = Calendar.getInstance();
+            Calendar cfinal = Calendar.getInstance();
+            cinicio.setTime(dinicio);
+            cfinal.setTime(dfinal);
+            milis1 = cinicio.getTimeInMillis();
+            milis2 = cfinal.getTimeInMillis();
+            diff = milis2-milis1;
+            long diffMinutos =  Math.abs (diff / (60 * 1000));
+            int minutosTotal = (int) diffMinutos%60;
+			
+			int costoBase = Integer.valueOf(ParametroDAO.getDTParameterByName("TARIFABASE").getValor());
+			int costoMinuto = Integer.valueOf(ParametroDAO.getDTParameterByName("PRECIOXMINUTO").getValor());
+			
+			costoTotal =  costoBase + (minutosTotal * costoMinuto);
+			resumen.setCostoBase(costoBase);
+			resumen.setCostoMinuto(costoMinuto);
+			resumen.setCostoTotal(costoTotal);
+			resumen.setMinutos(minutosTotal);
+			
+			//Se le descuenta al cliente
+			DTCliente c = ClienteDAO.find(v.getCliente().getId());
+			c.setSaldo(c.getSaldo() - costoTotal);
+			ClienteDAO.merge(c);
+			
+			//Se genera la factura
+			DTFactura f = new DTFactura();
+			f.setFecha(new Timestamp(System.currentTimeMillis()));
+			f.setEstado("Pagado");
+			f.setMonto(costoTotal);
+			f.setViaje(v);
+			FacturaDAO.add(f);
+			v.setFactura(f);
+			ViajeDAO.merge(v);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return resumen;
 	}
-
 }
+
+
