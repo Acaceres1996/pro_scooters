@@ -18,4 +18,5 @@ public interface ScooterDAOLocal {
 	List<DTScooter> findAll();
 	public List<DTScooter> scootersLibres();
 	public List<DTScooter> scootersEnUso();
+	public List<DTScooter> scootersApagados();
 }

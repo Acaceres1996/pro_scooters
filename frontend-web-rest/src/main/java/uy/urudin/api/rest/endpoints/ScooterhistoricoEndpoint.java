@@ -61,6 +61,18 @@ public class ScooterhistoricoEndpoint {
 		return Response.ok( all ).build();
 	}
 	
+	/** GET - https://api.urudin.tk/scooter/
+	 * @return List<DTScooterhistorico */
+	@GET
+	@Path("/apagadosbateriabaja/")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response todoslosScootersHistoricoApagadosoBateriaBaja(){
+		List<DTScooterhistorico> all = ScooterhistoricoEJB.todoslosScootersHistoricoApagadosoBateriaBaja();
+		return Response.ok( all ).build();
+	}
+	
+	
+	
 	@POST
 	@Path("/cercanos/")
 	@Consumes(MediaType.APPLICATION_JSON)

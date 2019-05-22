@@ -30,7 +30,7 @@ MINIMOVIAJE (saldo minimo necesario para realizar un viaje??)*/
 SELECT * FROM  scooter;
 --insert into scooter(numeroserial,encendido,enuso,eliminado) values('1',true,false,false),('2',true,false,false),('3',true,false,false);
 
-SELECT * FROM  scooterhistorico;
+SELECT * FROM  scooterhistorico order by 2 desc, 3 DESC;
 --insert into scooterhistorico(idscooter,latitud,longitud,bateria) values(1,'-34.9178703','-56.1663739',100),(2,'-34.9181758','-56.1665929',100),(3,'-34.9181750','-56.1665920',100);
 --insert into scooterhistorico(idscooter,latitud,longitud,bateria) values(1,'-34.9178702','-56.1663734',99),(2,'-34.9181754','-56.1665932',98),(3,'-34.9181748','-56.1665918',97);
 
