@@ -82,6 +82,7 @@ public class ScooterEndpoint {
 	}
 	
 	
+	
 	/** POST - https://api.urudin.tk/scooter/
 	 * @param DTScooter
 	 * @return List<DTScooter> */

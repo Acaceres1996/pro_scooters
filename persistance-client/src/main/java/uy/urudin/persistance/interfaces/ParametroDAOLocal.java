@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import uy.urudin.datatypes.DTParametro;
+import uy.urudin.datatypes.DTScooter;
 
 
 

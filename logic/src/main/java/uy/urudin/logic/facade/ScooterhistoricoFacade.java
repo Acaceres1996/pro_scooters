@@ -128,6 +128,47 @@ System.out.println("METROS:" + distanciametros);
 	}
 
 
+	@Override
+	public List<DTScooterhistorico> todoslosScootersHistoricoApagadosoBateriaBaja() {
+		List<DTScooterhistorico> scootershistoricoapagadosobateriabaja = new ArrayList<DTScooterhistorico>();
+		
+		// consigo la bateria baja
+		int bateriabaja = Integer.valueOf(ParametroDAO.getDTParameterByName("BATERIABAJA").getValor());
+		
+		// scooters apagados creo los historicos con coordenadas.
+		List<DTScooter> scootersapagados = ScooterDAO.scootersApagados();
+		for (DTScooter dtScooter : scootersapagados) {
+			scootershistoricoapagadosobateriabaja.add(this.ultimoScooterHistoricoUnIdScooter(dtScooter.getId()));
+		}
+
+		
+		// todos los scooters
+		List<DTScooter> scooterstodos = ScooterDAO.findAll();
+		for (DTScooter onedtScooter : scooterstodos) {
+			DTScooterhistorico dtsh = ScooterhistoricoDAO.ultimoScooterHistoricoUnIdScooter(onedtScooter.getId());
+			//tiene bateria baja su ultimo registro?
+			if(dtsh.getBateria() <= bateriabaja) {
+				//existe ya ingresado a la lista?? para no repetir
+				boolean existe = false;
+				
+				//reviso si existe ya.
+				for (DTScooterhistorico onedtScoothistoricoerapagado : scootershistoricoapagadosobateriabaja) {
+					if(onedtScoothistoricoerapagado.getId() == dtsh.getId()) {
+						existe = true;
+					}
+				}
+				
+				
+				if(!existe) {
+					//agrego a retornar
+					scootershistoricoapagadosobateriabaja.add(dtsh);
+				}
+			}
+		}
+		
+		
+		return scootershistoricoapagadosobateriabaja;
+	}
 
 
 }
