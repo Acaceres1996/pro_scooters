@@ -19,6 +19,7 @@ import uy.urudin.datatypes.DTViaje;
 import uy.urudin.logic.interfaces.ViajeFacadeLocal;
 import uy.urudin.persistance.interfaces.ClienteDAOLocal;
 import uy.urudin.persistance.interfaces.FacturaDAOLocal;
+import uy.urudin.persistance.interfaces.MonederohistoricoDAOLocal;
 import uy.urudin.persistance.interfaces.ParametroDAOLocal;
 import uy.urudin.persistance.interfaces.ScooterDAOLocal;
 import uy.urudin.persistance.interfaces.ViajeDAOLocal;
@@ -43,6 +44,8 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 	FacturaDAOLocal FacturaDAO;
 	@EJB
 	ParametroDAOLocal ParametroDAO;
+	@EJB
+	MonederohistoricoDAOLocal MonederohistoricoDAO;
 	
     /**
      * Default constructor. 
@@ -151,6 +154,8 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 			DTCliente c = ClienteDAO.find(v.getCliente().getId());
 			c.setSaldo(c.getSaldo() - costoTotal);
 			ClienteDAO.merge(c);
+			//AGREGAR REGISTRO EN MONEDERO HISTORICO
+			
 			
 			//Se genera la factura
 			DTFactura f = new DTFactura();
