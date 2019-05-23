@@ -1,5 +1,6 @@
 package uy.urudin.logic.facade;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.sql.Timestamp;
@@ -16,7 +17,9 @@ import uy.urudin.datatypes.DTFactura;
 import uy.urudin.datatypes.DTMonederohistorico;
 import uy.urudin.datatypes.DTResumenViaje;
 import uy.urudin.datatypes.DTScooter;
+import uy.urudin.datatypes.DTScooterUltimoRegistro;
 import uy.urudin.datatypes.DTViaje;
+import uy.urudin.datatypes.DTViajePagoDetallado;
 import uy.urudin.logic.interfaces.ViajeFacadeLocal;
 import uy.urudin.persistance.interfaces.ClienteDAOLocal;
 import uy.urudin.persistance.interfaces.FacturaDAOLocal;
@@ -75,8 +78,20 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 	}
 
 	@Override
-	public List<DTViaje> findAll() {
-		return ViajeDAO.findAll();
+	public List<DTViajePagoDetallado> findAll() {
+		List<DTViaje> viajes = ViajeDAO.findAll();
+		List<DTViajePagoDetallado> detalle = new ArrayList<DTViajePagoDetallado>(); 
+		
+		for (DTViaje v : viajes) {
+			double monto = 0;
+			monto = FacturaDAO.findByViaje(v.getId()).getMonto();
+			int duracion = duracionViaje(v);
+			DTViajePagoDetallado d = new DTViajePagoDetallado 
+			(v.getId(),v.getFechainicio(),v.getFechafin(),v.getCliente().getEmail(),
+			v.getScooter().getNumeroserial(),duracion,monto,v.getEstado());
+			detalle.add(d);
+		}
+		return detalle;
 	}
 	
 	@Override
@@ -110,7 +125,6 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 	@Override
 	public DTResumenViaje finalizarViaje(DTViaje v) {
 		DTResumenViaje resumen = new DTResumenViaje();
-		try {
 			//Se termina el viaje.
 			v.setFechafin(new Timestamp(System.currentTimeMillis()));
 			v.setEstado("Terminado");
@@ -125,22 +139,8 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 			int costoTotal = 0;
 			
 			//Calculo minutos del viaje.
-			long milis1, milis2, diff;
-			Date dinicio = null, dfinal = null;
-			SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String ffin  = sdf.format(v.getFechainicio());
-			String fini  = sdf.format(v.getFechafin());
-			dinicio = sdf.parse(ffin);
-			dfinal = sdf.parse(fini);
-			Calendar cinicio = Calendar.getInstance();
-            Calendar cfinal = Calendar.getInstance();
-            cinicio.setTime(dinicio);
-            cfinal.setTime(dfinal);
-            milis1 = cinicio.getTimeInMillis();
-            milis2 = cfinal.getTimeInMillis();
-            diff = milis2-milis1;
-            long diffMinutos =  Math.abs (diff / (60 * 1000));
-            int minutosTotal = (int) diffMinutos%60;
+			
+            int minutosTotal = duracionViaje(v);
 			
 			int costoBase = Integer.valueOf(ParametroDAO.getDTParameterByName("TARIFABASE").getValor());
 			int costoMinuto = Integer.valueOf(ParametroDAO.getDTParameterByName("PRECIOXMINUTO").getValor());
@@ -175,13 +175,36 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 			FacturaDAO.add(f);
 			v.setFactura(f);
 			ViajeDAO.merge(v);
-			
+			return resumen;
+	}
+	
+	@Override
+	public int duracionViaje(DTViaje v) {
+		int minutosTotal = 0;
+		try {
+			long milis1, milis2, diff;
+			Date dinicio = null, dfinal = null;
+			SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String ffin  = sdf.format(v.getFechainicio());
+			String fini  = sdf.format(v.getFechafin());
+			dinicio = sdf.parse(ffin);
+			dfinal = sdf.parse(fini);
+			Calendar cinicio = Calendar.getInstance();
+	        Calendar cfinal = Calendar.getInstance();
+	        cinicio.setTime(dinicio);
+	        cfinal.setTime(dfinal);
+	        milis1 = cinicio.getTimeInMillis();
+	        milis2 = cfinal.getTimeInMillis();
+	        diff = milis2-milis1;
+	        long diffMinutos =  Math.abs (diff / (60 * 1000));
+	        minutosTotal = (int) diffMinutos%60;
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return resumen;
+		return minutosTotal;
 	}
+	
 }
 
 

@@ -14,4 +14,5 @@ public interface FacturaDAOLocal {
 	public DTFactura add(DTFactura DTFactura);
 	public void delete(Integer Id);
 	public List<DTFactura> findAll();
+	public DTFactura findByViaje(int id);
 }

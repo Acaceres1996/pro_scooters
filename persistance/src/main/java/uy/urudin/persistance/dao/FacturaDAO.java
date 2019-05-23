@@ -58,4 +58,10 @@ public class FacturaDAO implements FacturaDAOLocal {
 		return ListDT; 
 	}
 
+	@Override
+	public DTFactura findByViaje(int id) {
+		Factura f = em.createQuery("SELECT p FROM Factura p WHERE p.viaje = " + id, Factura.class).getSingleResult();
+		return f.getDTFactura();
+	} 
+
 }

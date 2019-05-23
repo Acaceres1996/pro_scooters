@@ -1,5 +1,7 @@
 package uy.urudin.api.rest.endpoints;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -16,6 +18,7 @@ import javax.ws.rs.core.Response;
 
 import uy.urudin.datatypes.DTCliente;
 import uy.urudin.datatypes.DTViaje;
+import uy.urudin.datatypes.DTViajePagoDetallado;
 import uy.urudin.logic.interfaces.ClienteFacadeLocal;
 import uy.urudin.logic.interfaces.ViajeFacadeLocal;
 
@@ -30,19 +33,13 @@ public class ViajeEndpoint {
 	@EJB
 	private ClienteFacadeLocal ClienteEJB;
 	
-	@GET
-	@Path("/ping")
-	@Produces(MediaType.TEXT_HTML)
-	public String ping() {
-		return "true";
-	}
 	
 	/** GET - https://api.urudin.tk/viaje/
 	 * @return List(DTViaje) */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response GetAllViaje(){
-		List<DTViaje> ListViajes = ViajeEJB.findAll();
+		List<DTViajePagoDetallado> ListViajes = ViajeEJB.findAll();
 		return Response.ok( ListViajes ).build();
 	}
 	
@@ -72,4 +69,5 @@ public class ViajeEndpoint {
 			return Response.status(500).build();
 		}
 	}
+
 }
