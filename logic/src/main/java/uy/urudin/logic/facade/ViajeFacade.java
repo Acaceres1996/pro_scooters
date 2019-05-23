@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 
 import uy.urudin.datatypes.DTCliente;
 import uy.urudin.datatypes.DTFactura;
+import uy.urudin.datatypes.DTMonederohistorico;
 import uy.urudin.datatypes.DTResumenViaje;
 import uy.urudin.datatypes.DTScooter;
 import uy.urudin.datatypes.DTViaje;
@@ -150,12 +151,20 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 			resumen.setCostoTotal(costoTotal);
 			resumen.setMinutos(minutosTotal);
 			
-			//Se le descuenta al cliente
 			DTCliente c = ClienteDAO.find(v.getCliente().getId());
+			
+			//REGISTRO EN MONEDERO HISTORICO
+			DTMonederohistorico dtMonederohistorico = new DTMonederohistorico ();
+			dtMonederohistorico.setFecha(new Timestamp(System.currentTimeMillis()));
+			dtMonederohistorico.setSaldoanterior(c.getSaldo());
+			dtMonederohistorico.setMotivo("Viaje");
+			dtMonederohistorico.setMonto(costoTotal);
+			dtMonederohistorico.setDtcliente(c);
+			MonederohistoricoDAO.add(dtMonederohistorico);
+			
+			//Se le descuenta al cliente
 			c.setSaldo(c.getSaldo() - costoTotal);
 			ClienteDAO.merge(c);
-			//AGREGAR REGISTRO EN MONEDERO HISTORICO
-			
 			
 			//Se genera la factura
 			DTFactura f = new DTFactura();

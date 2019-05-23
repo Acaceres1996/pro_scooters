@@ -44,6 +44,7 @@ public class MonederohistoricoFacade implements  MonederohistoricoFacadeLocal {
 		dtMonederohistorico.setMotivo("Paypal");
 		//Acredito al cliente
 		c.setSaldo(c.getSaldo() + dtMonederohistorico.getMonto());
+		dtMonederohistorico.setDtcliente(c);
 		ClienteDAO.merge(c);
 		
 		return MonederohistoricoDAO.add(dtMonederohistorico);
