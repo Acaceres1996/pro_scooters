@@ -13,12 +13,14 @@ import javax.ejb.Stateless;
 
 import uy.urudin.datatypes.DTCliente;
 import uy.urudin.datatypes.DTFactura;
+import uy.urudin.datatypes.DTMonederohistorico;
 import uy.urudin.datatypes.DTResumenViaje;
 import uy.urudin.datatypes.DTScooter;
 import uy.urudin.datatypes.DTViaje;
 import uy.urudin.logic.interfaces.ViajeFacadeLocal;
 import uy.urudin.persistance.interfaces.ClienteDAOLocal;
 import uy.urudin.persistance.interfaces.FacturaDAOLocal;
+import uy.urudin.persistance.interfaces.MonederohistoricoDAOLocal;
 import uy.urudin.persistance.interfaces.ParametroDAOLocal;
 import uy.urudin.persistance.interfaces.ScooterDAOLocal;
 import uy.urudin.persistance.interfaces.ViajeDAOLocal;
@@ -43,6 +45,8 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 	FacturaDAOLocal FacturaDAO;
 	@EJB
 	ParametroDAOLocal ParametroDAO;
+	@EJB
+	MonederohistoricoDAOLocal MonederohistoricoDAO;
 	
     /**
      * Default constructor. 
@@ -147,8 +151,18 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 			resumen.setCostoTotal(costoTotal);
 			resumen.setMinutos(minutosTotal);
 			
-			//Se le descuenta al cliente
 			DTCliente c = ClienteDAO.find(v.getCliente().getId());
+			
+			//REGISTRO EN MONEDERO HISTORICO
+			DTMonederohistorico dtMonederohistorico = new DTMonederohistorico ();
+			dtMonederohistorico.setFecha(new Timestamp(System.currentTimeMillis()));
+			dtMonederohistorico.setSaldoanterior(c.getSaldo());
+			dtMonederohistorico.setMotivo("Viaje");
+			dtMonederohistorico.setMonto(costoTotal);
+			dtMonederohistorico.setDtcliente(c);
+			MonederohistoricoDAO.add(dtMonederohistorico);
+			
+			//Se le descuenta al cliente
 			c.setSaldo(c.getSaldo() - costoTotal);
 			ClienteDAO.merge(c);
 			
