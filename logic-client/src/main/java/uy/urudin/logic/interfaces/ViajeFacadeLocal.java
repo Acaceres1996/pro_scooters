@@ -18,4 +18,5 @@ public interface ViajeFacadeLocal {
 	DTViaje iniciarViaje(DTViaje v);
 	DTResumenViaje finalizarViaje(DTViaje v);
 	int duracionViaje(DTViaje v);
+	List<DTViajePagoDetallado> findByUser(int id);
 }

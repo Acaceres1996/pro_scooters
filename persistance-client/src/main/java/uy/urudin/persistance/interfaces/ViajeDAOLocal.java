@@ -15,4 +15,5 @@ public interface ViajeDAOLocal {
 	DTViaje merge(DTViaje dtviaje);
 	DTViaje find(Integer id);
 	List<DTViaje> findAll();
+	List<DTViaje> findByUser(int id);
 }

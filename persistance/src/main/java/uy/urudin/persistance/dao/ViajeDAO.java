@@ -63,4 +63,14 @@ public class ViajeDAO implements ViajeDAOLocal {
 		}
 		return ListDT; 
 	}
+	
+	@Override
+	public List<DTViaje> findByUser(int idUser) {
+		List<Viaje> ListViaje = em.createQuery("SELECT a FROM Viaje a WHERE cliente = " + idUser, Viaje.class).getResultList();
+		List<DTViaje> ListDT = new ArrayList<DTViaje>();
+		for(Viaje t : ListViaje){
+			ListDT.add(t.getDTViaje());
+		}
+		return ListDT; 
+	}
 }

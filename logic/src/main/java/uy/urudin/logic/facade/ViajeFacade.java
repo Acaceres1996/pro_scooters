@@ -95,6 +95,23 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 	}
 	
 	@Override
+	public List<DTViajePagoDetallado> findByUser(int id) {
+		List<DTViaje> viajes = ViajeDAO.findByUser(id);
+		List<DTViajePagoDetallado> detalle = new ArrayList<DTViajePagoDetallado>(); 
+		
+		for (DTViaje v : viajes) {
+			double monto = 0;
+			monto = FacturaDAO.findByViaje(v.getId()).getMonto();
+			int duracion = duracionViaje(v);
+			DTViajePagoDetallado d = new DTViajePagoDetallado 
+			(v.getId(),v.getFechainicio(),v.getFechafin(),v.getCliente().getEmail(),
+			v.getScooter().getNumeroserial(),duracion,monto,v.getEstado());
+			detalle.add(d);
+		}
+		return detalle;
+	}
+	
+	@Override
 	public DTViaje iniciarViaje(DTViaje v) {
 		//Se controla que el cliente tenga saldo suficiente.
 		DTCliente c = ClienteDAO.find(v.getCliente().getId());
