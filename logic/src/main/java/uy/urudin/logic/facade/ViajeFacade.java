@@ -84,8 +84,13 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 		
 		for (DTViaje v : viajes) {
 			double monto = 0;
-			monto = FacturaDAO.findByViaje(v.getId()).getMonto();
-			int duracion = duracionViaje(v);
+			int duracion = 0;
+			
+			if (v.getEstado() == "Finalizado") {
+				monto = FacturaDAO.findByViaje(v.getId()).getMonto();
+				duracion = duracionViaje(v);
+			}
+			
 			DTViajePagoDetallado d = new DTViajePagoDetallado 
 			(v.getId(),v.getFechainicio(),v.getFechafin(),v.getCliente().getEmail(),
 			v.getScooter().getNumeroserial(),duracion,monto,v.getEstado());
@@ -101,8 +106,12 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 		
 		for (DTViaje v : viajes) {
 			double monto = 0;
-			monto = FacturaDAO.findByViaje(v.getId()).getMonto();
-			int duracion = duracionViaje(v);
+			int duracion = 0;
+			
+			if (v.getEstado() == "Finalizado") {
+				monto = FacturaDAO.findByViaje(v.getId()).getMonto();
+				duracion = duracionViaje(v);
+			}
 			DTViajePagoDetallado d = new DTViajePagoDetallado 
 			(v.getId(),v.getFechainicio(),v.getFechafin(),v.getCliente().getEmail(),
 			v.getScooter().getNumeroserial(),duracion,monto,v.getEstado());
@@ -144,7 +153,7 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 		DTResumenViaje resumen = new DTResumenViaje();
 			//Se termina el viaje.
 			v.setFechafin(new Timestamp(System.currentTimeMillis()));
-			v.setEstado("Terminado");
+			v.setEstado("Finalizado");
 			
 			//Se libera el scooter
 			DTScooter s = ScooterDAO.find(v.getScooter().getId());
