@@ -13,6 +13,9 @@ SELECT * FROM  notificacion;
 SELECT * FROM  notificacioncliente;
 --insert into notificacioncliente(idnotificacion ,idcliente ,leido) values(1,1,true),(1,2,true),(1,3,true),(1,4,false);
 
+SELECT * FROM  Notificacioncliente where idcliente = 2 and leido = false ;
+
+
 SELECT * FROM  parametro;
 --insert into parametro(nombre ,valor) values('TARIFABASE','20'),('PRECIOXMINUTO','4'),('UPDSCOOTER','5'),('BATERIABAJA','5'),('BATMULTI','0.1'),('BATMINUTOS','6'),('MINIMOPAYPAL','300'),('MINIMOVIAJE','100'),('RANGOCERCA','1000');
 --insert into parametro(nombre ,valor) values('URLBUSES','http://www.montevideo.gub.uy/buses/rest/stm-online'),('BODYBUSES','{ \"empresa\":\"50\", \"lineas\": [\"149\"] }')
@@ -30,7 +33,7 @@ MINIMOVIAJE (saldo minimo necesario para realizar un viaje??)*/
 SELECT * FROM  scooter;
 --insert into scooter(numeroserial,encendido,enuso,eliminado) values('1',true,false,false),('2',true,false,false),('3',true,false,false);
 
-SELECT * FROM  scooterhistorico order by 2 desc, 3 DESC;
+SELECT * FROM  scooterhistorico where idscooter = 1 order by 2 desc, 3 DESC;
 --insert into scooterhistorico(idscooter,latitud,longitud,bateria) values(1,'-34.9178703','-56.1663739',100),(2,'-34.9181758','-56.1665929',100),(3,'-34.9181750','-56.1665920',100);
 --insert into scooterhistorico(idscooter,latitud,longitud,bateria) values(1,'-34.9178702','-56.1663734',99),(2,'-34.9181754','-56.1665932',98),(3,'-34.9181748','-56.1665918',97);
 
