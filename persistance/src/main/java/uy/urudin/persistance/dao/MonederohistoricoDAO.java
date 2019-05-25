@@ -62,4 +62,14 @@ public class MonederohistoricoDAO implements MonederohistoricoDAOLocal {
 		return ListDT; 
 	}
 
+	@Override
+	public List<DTMonederohistorico> findPagosUsuario(Integer id) {
+		List<Monederohistorico> pagos = em.createQuery("SELECT p FROM Monederohistorico p WHERE p.motivo = 'Paypal' AND p.cliente = " + id, Monederohistorico.class).getResultList();
+		List<DTMonederohistorico> ListDT = new ArrayList<DTMonederohistorico>();
+		for(Monederohistorico t : pagos){
+			ListDT.add(t.getDTMonederohistorico());
+		}
+		return ListDT;
+	}
+
 }
