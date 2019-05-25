@@ -22,7 +22,7 @@ public class MonederohistoricoDAO implements MonederohistoricoDAOLocal {
     public MonederohistoricoDAO() {
     }
 
-    @Override
+    @Override 
 	public DTMonederohistorico add(DTMonederohistorico dtMonederohistorico) {
 		// con id null
 		Monederohistorico Monederohistorico = new Monederohistorico(dtMonederohistorico);

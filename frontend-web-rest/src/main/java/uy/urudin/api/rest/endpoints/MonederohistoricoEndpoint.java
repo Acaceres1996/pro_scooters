@@ -71,8 +71,6 @@ public class MonederohistoricoEndpoint {
 		return Response.ok( MonederohistoricoEJB.find(id)  ).build();
 	}
 	
-	//De todos los pagos generados en el sistema, se visualiza id, monto, cliente email, fecha y motivo.
-	
 	@GET
 	@Path("/usuariopagos/{id}")
 	@Produces(MediaType.APPLICATION_JSON)

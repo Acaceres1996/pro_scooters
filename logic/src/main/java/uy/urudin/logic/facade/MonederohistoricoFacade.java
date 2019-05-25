@@ -36,7 +36,7 @@ public class MonederohistoricoFacade implements  MonederohistoricoFacadeLocal {
     }
 
 	@Override
-	public DTMonederohistorico add(DTMonederohistorico dtMonederohistorico) {
+	public DTCliente add(DTMonederohistorico dtMonederohistorico) {
 		//Registro el monedero
 		dtMonederohistorico.setFecha(new Timestamp(System.currentTimeMillis()));
 		DTCliente c = ClienteDAO.find(dtMonederohistorico.getDtcliente().getId());
@@ -45,9 +45,8 @@ public class MonederohistoricoFacade implements  MonederohistoricoFacadeLocal {
 		//Acredito al cliente
 		c.setSaldo(c.getSaldo() + dtMonederohistorico.getMonto());
 		dtMonederohistorico.setDtcliente(c);
-		ClienteDAO.merge(c);
-		
-		return MonederohistoricoDAO.add(dtMonederohistorico);
+		MonederohistoricoDAO.add(dtMonederohistorico);
+		return ClienteDAO.merge(c);
 	}
 
 	@Override
@@ -70,7 +69,7 @@ public class MonederohistoricoFacade implements  MonederohistoricoFacadeLocal {
 	public List<DTMonederohistorico> findPagosUsuario(Integer id) {
 		List<DTMonederohistorico> pagos = MonederohistoricoDAO.findPagosUsuario(id);
 		return pagos;
-	}
+	} 
 
 
 
