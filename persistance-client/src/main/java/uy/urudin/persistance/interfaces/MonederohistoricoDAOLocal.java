@@ -14,4 +14,5 @@ public interface MonederohistoricoDAOLocal {
 	public List<DTMonederohistorico> findAll();
 	public DTMonederohistorico find(Integer id);
 	public void delete(Integer Id);
+	public List<DTMonederohistorico> findPagos();
 }

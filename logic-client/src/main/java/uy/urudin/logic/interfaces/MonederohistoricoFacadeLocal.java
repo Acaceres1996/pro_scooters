@@ -16,4 +16,5 @@ public interface MonederohistoricoFacadeLocal {
 	public DTMonederohistorico add(DTMonederohistorico dtMonederohistorico);
 	public List<DTMonederohistorico> findAll();
 	public DTMonederohistorico find(Integer id);
+	public List<DTMonederohistorico> findPagos();
 }

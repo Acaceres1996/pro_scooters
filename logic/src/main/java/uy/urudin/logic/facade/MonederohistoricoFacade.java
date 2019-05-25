@@ -60,6 +60,12 @@ public class MonederohistoricoFacade implements  MonederohistoricoFacadeLocal {
 		return MonederohistoricoDAO.find(id);
 	}
 
+	@Override
+	public List<DTMonederohistorico> findPagos() {
+		List<DTMonederohistorico> pagos = MonederohistoricoDAO.findPagos();
+		return pagos;
+	}
+
 
 
 }
