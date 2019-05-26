@@ -31,6 +31,7 @@ import com.google.gson.Gson;
 
 import uy.urudin.datatypes.DTScooter;
 import uy.urudin.datatypes.DTScooterUltimoRegistro;
+import uy.urudin.datatypes.Pair;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal; 
 
 /** https://api.urudin.tk/scooter/
@@ -90,8 +91,7 @@ public class ScooterEndpoint {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createScooter(DTScooter s){
-		try {
-			
+		try {			
 			DTScooter nuevo = ScooterEJB.add(s);
 			if(nuevo != null) {
 				return Response.status(200).entity( nuevo ).build();
@@ -99,7 +99,7 @@ public class ScooterEndpoint {
 				return Response.status(500).build();
 			}
 		}catch (Exception e) {
-			return Response.status(500).build();
+			return Response.status(500).entity(e).build();
 		}
 	}
 	
