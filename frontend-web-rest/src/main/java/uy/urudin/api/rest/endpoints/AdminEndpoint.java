@@ -14,9 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import uy.urudin.datatypes.DTAdmin;
-import uy.urudin.datatypes.DTScooter;
 import uy.urudin.logic.interfaces.AdminFacadeLocal;
-import uy.urudin.logic.interfaces.ScooterFacadeLocal;
 
 /** https://api.urudin.tk/admin/
  * 

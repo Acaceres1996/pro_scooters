@@ -1,13 +1,9 @@
 package uy.urudin.api.rest.endpoints;
 
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -21,17 +17,11 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 
 import uy.urudin.datatypes.DTScooter;
 import uy.urudin.datatypes.DTScooterUltimoRegistro;
-import uy.urudin.datatypes.Pair;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal; 
 
 /** https://api.urudin.tk/scooter/
