@@ -71,7 +71,7 @@ public class restCliente {
 					return Response.status(500).build();
 				}
 			}catch (Exception e) {
-				return Response.status(500).build();
+				return Response.status(500).entity(e).build();
 			}
 	}
 	
