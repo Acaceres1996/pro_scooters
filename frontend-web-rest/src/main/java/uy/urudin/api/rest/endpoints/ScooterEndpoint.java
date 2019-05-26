@@ -96,7 +96,7 @@ public class ScooterEndpoint {
 			if(nuevo != null) {
 				return Response.status(200).entity( nuevo ).build();
 			}else {
-				return Response.status(500).build();
+				return Response.status(500,"Entidad vacia").build();
 			}
 		}catch (Exception e) {
 			return Response.status(500).entity(e).build();

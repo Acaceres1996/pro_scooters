@@ -42,12 +42,12 @@ public class ParameterEndpoint {
 		return Response.ok( ListParameters ).build();
 	}
 	
-//	@GET
-//	@Path("/{id}")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Response getOneParameter(@PathParam("id") Integer id){
-//		return Response.ok( ParametroEJB.find(id)  ).build();
-//	}
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getOneParameter(@PathParam("id") Integer id){
+		return Response.ok( ParametroEJB.find(id)  ).build();
+	}
 	
 	@GET
 	@Path("/getDTbyname")
