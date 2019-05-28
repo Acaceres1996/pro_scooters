@@ -30,6 +30,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import uy.urudin.datatypes.DTScooter;
+import uy.urudin.datatypes.DTScooterScan;
 import uy.urudin.datatypes.DTScooterUltimoRegistro;
 import uy.urudin.datatypes.DTScooterhistorico;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal;
@@ -234,6 +235,33 @@ public class ScooterFacade implements ScooterFacadeLocal {
 		// type
 		onenewfeature.put("type", "Feature");
 		return onenewfeature;
+	}
+
+	@Override
+	public DTScooterScan findScooterScan(Integer id) {
+		//System.out.println("DEBUG: ENTRO");
+		DTScooterScan scan = new DTScooterScan ();
+		DTScooter scooter = ScooterDAO.find(id);
+		DTScooterhistorico sh = ScooterhistoricoDAO.ultimoScooterHistoricoUnIdScooter(id);
+		double costoBase = Integer.valueOf(ParametroDAO.getDTParameterByName("TARIFABASE").getValor());
+		double costoMinuto = Integer.valueOf(ParametroDAO.getDTParameterByName("PRECIOXMINUTO").getValor());
+		double batmulti = Double.parseDouble(ParametroDAO.getDTParameterByName("BATMULTI").getValor());
+		scan.setId(id);
+		scan.setNumeroserial(scooter.getNumeroserial());
+		scan.setEncendido(scooter.isEncendido());
+		scan.setEnuso(scooter.isEnuso());
+		scan.setCostoBase(costoBase);
+		scan.setCostoMinuto(costoMinuto);
+		
+		if (sh == null) {
+			return scan;
+		}
+		
+		double kmDisponibles = ((double) sh.getBateria()) * batmulti;
+		
+		scan.setBateria(sh.getBateria());
+		scan.setKmDisponibles(kmDisponibles);
+		return scan;
 	}
 
 }

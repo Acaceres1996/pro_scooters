@@ -21,6 +21,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import uy.urudin.datatypes.DTScooter;
+import uy.urudin.datatypes.DTScooterScan;
 import uy.urudin.datatypes.DTScooterUltimoRegistro;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal; 
 
@@ -39,6 +40,14 @@ public class ScooterEndpoint {
 	@Produces(MediaType.TEXT_HTML)
 	public String ping() {
 		return "true";
+	}
+	
+	@GET
+	@Path("/infoscan/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response GetScooterScan(@PathParam("id") Integer id){
+		DTScooterScan Scooter = ScooterEJB.findScooterScan(id);
+		return Response.ok( Scooter ).build();
 	}
 	
 	/** GET - https://api.urudin.tk/scooter/
