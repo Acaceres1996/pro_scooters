@@ -32,6 +32,8 @@ public class NotificacionFacade implements  NotificacionFacadeLocal {
 	ClienteDAOLocal ClienteDAO;
 	@EJB
 	NotificacionclienteDAOLocal NotificacionclienteDAO;
+	@EJB
+	PushNotificationFacade PushNotification;
 	
     /**
      * Default constructor. 
@@ -46,6 +48,8 @@ public class NotificacionFacade implements  NotificacionFacadeLocal {
     	DTNotificacion ret = NotificacionDAO.add(dtNotificacion);
     	
     	//envio de push notification. masivo
+    	PushNotification.sendPushNotification(dtNotificacion.getCabezal(), dtNotificacion.getCuerpo());
+    	
     	
     	//se la asocio a todos los clientes como no leida
     	List<DTCliente> todoslosclientes = ClienteDAO.findAll();
