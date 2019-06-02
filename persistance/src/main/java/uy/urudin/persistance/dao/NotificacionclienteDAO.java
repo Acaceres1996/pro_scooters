@@ -52,7 +52,7 @@ public class NotificacionclienteDAO implements NotificacionclienteDAOLocal {
 	@Override
 	public List<DTNotificacioncliente> obtenerTodaslasNotificacionesNoleidasdeCliente(Integer idcliente) {
 		System.out.println("TEST1");
-		Query query = em.createNativeQuery("SELECT p.* FROM public.Notificacioncliente p where p.leido = false and p.idcliente = :cliente ", Notificacioncliente.class);
+		Query query = em.createNativeQuery("SELECT p.* FROM urudin.Notificacioncliente p where p.leido = false and p.idcliente = :cliente ", Notificacioncliente.class);
         query.setParameter("cliente", idcliente);
         List<DTNotificacioncliente> ListdTNotificacioncliente = new ArrayList<DTNotificacioncliente>();
         try {
@@ -71,7 +71,7 @@ public class NotificacionclienteDAO implements NotificacionclienteDAOLocal {
 	@Override
 	public DTNotificacioncliente obtenerUnaNotificacionCliente(Integer idnotificacion, Integer idcliente) {
 		System.out.println("TEST2");
-		Query query = em.createNativeQuery("SELECT p.* FROM public.Notificacioncliente p where p.idcliente = :cliente and p.idnotificacion = :notificacion ", Notificacioncliente.class);
+		Query query = em.createNativeQuery("SELECT p.* FROM urudin.Notificacioncliente p where p.idcliente = :cliente and p.idnotificacion = :notificacion ", Notificacioncliente.class);
         query.setParameter("cliente", idcliente);
         query.setParameter("notificacion", idnotificacion);
 		Notificacioncliente uno = (Notificacioncliente) query.getSingleResult();

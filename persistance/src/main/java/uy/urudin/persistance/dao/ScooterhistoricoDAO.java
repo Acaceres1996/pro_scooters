@@ -46,7 +46,7 @@ public class ScooterhistoricoDAO implements ScooterhistoricoDAOLocal {
 	public DTScooterhistorico ultimoScooterHistoricoUnIdScooter(Integer idscooter) {
 		//System.out.println("DEBUGDEBUGDEBUG:" +"idscooter" + idscooter + ";");
 		
-		Query query = em.createNativeQuery("SELECT p.* FROM public.scooterhistorico p where p.idscooter = :idscooter ORDER BY p.fecha DESC", Scooterhistorico.class);
+		Query query = em.createNativeQuery("SELECT p.* FROM urudin.scooterhistorico p where p.idscooter = :idscooter ORDER BY p.fecha DESC", Scooterhistorico.class);
         query.setParameter("idscooter", idscooter);
 //        query.setParameter("user", iduser);
         Scooterhistorico s = null;
@@ -77,7 +77,7 @@ public class ScooterhistoricoDAO implements ScooterhistoricoDAOLocal {
 	@Override
 	public DTScooterhistorico ultimoScooterHistoricoUnIdScooterBasico(Integer idscooter) {
 		//salvo basico mismo que ultimoScooterHistoricoUnIdScooter
-		Query query = em.createNativeQuery("SELECT p.* FROM public.scooterhistorico p where p.idscooter = :idscooter ORDER BY p.fecha DESC", Scooterhistorico.class);
+		Query query = em.createNativeQuery("SELECT p.* FROM urudin.scooterhistorico p where p.idscooter = :idscooter ORDER BY p.fecha DESC", Scooterhistorico.class);
         query.setParameter("idscooter", idscooter);
 //        query.setParameter("user", iduser);
         Scooterhistorico s = null;

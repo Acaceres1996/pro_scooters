@@ -21,7 +21,7 @@ import uy.urudin.datatypes.DTScooter;
 import uy.urudin.datatypes.DTScooterhistorico;
 
 @Entity
-@Table(name="scooterhistorico", schema = "public")
+@Table(name="scooterhistorico", schema = "urudin")
 public class Scooterhistorico implements Serializable {
 
     /** Primary key. */

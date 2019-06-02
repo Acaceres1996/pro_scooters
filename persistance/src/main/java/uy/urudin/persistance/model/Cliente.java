@@ -21,7 +21,7 @@ import uy.urudin.datatypes.DTAdmin;
 import uy.urudin.datatypes.DTCliente;
 
 @Entity
-@Table(name="cliente", schema = "public", indexes={@Index(name="cliente_email_IX", columnList="email", unique=true)})
+@Table(name="cliente", schema = "urudin", indexes={@Index(name="cliente_email_IX", columnList="email", unique=true)})
 public class Cliente implements Serializable {
 
     /** Primary key. */

@@ -5,7 +5,7 @@ SELECT * FROM  cliente;
 --insert into cliente(nombre,apellido,email,saldo) values('martin','olivera','martin@urudin.uy',2000),('agustin','ape','agustin@urudin.uy',2000),('sofia','ape','sofia@urudin.uy',2000),('facundo','ape','facundo@urudin.uy',2000);
 
 SELECT * FROM  monederohistorico;
---insert into monederohistorico(idcliente,saldoanterior,motivo,monto,idtransaccion) values(1,0,'Paypal',2000,'PaypaltransacctionId');
+--insert into monederohistorico(idcliente,saldoanterior,motivo,monto,idtransaccion) values(1,0,'Viaje',2000,'PaypaltransacctionId');
 
 SELECT * FROM  notificacion;--5
 --insert into notificacion( cabezal,cuerpo,estado ,masiva) values('cuerpo mensaje','este es un mensaje de la app','Enviado',true);
@@ -32,12 +32,17 @@ BATMINUTOS 6 (valor parametrizable con la relación 1% batería y uso en minutos
 MINIMOPAYPAL (minimo dinero que puede acreditar el usuario atravez de paypal)
 MINIMOVIAJE (saldo minimo necesario para realizar un viaje??)*/
 
-SELECT * FROM  scooter;
+SELECT * FROM  viaje where id > 25;
+
+SELECT * FROM  scooter where id = 56;
 --insert into scooter(numeroserial,encendido,enuso,eliminado) values('1',true,false,false),('2',true,false,false),('3',true,false,false);
+
+
+>>finalizar no libera scooter.
 
 SELECT * FROM  scooterhistorico where idscooter = 1 order by 2 desc, 3 DESC;
 
-SELECT * FROM  scooterhistorico where idscooter = 56 order by 2 desc, 3 DESC;
+SELECT * FROM  scooterhistorico where idscooter = 56  and id > 14807 order by 2 desc, 3 DESC;
 --insert into scooterhistorico(idscooter,latitud,longitud,bateria) values(1,'-34.9178703','-56.1663739',100),(2,'-34.9181758','-56.1665929',100),(3,'-34.9181750','-56.1665920',100);
 --insert into scooterhistorico(idscooter,latitud,longitud,bateria) values(1,'-34.9178702','-56.1663734',99),(2,'-34.9181754','-56.1665932',98),(3,'-34.9181748','-56.1665918',97);
 
@@ -55,6 +60,15 @@ SELECT * FROM  scooterhistorico where idscooter = 56 order by 2 desc, 3 DESC;
 
 SELECT * FROM  viaje;
 --insert into viaje(fechainicio,idscooter,idcliente,fechafin,estado,minutospermitidossaldo) values('2019-05-13 22:20:24',1,1,'2019-05-13 22:30:24','Finalizado',20),('2019-05-13 22:10:24',2,2,'2019-05-13 22:20:24','Finalizado',19),('2019-05-13 22:00:24',3,3,'2019-05-13 22:10:24','Finalizado',18),('2019-05-13 22:50:24',1,4,'2019-05-13 22:55:24','Finalizado',10)
+
+1
+2
+3
+4
+5
+6
+7
+8
 
 SELECT * FROM factura;
 --insert into factura(idviaje,fecha,monto,estado) values(1,'2019-05-13 22:30:24',100,'Pagado'),(2,'2019-05-13 22:10:24',99,'Pagado'),(3,'2019-05-13 22:00:24',98,'Pagado'),(4,'2019-05-13 22:55:24',50,'Pagado')

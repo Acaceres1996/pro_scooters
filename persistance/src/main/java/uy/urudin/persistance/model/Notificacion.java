@@ -19,7 +19,7 @@ import javax.persistence.Version;
 import uy.urudin.datatypes.DTNotificacion;
 
 @Entity
-@Table(name="notificacion", schema = "public")
+@Table(name="notificacion", schema = "urudin")
 public class Notificacion implements Serializable {
 
     /** Primary key. */

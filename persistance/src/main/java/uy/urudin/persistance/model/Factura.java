@@ -22,7 +22,7 @@ import uy.urudin.datatypes.DTFactura;
 import uy.urudin.datatypes.DTViaje;
 
 @Entity
-@Table(name="factura", schema = "public")
+@Table(name="factura", schema = "urudin")
 public class Factura implements Serializable {
 
     /** Primary key. */
