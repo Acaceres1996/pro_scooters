@@ -1,11 +1,11 @@
-CREATE TABLE "admin" ( 
+CREATE TABLE urudin."admin" ( 
 	id                   serial  NOT NULL ,
 	usuario              varchar(20)  NOT NULL ,
 	"password"           varchar(500)  NOT NULL ,
 	CONSTRAINT pk_admin_id PRIMARY KEY ( id )
  );
 
-CREATE TABLE cliente ( 
+CREATE TABLE urudin.cliente ( 
 	id                   serial  NOT NULL ,
 	nombre               varchar(20)  NOT NULL ,
 	apellido             varchar(20)  NOT NULL ,
@@ -15,7 +15,7 @@ CREATE TABLE cliente (
 	CONSTRAINT idx_scooter_unq_email UNIQUE ( email ) 
  );
 
-CREATE TABLE notificacion ( 
+CREATE TABLE urudin.notificacion ( 
 	id                   serial  NOT NULL ,
 	cabezal              varchar(20)  NOT NULL ,
 	cuerpo               varchar(500)  NOT NULL ,
@@ -24,7 +24,7 @@ CREATE TABLE notificacion (
 	CONSTRAINT pk_notificacion_id PRIMARY KEY ( id )
  );
 
-CREATE TABLE notificacioncliente ( 
+CREATE TABLE urudin.notificacioncliente ( 
 	id                   serial  NOT NULL ,
 	idnotificacion       serial  NOT NULL ,
 	idcliente            serial  NOT NULL ,
@@ -32,14 +32,14 @@ CREATE TABLE notificacioncliente (
 	CONSTRAINT pk_notificacioncliente_id PRIMARY KEY ( id )
  );
 
-CREATE TABLE parametro ( 
+CREATE TABLE urudin.parametro ( 
 	id                   serial  NOT NULL ,
 	nombre               varchar(20)  NOT NULL ,
 	valor                varchar(500)  NOT NULL ,
 	CONSTRAINT pk_parametro_id PRIMARY KEY ( id )
  );
 
-CREATE TABLE scooter ( 
+CREATE TABLE urudin.scooter ( 
 	id                   serial  NOT NULL ,
 	numeroserial         varchar(20)  NOT NULL ,
 	encendido            bool DEFAULT true NOT NULL ,
@@ -49,7 +49,7 @@ CREATE TABLE scooter (
 	CONSTRAINT idx_scooter_unq_numeroserial UNIQUE ( numeroserial ) 
  );
 
-CREATE TABLE scooterhistorico ( 
+CREATE TABLE urudin.scooterhistorico ( 
 	id                   serial  NOT NULL ,
 	idscooter            serial  NOT NULL ,
 	fecha                timestamp DEFAULT current_timestamp NOT NULL ,
@@ -59,7 +59,7 @@ CREATE TABLE scooterhistorico (
 	CONSTRAINT pk_scooterhistorico_id PRIMARY KEY ( id )
  );
 
-CREATE TABLE viaje ( 
+CREATE TABLE urudin.viaje ( 
 	id                   serial  NOT NULL ,
 	fechainicio          timestamp DEFAULT current_timestamp NOT NULL ,
 	idscooter            serial  NOT NULL ,
@@ -70,7 +70,7 @@ CREATE TABLE viaje (
 	CONSTRAINT pk_viaje_id PRIMARY KEY ( id )
  );
 
-CREATE TABLE factura ( 
+CREATE TABLE urudin.factura ( 
 	id                   serial  NOT NULL ,
 	idviaje              serial  NOT NULL ,
 	fecha                timestamp DEFAULT current_timestamp NOT NULL ,
@@ -80,7 +80,7 @@ CREATE TABLE factura (
 	CONSTRAINT idx_factura_idviaje UNIQUE ( idviaje ) 
  );
 
-CREATE TABLE monederohistorico ( 
+CREATE TABLE urudin.monederohistorico ( 
 	id                   serial  NOT NULL ,
 	idcliente            serial  NOT NULL ,
 	fecha                timestamp DEFAULT current_timestamp NOT NULL ,
@@ -92,16 +92,16 @@ CREATE TABLE monederohistorico (
  );
  
  
-ALTER TABLE factura ADD CONSTRAINT fk_factura_viaje FOREIGN KEY ( idviaje ) REFERENCES viaje( id );
+ALTER TABLE urudin.factura ADD CONSTRAINT fk_factura_viaje FOREIGN KEY ( idviaje ) REFERENCES viaje( id );
 
-ALTER TABLE notificacioncliente ADD CONSTRAINT fk_notificacioncliente_notificacion FOREIGN KEY ( idnotificacion ) REFERENCES notificacion( id );
+ALTER TABLE urudin.notificacioncliente ADD CONSTRAINT fk_notificacioncliente_notificacion FOREIGN KEY ( idnotificacion ) REFERENCES notificacion( id );
 
-ALTER TABLE notificacioncliente ADD CONSTRAINT fk_notificacioncliente_cliente FOREIGN KEY ( idcliente ) REFERENCES cliente( id );
+ALTER TABLE urudin.notificacioncliente ADD CONSTRAINT fk_notificacioncliente_cliente FOREIGN KEY ( idcliente ) REFERENCES cliente( id );
 
-ALTER TABLE scooterhistorico ADD CONSTRAINT fk_scooterhistorico_scooter FOREIGN KEY ( idscooter ) REFERENCES scooter( id );
+ALTER TABLE urudin.scooterhistorico ADD CONSTRAINT fk_scooterhistorico_scooter FOREIGN KEY ( idscooter ) REFERENCES scooter( id );
 
-ALTER TABLE viaje ADD CONSTRAINT fk_viaje_scooter FOREIGN KEY ( idscooter ) REFERENCES scooter( id );
+ALTER TABLE urudin.viaje ADD CONSTRAINT fk_viaje_scooter FOREIGN KEY ( idscooter ) REFERENCES scooter( id );
 
-ALTER TABLE viaje ADD CONSTRAINT fk_viaje_cliente FOREIGN KEY ( idcliente ) REFERENCES cliente( id );
+ALTER TABLE urudin.viaje ADD CONSTRAINT fk_viaje_cliente FOREIGN KEY ( idcliente ) REFERENCES cliente( id );
 
-ALTER TABLE monederohistorico ADD CONSTRAINT fk_monederohistorico_cliente FOREIGN KEY ( idcliente ) REFERENCES cliente( id );
+ALTER TABLE urudin.monederohistorico ADD CONSTRAINT fk_monederohistorico_cliente FOREIGN KEY ( idcliente ) REFERENCES cliente( id );

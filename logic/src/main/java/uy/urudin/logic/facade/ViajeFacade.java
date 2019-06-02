@@ -155,6 +155,8 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 			v.setFechafin(new Timestamp(System.currentTimeMillis()));
 			v.setEstado("Finalizado");
 			
+			System.out.println("v.getScooter().getId():"+v.getScooter().getId());
+			
 			//Se libera el scooter
 			DTScooter s = ScooterDAO.find(v.getScooter().getId());
 			s.setEnuso(false);

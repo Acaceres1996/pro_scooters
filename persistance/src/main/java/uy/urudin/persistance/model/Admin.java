@@ -17,7 +17,7 @@ import javax.persistence.Version;
 import uy.urudin.datatypes.DTAdmin;
 
 @Entity
-@Table(name="admin", schema = "public")
+@Table(name="admin", schema = "urudin")
 public class Admin implements Serializable {
 
     /** Primary key. */

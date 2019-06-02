@@ -17,7 +17,7 @@ import javax.persistence.Version;
 import uy.urudin.datatypes.DTParametro;
 
 @Entity
-@Table(name="parametro", schema = "public")
+@Table(name="parametro", schema = "urudin")
 public class Parametro implements Serializable {
 
     /** Primary key. */
