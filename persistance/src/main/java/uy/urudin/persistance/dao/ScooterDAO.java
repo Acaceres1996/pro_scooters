@@ -4,12 +4,10 @@ package uy.urudin.persistance.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
-import javax.persistence.Query;
 
 import uy.urudin.datatypes.DTScooter;
 import uy.urudin.persistance.interfaces.ScooterDAOLocal;
@@ -26,13 +24,7 @@ public class ScooterDAO implements ScooterDAOLocal {
     }
 	
     @Override
-	public List<DTScooter> scootersLibres() {
-		// se considera disponible
-		//Solo se mostraran Scooters encendidos, que no se encuentren en uso y con batería mayor al mínimo definido por el sistema. 
-		
-		//listar cuales son los scooter que cumplen con ello
-		//Bateria corresponde a otro servicio
-		
+	public List<DTScooter> scootersLibres() {		
 		List<Scooter> ListScooter = em.createQuery("SELECT a FROM Scooter a where a.encendido = true and a.enuso = false and a.eliminado = false", Scooter.class).getResultList();
 		List<DTScooter> ListDT = new ArrayList<DTScooter>();
 		for(Scooter t : ListScooter){
@@ -65,12 +57,7 @@ public class ScooterDAO implements ScooterDAOLocal {
 
 	@Override
 	public DTScooter add(DTScooter dtScooter) {
-		// con id null
 		Scooter scooter = new Scooter(dtScooter);
-		
-		//controlar no existan mas con el mismo numeroserial.
-		
-		//datos por default
 		scooter.setEncendido(true);
 		scooter.setEnuso(false);
 		scooter.setEliminado(false);
@@ -89,9 +76,7 @@ public class ScooterDAO implements ScooterDAOLocal {
 	public void delete(Integer Id) {
 		DTScooter dtScooter = find(Id);
 		Scooter Scooter = new Scooter(dtScooter);
-		//solo puede eliminarse si esta apagado
 		if(!Scooter.getEncendido()) {
-			//bara logica
 			Scooter.setEliminado(true);
 			em.merge(Scooter);
 		}

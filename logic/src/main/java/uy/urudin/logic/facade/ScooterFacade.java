@@ -8,26 +8,16 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-import org.geojson.Crs;
-import org.geojson.Feature;
-import org.geojson.FeatureCollection;
-import org.geojson.GeoJsonObject;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import uy.urudin.datatypes.DTScooter;
 import uy.urudin.datatypes.DTScooterScan;
@@ -62,14 +52,12 @@ public class ScooterFacade implements ScooterFacadeLocal {
 	@Override
 	public DTScooter add(DTScooter dtScooter) {
 		DTScooter newdtscooter = ScooterDAO.add(dtScooter);
-		// historico por default
 		DTScooterhistorico newSH = new DTScooterhistorico();
 		newSH.setBateria(100);
 		newSH.setLatitud("-34.9181706");
 		newSH.setLongitud("-56.1665725");
 		newSH.setScooter(newdtscooter);
 		DTScooterhistorico creadoSH = ScooterhistoricoDAO.add(newSH);
-		// sino existe almenos 1 falla el buscar disponibles.
 		return newdtscooter;
 	}
 
