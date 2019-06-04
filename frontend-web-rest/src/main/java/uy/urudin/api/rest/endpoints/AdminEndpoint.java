@@ -42,7 +42,7 @@ public class AdminEndpoint {
 				return Response.status(403).build();
 			}
 		}catch (Exception e) {
-			return Response.status(500).build();
+			return Response.status(500).entity(e).build();
 		}
 	}
 	
@@ -59,10 +59,10 @@ public class AdminEndpoint {
 			if(newadmin != null) {
 				return Response.status(200).entity( newadmin ).build();
 			}else {
-				return Response.status(500).build();
+				return Response.status(500,"Entidad vacia").build();
 			}
 		}catch (Exception e) {
-			return Response.status(500).build();
+			return Response.status(500).entity(e).build();
 		}
 	}
 	
@@ -75,7 +75,7 @@ public class AdminEndpoint {
 			AdminEJB.delete(id);
 			return Response.status(204).build();
 		}catch (Exception e) {
-			return Response.status(500).build();
+			return Response.status(500).entity(e).build();
 		}
 	}
 	
