@@ -12,8 +12,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 
-//import uy.pencas.organization.logic.interfaces.ScooteroldFacadeLocal;
-
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -125,8 +123,6 @@ public class ScooterEndpoint {
 		}
 	}
 	
-	
-	//setea encendido en false, no elimina fisicamente.
 	@DELETE
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -135,7 +131,7 @@ public class ScooterEndpoint {
 			ScooterEJB.delete(id);
 			return Response.status(204).build();
 		}catch (Exception e) {
-			return Response.status(500).build();
+			return Response.status(500).entity(e).build();
 		}
 	}
 }
