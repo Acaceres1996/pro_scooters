@@ -18,6 +18,7 @@ import uy.urudin.datatypes.DTMonederohistorico;
 import uy.urudin.datatypes.DTResumenViaje;
 import uy.urudin.datatypes.DTScooter;
 import uy.urudin.datatypes.DTScooterUltimoRegistro;
+import uy.urudin.datatypes.DTScooterhistorico;
 import uy.urudin.datatypes.DTViaje;
 import uy.urudin.datatypes.DTViajePagoDetallado;
 import uy.urudin.logic.interfaces.ViajeFacadeLocal;
@@ -26,6 +27,7 @@ import uy.urudin.persistance.interfaces.FacturaDAOLocal;
 import uy.urudin.persistance.interfaces.MonederohistoricoDAOLocal;
 import uy.urudin.persistance.interfaces.ParametroDAOLocal;
 import uy.urudin.persistance.interfaces.ScooterDAOLocal;
+import uy.urudin.persistance.interfaces.ScooterhistoricoDAOLocal;
 import uy.urudin.persistance.interfaces.ViajeDAOLocal;
 
 
@@ -50,6 +52,8 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 	ParametroDAOLocal ParametroDAO;
 	@EJB
 	MonederohistoricoDAOLocal MonederohistoricoDAO;
+	@EJB
+	ScooterhistoricoDAOLocal ScooterhistoricoDAO;
 	
     /**
      * Default constructor. 
@@ -78,6 +82,7 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 	}
 
 	@Override
+	//REVISAR!!! da mal la duracion y el costo total, fecha inicio fin da 2 minutos cuando se cobraron 1
 	public List<DTViajePagoDetallado> findAll() {
 		List<DTViaje> viajes = ViajeDAO.findAll();
 		List<DTViajePagoDetallado> detalle = new ArrayList<DTViajePagoDetallado>(); 
@@ -100,6 +105,7 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 	}
 	
 	@Override
+	//REVISAR!!! da mal la duracion y el costo total, fecha inicio fin da 2 minutos cuando se cobraron 1
 	public List<DTViajePagoDetallado> findByUser(int id) {
 		List<DTViaje> viajes = ViajeDAO.findByUser(id);
 		List<DTViajePagoDetallado> detalle = new ArrayList<DTViajePagoDetallado>(); 
@@ -120,29 +126,41 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 		return detalle;
 	}
 	
+	//PROBAR EL CONTROL DE BATERIA
 	@Override
 	public DTViaje iniciarViaje(DTViaje v) {
-		//Se controla que el cliente tenga saldo suficiente.
-		DTCliente c = ClienteDAO.find(v.getCliente().getId());
-		int minimoViaje = Integer.valueOf(ParametroDAO.getDTParameterByName("MINIMOVIAJE").getValor());
-		if (c.getSaldo() >= minimoViaje) {
-			
-			//Se ocupa el scooter
-			DTScooter s = ScooterDAO.find(v.getScooter().getId());
-			s.setEnuso(true); 
-			ScooterDAO.merge(s);
-			
-			//Se calcula los minutos permitidos
-			int precioMinuto = Integer.valueOf(ParametroDAO.getDTParameterByName("PRECIOXMINUTO").getValor());
-			int minutosPermitidos = c.getSaldo() / precioMinuto;
-			
-			//Se genera el viaje
-			v.setMinutospermitidossaldo(minutosPermitidos); 	
-			v.setEstado("Iniciado");
-			v.setFechainicio(new Timestamp(System.currentTimeMillis()));
-			v.setCliente(c);
-			v.setScooter(s);
-			return ViajeDAO.add(v);
+		//Se controla que el scooter tenga bateria suficiente
+		int batscooter = Integer.valueOf(ParametroDAO.getDTParameterByName("BATERIABAJA").getValor());
+		DTScooterhistorico sh = ScooterhistoricoDAO.ultimoScooterHistoricoUnIdScooter(v.getScooter().getId());
+		if (sh != null) {
+			if (sh.getBateria() > batscooter) {
+				//Se controla que el cliente tenga saldo suficiente.
+				DTCliente c = ClienteDAO.find(v.getCliente().getId());
+				int minimoViaje = Integer.valueOf(ParametroDAO.getDTParameterByName("MINIMOVIAJE").getValor());
+				if (c.getSaldo() >= minimoViaje) {
+					
+					//Se ocupa el scooter
+					DTScooter s = ScooterDAO.find(v.getScooter().getId());
+					s.setEnuso(true); 
+					ScooterDAO.merge(s);
+					
+					//Se calcula los minutos permitidos
+					int precioMinuto = Integer.valueOf(ParametroDAO.getDTParameterByName("PRECIOXMINUTO").getValor());
+					int minutosPermitidos = c.getSaldo() / precioMinuto;
+					
+					//Se genera el viaje
+					v.setMinutospermitidossaldo(minutosPermitidos); 	
+					v.setEstado("Iniciado");
+					v.setFechainicio(new Timestamp(System.currentTimeMillis()));
+					v.setCliente(c);
+					v.setScooter(s);
+					return ViajeDAO.add(v);
+				} else {
+					return new DTViaje();
+				}
+			} else {
+				return new DTViaje();
+			}
 		} else {
 			return new DTViaje();
 		}
