@@ -91,7 +91,7 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 			double monto = 0;
 			int duracion = 0;
 			
-			if (v.getEstado() == "Finalizado") {
+			if (v.getEstado().equals("Finalizado")) {
 				monto = FacturaDAO.findByViaje(v.getId()).getMonto();
 				duracion = duracionViaje(v);
 			}
@@ -113,8 +113,7 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 		for (DTViaje v : viajes) {
 			double monto = 0;
 			int duracion = 0;
-			
-			if (v.getEstado() == "Finalizado") {
+			if (v.getEstado().equals("Finalizado")) {
 				monto = FacturaDAO.findByViaje(v.getId()).getMonto();
 				duracion = duracionViaje(v);
 			}
