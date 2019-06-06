@@ -87,6 +87,12 @@ public class ScooterhistoricoFacade implements  ScooterhistoricoFacadeLocal {
 	@Override
 	public DTScooterhistorico registroScooterHistorico(DTRegistro dtregistro) {
 		DTScooter dtscooter = ScooterDAO.find(dtregistro.getScooterid());
+		// actulizar estado a encendido si no lo esta.
+		if(!dtscooter.isEncendido()) {
+			dtscooter.setEncendido(true);
+			dtscooter = ScooterDAO.merge(dtscooter);
+		}
+		
 		DTScooterhistorico newSH = new DTScooterhistorico();
 		newSH.setBateria(dtregistro.getBateria());
 		newSH.setLatitud(dtregistro.getLatitud());
