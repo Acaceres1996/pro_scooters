@@ -127,42 +127,50 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 	
 	//PROBAR EL CONTROL DE BATERIA
 	@Override
-	public DTViaje iniciarViaje(DTViaje v) {
-		//Se controla que el scooter tenga bateria suficiente
-		int batscooter = Integer.valueOf(ParametroDAO.getDTParameterByName("BATERIABAJA").getValor());
-		DTScooterhistorico sh = ScooterhistoricoDAO.ultimoScooterHistoricoUnIdScooter(v.getScooter().getId());
-		if (sh != null) {
-			if (sh.getBateria() > batscooter) {
-				//Se controla que el cliente tenga saldo suficiente.
-				DTCliente c = ClienteDAO.find(v.getCliente().getId());
-				int minimoViaje = Integer.valueOf(ParametroDAO.getDTParameterByName("MINIMOVIAJE").getValor());
-				if (c.getSaldo() >= minimoViaje) {
-					
-					//Se ocupa el scooter
-					DTScooter s = ScooterDAO.find(v.getScooter().getId());
-					s.setEnuso(true); 
-					ScooterDAO.merge(s);
-					
-					//Se calcula los minutos permitidos
-					int precioMinuto = Integer.valueOf(ParametroDAO.getDTParameterByName("PRECIOXMINUTO").getValor());
-					int minutosPermitidos = c.getSaldo() / precioMinuto;
-					
-					//Se genera el viaje
-					v.setMinutospermitidossaldo(minutosPermitidos); 	
-					v.setEstado("Iniciado");
-					v.setFechainicio(new Timestamp(System.currentTimeMillis()));
-					v.setCliente(c);
-					v.setScooter(s);
-					return ViajeDAO.add(v);
+	public DTViaje iniciarViaje(DTViaje v) throws Exception {
+		
+	    try{
+			//Se controla que el scooter tenga bateria suficiente
+			int batscooter = Integer.valueOf(ParametroDAO.getDTParameterByName("BATERIABAJA").getValor());
+			DTScooterhistorico sh = ScooterhistoricoDAO.ultimoScooterHistoricoUnIdScooter(v.getScooter().getId());
+			DTScooter dtscooter = ScooterDAO.find(v.getScooter().getId());
+			
+			//verifico se encuentre encendido
+			if (sh != null && dtscooter.isEncendido() && !dtscooter.isEnuso() ) { 
+				if (sh.getBateria() > batscooter) {
+					//Se controla que el cliente tenga saldo suficiente.
+					DTCliente c = ClienteDAO.find(v.getCliente().getId());
+					int minimoViaje = Integer.valueOf(ParametroDAO.getDTParameterByName("MINIMOVIAJE").getValor());
+					if (c.getSaldo() >= minimoViaje) {
+						
+						//Se ocupa el scooter
+						DTScooter s = ScooterDAO.find(v.getScooter().getId());
+						s.setEnuso(true); 
+						ScooterDAO.merge(s);
+						
+						//Se calcula los minutos permitidos
+						int precioMinuto = Integer.valueOf(ParametroDAO.getDTParameterByName("PRECIOXMINUTO").getValor());
+						int minutosPermitidos = c.getSaldo() / precioMinuto;
+						
+						//Se genera el viaje
+						v.setMinutospermitidossaldo(minutosPermitidos); 	
+						v.setEstado("Iniciado");
+						v.setFechainicio(new Timestamp(System.currentTimeMillis()));
+						v.setCliente(c);
+						v.setScooter(s);
+						return ViajeDAO.add(v);
+					} else {
+			            throw new Exception("Saldo minimo del cliente insuficiente [minimo:"+ minimoViaje+ "]"); 
+					}
 				} else {
-					return new DTViaje();
+		            throw new Exception("Bateria del scooter insuficiente [mayor a:"+ batscooter+ "]"); 
 				}
 			} else {
-				return new DTViaje();
+	            throw new Exception("Scooter apagado o en uso");
 			}
-		} else {
-			return new DTViaje();
-		}
+	    }catch(Exception e){
+	    	throw  e;
+	    }
 	}
 
 	@Override

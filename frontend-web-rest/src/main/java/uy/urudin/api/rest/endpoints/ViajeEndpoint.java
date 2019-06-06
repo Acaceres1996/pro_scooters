@@ -15,6 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import uy.urudin.datatypes.DTScooter;
 import uy.urudin.datatypes.DTViaje;
 import uy.urudin.datatypes.DTViajePagoDetallado;
 import uy.urudin.logic.interfaces.ClienteFacadeLocal;
@@ -58,9 +59,17 @@ public class ViajeEndpoint {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response iniciarViaje (DTViaje v){
 		try {
-			return Response.status(200).entity( ViajeEJB.iniciarViaje(v) ).build();
+			DTViaje nuevo = ViajeEJB.iniciarViaje(v);
+			if(nuevo != null) {
+				System.out.println("TOYEN1");
+				return Response.status(200).entity( nuevo ).build();
+			}else {
+				System.out.println("TOYEN2");
+				return Response.status(500).entity( nuevo ).build();
+			}
 		} catch (Exception e) {
-			return Response.status(500).build();
+			System.out.println("TOYEN3");
+			return Response.status(500).entity( e ).build();
 		}
 	}
 	
