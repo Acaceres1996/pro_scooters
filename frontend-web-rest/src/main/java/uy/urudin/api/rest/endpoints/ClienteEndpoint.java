@@ -50,8 +50,16 @@ public class ClienteEndpoint {
 	@Path("/login/")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response loginCliente(@QueryParam("email") String email) {
-//System.out.println("DEBUGDEBUGDEBUG:" + email + ";");
-		return Response.ok( ClienteEJB.find(email)  ).build();
+		try {
+			DTCliente nuevo = ClienteEJB.find(email);
+			if(nuevo != null) {
+				return Response.status(200).entity( nuevo ).build();
+			}else {
+				return Response.status(500).entity( nuevo ).build();
+			}
+		} catch (Exception e) {
+			return Response.status(500).entity( e ).build();
+		}		
 	}
 	
 	
@@ -59,32 +67,32 @@ public class ClienteEndpoint {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createCliente(DTCliente dtcliente){
-			try {
-				DTCliente newdt = ClienteEJB.add(dtcliente);
-				if(newdt != null) {
-					return Response.status(200).entity(newdt).build();
-				}else{
-					return Response.status(500).build();
-				}
-			}catch (Exception e) {
-				return Response.status(500).entity(e).build();
-			}
+				try {
+					DTCliente nuevo = ClienteEJB.add(dtcliente);
+					if(nuevo != null) {
+						return Response.status(200).entity( nuevo ).build();
+					}else {
+						return Response.status(500).entity( nuevo ).build();
+					}
+				} catch (Exception e) {
+					return Response.status(500).entity( e ).build();
+				}	
 	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateCliente(DTCliente dtcliente){
-			try {
-				DTCliente upddt = ClienteEJB.update(dtcliente);
-				if(upddt != null) {
-					return Response.status(200).entity(upddt).build();
-				}else{
-					return Response.status(500).build();
-				}
-			}catch (Exception e) {
-				return Response.status(500).build();
-			}
+				try {
+					DTCliente nuevo = ClienteEJB.update(dtcliente);
+					if(nuevo != null) {
+						return Response.status(200).entity( nuevo ).build();
+					}else {
+						return Response.status(500).entity( nuevo ).build();
+					}
+				} catch (Exception e) {
+					return Response.status(500).entity( e ).build();
+				}	
 	}
 	
 }

@@ -35,13 +35,33 @@ public class ClienteFacade implements  ClienteFacadeLocal {
     }
 
     @Override
-	public DTCliente add(DTCliente dtParameter) {
-		return ClienteDAO.add(dtParameter);
+	public DTCliente add(DTCliente dtParameter) throws Exception {
+    	
+	    try{
+	    	DTCliente nuevo= ClienteDAO.add(dtParameter);
+	    	if(nuevo != null) {
+	    		return nuevo;
+			} else {
+	            throw new Exception("El correo ingresado ya está siendo utilizado.");
+			}
+	    }catch(Exception e){
+            throw new Exception("El correo ingresado ya está siendo utilizado.");
+	    }
+
 	}
 
 	@Override
-	public DTCliente update(DTCliente dtParameter) {
-		return ClienteDAO.merge(dtParameter);
+	public DTCliente update(DTCliente dtParameter) throws Exception {
+	    try{
+	    	DTCliente nuevo= ClienteDAO.merge(dtParameter);
+	    	if(nuevo != null) {
+	    		return nuevo;
+			} else {
+	            throw new Exception("Ocurrió un error al actualizar los datos.");
+			}
+	    }catch(Exception e){
+            throw new Exception("Ocurrió un error al actualizar los datos.");
+	    }
 	}
 
 	@Override
@@ -55,8 +75,18 @@ public class ClienteFacade implements  ClienteFacadeLocal {
 	}
 
 	@Override
-	public DTCliente find(String email) {
-		return ClienteDAO.find(email);
+	public DTCliente find(String email) throws Exception {
+	    try{
+	    	DTCliente nuevo= ClienteDAO.find(email);
+	    	if(nuevo != null) {
+	    		return nuevo;
+			} else {
+	            throw new Exception("Cliente no valido.");
+			}
+	    }catch(Exception e){
+	            throw new Exception("Cliente no valido.");
+	    }
+
 	}
 
 }

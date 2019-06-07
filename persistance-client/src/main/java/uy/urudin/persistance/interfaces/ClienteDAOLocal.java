@@ -12,8 +12,8 @@ import uy.urudin.datatypes.DTCliente;
 @Local
 public interface ClienteDAOLocal {
 	public DTCliente add(DTCliente dtcliente);
-	public DTCliente merge(DTCliente dtcliente);
+	public DTCliente merge(DTCliente dtcliente) throws Exception;
 	public List<DTCliente> findAll();
 	public DTCliente find(Integer id);
-	public DTCliente find(String email);
+	public DTCliente find(String email) throws Exception;
 }
