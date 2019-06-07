@@ -14,7 +14,7 @@ import uy.urudin.datatypes.DTScooterUltimoRegistro;
 
 @Local
 public interface MonederohistoricoFacadeLocal {
-	public DTCliente add(DTMonederohistorico dtMonederohistorico);
+	public DTCliente add(DTMonederohistorico dtMonederohistorico) throws Exception;
 	public List<DTMonederohistorico> findAll();
 	public DTMonederohistorico find(Integer id);
 	public List<DTMonederohistorico> findPagos();
