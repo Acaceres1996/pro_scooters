@@ -53,7 +53,7 @@ public class ClienteDAO implements ClienteDAOLocal {
 	}
 
 	@Override
-	public DTCliente merge(DTCliente dtcliente) {
+	public DTCliente merge(DTCliente dtcliente) throws Exception {
 		Cliente cliente = new Cliente(dtcliente);
 		// puede existir 0 o 1 vez pero no mas.
 		if(cuantosemails(dtcliente.getEmail()) <= 1 ) {
@@ -61,10 +61,10 @@ public class ClienteDAO implements ClienteDAOLocal {
 				em.merge(cliente);
 				return cliente.getDTCliente();
 			} catch (Exception e) {
-				return null;
+	            throw new Exception("Ocurrió un error al actualizar los datos.");
 			}
 		}else {
-			return null;
+            throw new Exception("Ocurrió un error al actualizar los datos.");
 		}
 	}
 
@@ -81,19 +81,21 @@ public class ClienteDAO implements ClienteDAOLocal {
 	}
 	
 	@Override
-	public DTCliente find(String email) {
+	public DTCliente find(String email) throws Exception {
 		Query query = em.createQuery("SELECT p FROM Cliente p where p.email = :email ");
         query.setParameter("email", email);
         Cliente s;
         try {
         	 s = (Cliente) query.getSingleResult();
+        	 if(s!=null) {
+        			return s.getDTCliente();
+        	 }else {
+ 	            throw new Exception("Cliente no valido.");
+        	 }
 		} catch (Exception e) {
-			s = null;
-//			System.out.println("DEBUGDEBUGDEBUG:" + "cach" + ";");
+	            throw new Exception("Cliente no valido.");
 		}
-        
-//        System.out.println("DEBUGDEBUGDEBUG:" + s.getApellido() + ";");
-		return s.getDTCliente();
+
 	}
 	
 	@Override
