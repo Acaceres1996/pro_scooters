@@ -174,7 +174,7 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 	}
 
 	@Override
-	public DTResumenViaje finalizarViaje(DTViaje v) {
+	public DTResumenViaje finalizarViaje(DTViaje v) throws Exception {
 		DTResumenViaje resumen = new DTResumenViaje();
 			//Se termina el viaje.
 			v.setFechafin(new Timestamp(System.currentTimeMillis()));

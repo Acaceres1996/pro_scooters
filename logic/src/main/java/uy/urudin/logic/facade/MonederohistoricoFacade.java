@@ -36,7 +36,7 @@ public class MonederohistoricoFacade implements  MonederohistoricoFacadeLocal {
     }
 
 	@Override
-	public DTCliente add(DTMonederohistorico dtMonederohistorico) {
+	public DTCliente add(DTMonederohistorico dtMonederohistorico) throws Exception {
 		//Registro el monedero
 		dtMonederohistorico.setFecha(new Timestamp(System.currentTimeMillis()));
 		DTCliente c = ClienteDAO.find(dtMonederohistorico.getDtcliente().getId());
