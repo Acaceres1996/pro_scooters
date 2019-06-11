@@ -78,6 +78,7 @@ public class ScooterDAO implements ScooterDAOLocal {
 		Scooter Scooter = new Scooter(dtScooter);
 		if(!Scooter.getEncendido()) {
 			Scooter.setEliminado(true);
+			Scooter.setEncendido(false);
 			em.merge(Scooter);
 		}
 	}
