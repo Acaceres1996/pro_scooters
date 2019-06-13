@@ -19,14 +19,18 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import uy.urudin.datatypes.DTResumenViaje;
 import uy.urudin.datatypes.DTScooter;
 import uy.urudin.datatypes.DTScooterScan;
 import uy.urudin.datatypes.DTScooterUltimoRegistro;
 import uy.urudin.datatypes.DTScooterhistorico;
+import uy.urudin.datatypes.DTViaje;
 import uy.urudin.logic.interfaces.ScooterFacadeLocal;
+import uy.urudin.logic.interfaces.ViajeFacadeLocal;
 import uy.urudin.persistance.interfaces.ParametroDAOLocal;
 import uy.urudin.persistance.interfaces.ScooterDAOLocal;
 import uy.urudin.persistance.interfaces.ScooterhistoricoDAOLocal;
+import uy.urudin.persistance.interfaces.ViajeDAOLocal;
 
 /**
  * Session Bean implementation class ScooterFacade
@@ -37,6 +41,8 @@ public class ScooterFacade implements ScooterFacadeLocal {
 
 	@EJB
 	ScooterDAOLocal ScooterDAO;
+	@EJB
+	ViajeFacadeLocal ViajeFacade;
 	@EJB
 	ParametroDAOLocal ParametroDAO;
 	@EJB
@@ -250,6 +256,26 @@ public class ScooterFacade implements ScooterFacadeLocal {
 		scan.setBateria(sh.getBateria());
 		scan.setKmDisponibles(kmDisponibles);
 		return scan;
+	}
+
+	@Override
+	public DTResumenViaje apagarScooter(Integer idscooter) throws Exception {
+		//seteo apagado de ese id scooter.
+		DTScooter scooter = find(idscooter);
+		scooter.setEncendido(false);
+		DTScooter scooterapagado = update(scooter);
+		
+		//busco si existe 1 viaje iniciado
+		DTViaje viaje = ViajeFacade.buscarIniciadoPorScooter(scooterapagado.getId());
+		
+		if(viaje!=null) {
+			//existe finalizo.
+			return ViajeFacade.finalizarViaje(viaje);
+			
+		}else {
+			//no existe null
+			return null;
+		}
 	}
 
 }

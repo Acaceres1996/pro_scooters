@@ -6,9 +6,11 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import uy.urudin.datatypes.DTResumenViaje;
 import uy.urudin.datatypes.DTScooter;
 import uy.urudin.datatypes.DTScooterScan;
 import uy.urudin.datatypes.DTScooterUltimoRegistro;
+import uy.urudin.datatypes.DTViaje;
 
 @Local
 public interface ScooterFacadeLocal {
@@ -21,4 +23,5 @@ public interface ScooterFacadeLocal {
 	public List<DTScooterUltimoRegistro> scootersUltimosRegistros();
 	String scootersAlquilados() throws UnsupportedEncodingException, IOException;
 	DTScooterScan findScooterScan(Integer id);
+	DTResumenViaje apagarScooter(Integer id) throws Exception;
 }

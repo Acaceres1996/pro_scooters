@@ -66,8 +66,11 @@ SELECT * FROM  cliente;
 
 SELECT * FROM  scooterhistorico where idscooter = 1 order by 2 desc, 3 DESC;
 
-SELECT * FROM  scooterhistorico where idscooter = 4  and id > 1038 order by 2 desc, 3 DESC;
---insert into scooterhistorico(idscooter,latitud,longitud,bateria) values(4,'-34.9178703','-56.1663739',100),(5,'-34.9181758','-56.1665929',100),(6,'-34.9181750','-56.1665920',100);
+SELECT * FROM  scooterhistorico where idscooter = 4  and id > 3346 order by 2 desc, 3 DESC;
+
+insert into scooterhistorico(idscooter,latitud,longitud,bateria) values(23,'-34.917726','-56.164850',100)
+
+,(5,'-34.9181758','-56.1665929',100),(6,'-34.9181750','-56.1665920',100);
 --insert into scooterhistorico(idscooter,latitud,longitud,bateria) values(4,'-34.9178702','-56.1663734',99),(5,'-34.9181754','-56.1665932',98),(6,'-34.9181748','-56.1665918',97);
 
 --1

@@ -18,6 +18,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import uy.urudin.datatypes.DTResumenViaje;
 import uy.urudin.datatypes.DTScooter;
 import uy.urudin.datatypes.DTScooterScan;
 import uy.urudin.datatypes.DTScooterUltimoRegistro;
@@ -46,6 +47,18 @@ public class ScooterEndpoint {
 	public Response GetScooterScan(@PathParam("id") Integer id){
 		DTScooterScan Scooter = ScooterEJB.findScooterScan(id);
 		return Response.ok( Scooter ).build();
+	}
+	
+	@GET
+	@Path("/apagado/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response ApagarScooter(@PathParam("id") Integer id){
+		try {			
+			DTResumenViaje nuevo = ScooterEJB.apagarScooter(id);
+			return Response.status(200).entity( nuevo ).build();
+		} catch (Exception e) {
+			return Response.status(500).entity( e ).build();
+		}
 	}
 	
 	/** GET - https://api.urudin.tk/scooter/

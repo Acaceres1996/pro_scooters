@@ -73,4 +73,15 @@ public class ViajeDAO implements ViajeDAOLocal {
 		}
 		return ListDT; 
 	}
+
+	@Override
+	public DTViaje buscarIniciadoPorScooter(int idScooter) {
+		try {
+			Viaje viaje = em.createQuery("SELECT a FROM Viaje a WHERE a.estado = 'Iniciado' and scooter = " + idScooter, Viaje.class).getSingleResult();
+			return viaje.getDTViaje(); 
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 }

@@ -257,6 +257,11 @@ public class ViajeFacade implements  ViajeFacadeLocal {
 		}
 		return minutosTotal;
 	}
+
+	@Override
+	public DTViaje buscarIniciadoPorScooter(int idScooter) {
+		return ViajeDAO.buscarIniciadoPorScooter(idScooter);
+	}
 	
 }
 

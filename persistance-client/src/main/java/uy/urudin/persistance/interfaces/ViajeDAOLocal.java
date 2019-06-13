@@ -16,4 +16,5 @@ public interface ViajeDAOLocal {
 	DTViaje find(Integer id);
 	List<DTViaje> findAll();
 	List<DTViaje> findByUser(int id);
+	DTViaje buscarIniciadoPorScooter(int idScooter);
 }
