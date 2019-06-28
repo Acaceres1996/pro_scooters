@@ -19,4 +19,5 @@ public interface ViajeFacadeLocal {
 	DTResumenViaje finalizarViaje(DTViaje v) throws Exception;
 	int duracionViaje(DTViaje v);
 	List<DTViajePagoDetallado> findByUser(int id);
+	DTViaje buscarIniciadoPorScooter(int idScooter);
 }
